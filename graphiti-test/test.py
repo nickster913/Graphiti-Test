@@ -45,6 +45,7 @@ async def main():
         episode_body="Alice is a software engineer who works at Acme Corp. She is friends with Bob who is a data scientist at the same company. Bob recently moved to Singapore.",
         source_description="test input",
         reference_time=datetime.now(timezone.utc),
+        group_id="test",
     )
 
     print("Done! Go check Neo4j browser")
