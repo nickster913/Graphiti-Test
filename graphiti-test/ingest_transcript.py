@@ -38,7 +38,7 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 llm_client = AnthropicClient(
     config=LLMConfig(
         api_key=ANTHROPIC_API_KEY,
-        model="claude-sonnet-4-6",
+        model="claude-haiku-4-5",
         small_model="claude-haiku-4-5",
     )
 )
