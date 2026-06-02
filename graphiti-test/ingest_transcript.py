@@ -76,24 +76,24 @@ graphiti = Graphiti(
 
 # ── HD Entity Schema ──────────────────────────────────────────────────────────
 class HDType(BaseModel):
-    name: str = Field(description="The Human Design type name e.g. Manifesting Generator")
+    type_name: str = Field(description="The Human Design type name e.g. Manifesting Generator")
     strategy: Optional[str] = Field(default=None, description="The type's strategy e.g. Respond, Wait for Invitation")
     not_self_theme: Optional[str] = Field(default=None, description="The not-self theme e.g. Frustration, Bitterness")
     signature: Optional[str] = Field(default=None, description="The signature e.g. Satisfaction, Success")
 
 class HDCenter(BaseModel):
-    name: str = Field(description="Centre name e.g. Sacral, Solar Plexus, G-Center")
+    center_name: str = Field(description="Centre name e.g. Sacral, Solar Plexus, G-Center")
     defined_or_open: Optional[str] = Field(default=None, description="Whether the centre is defined or open/undefined")
     function: Optional[str] = Field(default=None, description="What this centre governs")
 
 class HDGate(BaseModel):
     number: str = Field(description="Gate number e.g. 26, 44")
-    name: Optional[str] = Field(default=None, description="Gate name e.g. The Accumulator")
+    gate_name: Optional[str] = Field(default=None, description="Gate name e.g. The Accumulator")
     center: Optional[str] = Field(default=None, description="Which centre this gate belongs to")
     gift: Optional[str] = Field(default=None, description="The gift expression of this gate")
 
 class HDChannel(BaseModel):
-    name: Optional[str] = Field(default=None, description="Channel name")
+    channel_name: Optional[str] = Field(default=None, description="Channel name")
     gate_1: str = Field(description="First gate number")
     gate_2: str = Field(description="Second gate number")
     theme: Optional[str] = Field(default=None, description="The theme or energy of this channel")
@@ -105,11 +105,11 @@ class HDProfile(BaseModel):
     archetype: Optional[str] = Field(default=None, description="RayJai's reframe of this profile")
 
 class HDAuthority(BaseModel):
-    name: str = Field(description="Authority type e.g. Emotional, Sacral, Splenic")
+    authority_name: str = Field(description="Authority type e.g. Emotional, Sacral, Splenic")
     decision_process: Optional[str] = Field(default=None, description="How this authority makes decisions")
 
 class HDConcept(BaseModel):
-    name: str = Field(description="HD concept name e.g. deconditioning, not-self, openness")
+    concept_name: str = Field(description="HD concept name e.g. deconditioning, not-self, openness")
     definition: Optional[str] = Field(default=None, description="What this concept means")
     rayjai_reframe: Optional[str] = Field(default=None, description="RayJai's specific language or reframe for this concept")
 
@@ -119,7 +119,7 @@ class RayJaiTeaching(BaseModel):
     related_hd_concept: Optional[str] = Field(default=None, description="Which HD concept this relates to")
 
 class Person(BaseModel):
-    name: str = Field(description="Person's name")
+    person_name: str = Field(description="Person's name")
     role: Optional[str] = Field(default=None, description="Role e.g. client, practitioner")
     hd_type: Optional[str] = Field(default=None, description="Their Human Design type if mentioned")
 
