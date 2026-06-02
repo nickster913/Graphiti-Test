@@ -64,6 +64,16 @@ cross_encoder = OpenAIRerankerClient(
     config=ollama_llm_config,
 )
 
+# ── Graphiti setup ────────────────────────────────────────────────────────────
+graphiti = Graphiti(
+    "bolt://localhost:7687",
+    "neo4j",
+    "password",
+    llm_client=llm_client,
+    embedder=embedder,
+    cross_encoder=cross_encoder,
+)
+
 # ── HD Entity Schema ──────────────────────────────────────────────────────────
 class HDType(BaseModel):
     name: str = Field(description="The Human Design type name e.g. Manifesting Generator")
