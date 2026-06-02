@@ -25,7 +25,7 @@ from ingest_transcript import (
 
 load_dotenv()
 
-MANUAL_FILE = "RayJai_s_reading_training_manual_docx.txt"
+MANUAL_FILE = "RayJai's reading training manual.docx.txt"
 
 llm_client = OpenAIGenericClient(config=LLMConfig(
     api_key="ollama",
