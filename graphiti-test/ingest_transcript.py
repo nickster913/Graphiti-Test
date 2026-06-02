@@ -18,7 +18,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from graphiti_core import Graphiti
-from graphiti_core.llm_client.anthropic_client import AnthropicClient
 from graphiti_core.llm_client.config import LLMConfig
 from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
 from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
@@ -32,16 +31,14 @@ from typing import Optional
 load_dotenv()
 
 EPISODES_FILE = "transcript_episodes.json"
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
-# ── LLM: Claude API for entity extraction ────────────────────────────────────
-llm_client = AnthropicClient(
-    config=LLMConfig(
-        api_key=ANTHROPIC_API_KEY,
-        model="claude-haiku-4-5",
-        small_model="claude-haiku-4-5",
-    )
-)
+# ── LLM: Gemma4 via Ollama for entity extraction ─────────────────────────────
+llm_client = OpenAIGenericClient(config=LLMConfig(
+    api_key="ollama",
+    model="gemma4:26b",
+    small_model="gemma4:26b",
+    base_url="http://localhost:11434/v1",
+))
 
 # ── Embeddings: Ollama/nomic-embed-text (local) ───────────────────────────────
 embedder = OpenAIEmbedder(config=OpenAIEmbedderConfig(
@@ -60,8 +57,8 @@ ollama_llm_config = LLMConfig(
 )
 ollama_client = OpenAIGenericClient(config=ollama_llm_config)
 cross_encoder = OpenAIRerankerClient(
-    client=ollama_client,
-    config=ollama_llm_config,
+    client=llm_client,
+    config=llm_client.config,
 )
 
 # ── Graphiti setup ────────────────────────────────────────────────────────────
@@ -177,10 +174,7 @@ async def ingest(episodes: list[dict]):
 
 
 def main():
-    if not ANTHROPIC_API_KEY:
-        print("Error: ANTHROPIC_API_KEY not set in .env", file=sys.stderr)
-        sys.exit(1)
-
+   
     path = Path(EPISODES_FILE)
     if not path.exists():
         print(f"Error: {EPISODES_FILE} not found.", file=sys.stderr)
