@@ -32,11 +32,11 @@ load_dotenv()
 
 EPISODES_FILE = "transcript_episodes.json"
 
-# ── LLM: Gemma4 via Ollama for entity extraction ─────────────────────────────
+# ── LLM: GPT:OSS-20B via Ollama for entity extraction ─────────────────────────────
 llm_client = OpenAIGenericClient(config=LLMConfig(
     api_key="ollama",
-    model="gemma4:26b",
-    small_model="gemma4:26b",
+    model="gpt-oss:20b",
+    small_model="gpt-oss:20b",
     base_url="http://localhost:11434/v1",
 ))
 
