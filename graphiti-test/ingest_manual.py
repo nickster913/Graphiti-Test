@@ -11,13 +11,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 from graphiti_core import Graphiti
 from graphiti_core.llm_client.config import LLMConfig
-from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
+from graphiti_core.llm_client.anthropic_client import AnthropicClient
 from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
 from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
 
 # reuse same HD schema from ingest_transcript.py
 from ingest_transcript import (
     HD_ENTITY_TYPES,
+    HD_EDGE_TYPES,
+    HD_EDGE_TYPE_MAP,
     HD_EXTRACTION_INSTRUCTIONS,
     embedder,
     cross_encoder,
@@ -27,12 +29,13 @@ load_dotenv()
 
 MANUAL_FILE = "RayJai's reading training manual.docx.txt"
 
-llm_client = OpenAIGenericClient(config=LLMConfig(
-    api_key="ollama",
-    model="gpt-oss:20b",
-    small_model="gpt-oss:20b",
-    base_url="http://localhost:11434/v1",
-))
+llm_client = AnthropicClient(
+    config=LLMConfig(
+        api_key=os.getenv("ANTHROPIC_API_KEY"),
+        model="claude-haiku-4-5",
+        small_model="claude-haiku-4-5",
+    )
+)
 
 graphiti = Graphiti(
     "bolt://localhost:7687",
@@ -80,16 +83,29 @@ async def ingest():
 
     for i, chunk in enumerate(chunks):
         print(f"[{i+1}/{total}] {chunk['title']}")
-        await graphiti.add_episode(
-            name=chunk["name"],
-            episode_body=chunk["text"],
-            source_description="The 26•44 AI Agent Training Manual — RayJai Babauta methodology",
-            reference_time=ref_time,
-            group_id="the2644-manual",
-            entity_types=HD_ENTITY_TYPES,
-            custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
-        )
-        await asyncio.sleep(1)
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                await graphiti.add_episode(
+                    name=chunk["name"],
+                    episode_body=chunk["text"],
+                    source_description="The 26•44 AI Agent Training Manual — RayJai Babauta methodology",
+                    reference_time=ref_time,
+                    group_id="the2644-manual",
+                    entity_types=HD_ENTITY_TYPES,
+                    edge_types=HD_EDGE_TYPES,
+                    edge_type_map=HD_EDGE_TYPE_MAP,
+                    custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
+                )
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"  Retry {attempt + 1}/{max_retries - 1} after error: {e}")
+                    await asyncio.sleep(15)
+                else:
+                    print(f"  Failed after {max_retries} attempts: {e}")
+                    raise
+        await asyncio.sleep(15)
 
     await graphiti.close()
     print(f"\nDone! {total} sections ingested.")

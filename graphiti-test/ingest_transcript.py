@@ -22,6 +22,7 @@ from graphiti_core.llm_client.config import LLMConfig
 from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
 from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
 from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
+from graphiti_core.llm_client.anthropic_client import AnthropicClient
 from graphiti_core.nodes import EntityNode
 from graphiti_core.edges import EntityEdge
 
@@ -32,13 +33,14 @@ load_dotenv()
 
 EPISODES_FILE = "transcript_episodes.json"
 
-# ── LLM: GPT:OSS-20B via Ollama for entity extraction ─────────────────────────────
-llm_client = OpenAIGenericClient(config=LLMConfig(
-    api_key="ollama",
-    model="gpt-oss:20b",
-    small_model="gpt-oss:20b",
-    base_url="http://localhost:11434/v1",
-))
+# ── LLM: Claude Haiku via Anthropic ───────────────────────────────────────────
+llm_client = AnthropicClient(
+    config=LLMConfig(
+        api_key=os.getenv("ANTHROPIC_API_KEY"),
+        model="claude-haiku-4-5",
+        small_model="claude-haiku-4-5",
+    )
+)
 
 # ── Embeddings: Ollama/nomic-embed-text (local) ───────────────────────────────
 embedder = OpenAIEmbedder(config=OpenAIEmbedderConfig(
@@ -132,6 +134,92 @@ HD_ENTITY_TYPES = {
     "Person": Person,
 }
 
+# ── HD Edge Types ─────────────────────────────────────────────────────────────
+class DefinedIn(BaseModel):
+    """A gate is defined in a centre"""
+    confidence: Optional[float] = Field(default=None, description="Confidence score 0-1")
+
+class ConnectsTo(BaseModel):
+    """A gate connects to another gate forming a channel"""
+    channel_name: Optional[str] = Field(default=None, description="The resulting channel name")
+
+class AuthorityFor(BaseModel):
+    """An authority type belongs to a HD type"""
+    confidence: Optional[float] = Field(default=None)
+
+class StrategyFor(BaseModel):
+    """A strategy belongs to a HD type"""
+    confidence: Optional[float] = Field(default=None)
+
+class NotSelfOf(BaseModel):
+    """A not-self theme belongs to a HD type"""
+    confidence: Optional[float] = Field(default=None)
+
+class SignatureOf(BaseModel):
+    """A signature belongs to a HD type"""
+    confidence: Optional[float] = Field(default=None)
+
+class TeachesThrough(BaseModel):
+    """A RayJai teaching is delivered through a HD concept"""
+    confidence: Optional[float] = Field(default=None)
+
+class Reframes(BaseModel):
+    """A RayJai teaching reframes a HD concept with his proprietary language"""
+    original_term: Optional[str] = Field(default=None, description="The original HD term being reframed")
+
+class Illustrates(BaseModel):
+    """A RayJai teaching illustrates a centre, type, gate or concept"""
+    confidence: Optional[float] = Field(default=None)
+
+class BuildsOn(BaseModel):
+    """A concept builds on another concept — must understand the second to grasp the first"""
+    confidence: Optional[float] = Field(default=None)
+
+class GrantsPermission(BaseModel):
+    """A RayJai teaching grants permission to a person or type"""
+    permission_statement: Optional[str] = Field(default=None, description="What permission is being granted")
+
+class ResonatedWith(BaseModel):
+    """A teaching or concept resonated with a person in session"""
+    confidence: Optional[float] = Field(default=None)
+
+class ConditioningOf(BaseModel):
+    """An open centre is a source of conditioning for a person"""
+    confidence: Optional[float] = Field(default=None)
+
+HD_EDGE_TYPES = {
+    "DEFINED_IN": DefinedIn,
+    "CONNECTS_TO": ConnectsTo,
+    "AUTHORITY_FOR": AuthorityFor,
+    "STRATEGY_FOR": StrategyFor,
+    "NOT_SELF_OF": NotSelfOf,
+    "SIGNATURE_OF": SignatureOf,
+    "TEACHES_THROUGH": TeachesThrough,
+    "REFRAMES": Reframes,
+    "ILLUSTRATES": Illustrates,
+    "BUILDS_ON": BuildsOn,
+    "GRANTS_PERMISSION": GrantsPermission,
+    "RESONATED_WITH": ResonatedWith,
+    "CONDITIONING_OF": ConditioningOf,
+}
+
+HD_EDGE_TYPE_MAP = {
+    ("HDGate", "HDCenter"): ["DEFINED_IN"],
+    ("HDGate", "HDGate"): ["CONNECTS_TO"],
+    ("HDAuthority", "HDType"): ["AUTHORITY_FOR"],
+    ("HDStrategy", "HDType"): ["STRATEGY_FOR"],
+    ("HDConcept", "HDType"): ["NOT_SELF_OF", "SIGNATURE_OF", "BUILDS_ON"],
+    ("RayJaiTeaching", "HDConcept"): ["TEACHES_THROUGH", "REFRAMES", "ILLUSTRATES"],
+    ("RayJaiTeaching", "HDCenter"): ["ILLUSTRATES"],
+    ("RayJaiTeaching", "HDType"): ["ILLUSTRATES", "GRANTS_PERMISSION"],
+    ("RayJaiTeaching", "HDGate"): ["ILLUSTRATES"],
+    ("RayJaiTeaching", "Person"): ["GRANTS_PERMISSION"],
+    ("HDConcept", "HDConcept"): ["BUILDS_ON"],
+    ("HDCenter", "Person"): ["CONDITIONING_OF"],
+    ("RayJaiTeaching", "HDProfile"): ["ILLUSTRATES"],
+    ("HDProfile", "HDType"): ["BUILDS_ON"],
+}
+
 HD_EXTRACTION_INSTRUCTIONS = """
 You are extracting structured entities from a Human Design reading session transcript.
 
@@ -165,16 +253,29 @@ async def ingest(episodes: list[dict]):
         ref_time = datetime.strptime(ep["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
         print(f"[{i+1}/{total}] {episode_name} — {ep['speaker']} ({ep['timestamp']})")
-        await graphiti.add_episode(
-            name=episode_name,
-            episode_body=body,
-            source_description="The 26•44 session transcript — RayJai Babauta Human Design reading",
-            reference_time=ref_time,
-            group_id="the2644-sessions",
-            entity_types=HD_ENTITY_TYPES,
-            custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
-        )
-        await asyncio.sleep(4)
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                await graphiti.add_episode(
+                    name=episode_name,
+                    episode_body=body,
+                    source_description="The 26•44 session transcript — RayJai Babauta Human Design reading",
+                    reference_time=ref_time,
+                    group_id="the2644-sessions",
+                    entity_types=HD_ENTITY_TYPES,
+                    edge_types=HD_EDGE_TYPES,
+                    edge_type_map=HD_EDGE_TYPE_MAP,
+                    custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
+                )
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"  Retry {attempt + 1}/{max_retries - 1} after error: {e}")
+                    await asyncio.sleep(15)
+                else:
+                    print(f"  Failed after {max_retries} attempts: {e}")
+                    raise
+        await asyncio.sleep(15)
 
     await graphiti.close()
     print(f"\nDone! {total} episodes ingested. Open Neo4j Browser to explore the graph:")
