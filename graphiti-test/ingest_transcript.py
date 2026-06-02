@@ -168,6 +168,7 @@ async def ingest(episodes: list[dict]):
             entity_types=HD_ENTITY_TYPES,
             custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
         )
+        await asyncio.sleep(4)
 
     await graphiti.close()
     print(f"\nDone! {total} episodes ingested. Open Neo4j Browser to explore the graph:")
