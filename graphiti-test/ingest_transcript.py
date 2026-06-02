@@ -133,14 +133,23 @@ HD_ENTITY_TYPES = {
 }
 
 HD_EXTRACTION_INSTRUCTIONS = """
-You are extracting entities from a Human Design reading session transcript.
-Focus on:
-- HD types, centres, gates, channels, profiles, and authorities mentioned
-- RayJai's specific reframes and teaching moments (these are valuable IP)
-- How concepts are explained in plain language, not textbook HD
-- Relationships between concepts (e.g. which gates form which channels, which authority belongs to which type)
-- Client responses that indicate resonance or confusion with a concept
-Do NOT extract generic entities like locations or organisations unless directly relevant to HD.
+You are extracting structured entities from a Human Design reading session transcript.
+
+CRITICAL: You MUST populate the specific attributes for each entity type. Do not leave attributes empty.
+
+For each entity found, extract:
+- HDType: populate type_name (e.g. "Manifesting Generator"), strategy, not_self_theme, signature
+- HDCenter: populate center_name (e.g. "Sacral", "Solar Plexus"), defined_or_open, function
+- HDGate: populate gate_number (e.g. "26", "44"), gate_name, center
+- HDChannel: populate gate_1, gate_2, theme
+- HDProfile: populate lines (e.g. "3/5"), conscious_line, unconscious_line
+- HDAuthority: populate authority_name (e.g. "Emotional", "Sacral"), decision_process
+- HDConcept: populate concept_name, definition, rayjai_reframe (RayJai's exact words or metaphor)
+- RayJaiTeaching: populate insight with RayJai's EXACT teaching, reframe or metaphor — this is the most important field
+- Person: populate person_name, role (client or practitioner)
+
+Focus especially on RayJaiTeaching nodes — capture RayJai's specific language, metaphors and reframes verbatim.
+Do NOT use meta-language like "no new attributes" or "entity unchanged" — only extract real content from the transcript.
 """
 
 
