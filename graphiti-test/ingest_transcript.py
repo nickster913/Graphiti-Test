@@ -253,7 +253,7 @@ async def ingest(episodes: list[dict]):
         ref_time = datetime.strptime(ep["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
         print(f"[{i+1}/{total}] {episode_name} — {ep['speaker']} ({ep['timestamp']})")
-        max_retries = 3
+        max_retries = 5
         for attempt in range(max_retries):
             try:
                 await graphiti.add_episode(
@@ -269,9 +269,11 @@ async def ingest(episodes: list[dict]):
                 )
                 break
             except Exception as e:
+                is_rate_limit = "429" in str(e) or "rate" in str(e).lower()
+                wait = 15 * (2 ** attempt) if is_rate_limit else 15
                 if attempt < max_retries - 1:
-                    print(f"  Retry {attempt + 1}/{max_retries - 1} after error: {e}")
-                    await asyncio.sleep(15)
+                    print(f"  Retry {attempt + 1}/{max_retries - 1} in {wait}s — {e}")
+                    await asyncio.sleep(wait)
                 else:
                     print(f"  Failed after {max_retries} attempts: {e}")
                     raise
