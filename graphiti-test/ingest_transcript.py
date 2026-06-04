@@ -37,8 +37,8 @@ EPISODES_FILE = "transcript_episodes.json"
 llm_client = AnthropicClient(
     config=LLMConfig(
         api_key=os.getenv("ANTHROPIC_API_KEY"),
-        model="claude-haiku-4-5",
-        small_model="claude-haiku-4-5",
+        model="claude-sonnet-4-6",
+        small_model="claude-sonnet-4-6",
     )
 )
 
@@ -109,11 +109,11 @@ class HDAuthority(BaseModel):
 
 class HDConcept(BaseModel):
     concept_name: str = Field(description="HD concept name e.g. deconditioning, not-self, openness")
-    definition: Optional[str] = Field(default=None, description="What this concept means")
-    rayjai_reframe: Optional[str] = Field(default=None, description="RayJai's specific language or reframe for this concept")
+    definition: Optional[str] = Field(default=None, description="What this concept means", max_length=500)
+    rayjai_reframe: Optional[str] = Field(default=None, description="RayJai's specific language or reframe for this concept", max_length=500)
 
 class RayJaiTeaching(BaseModel):
-    insight: str = Field(description="The specific teaching, reframe, or metaphor RayJai used")
+    insight: str = Field(description="The specific teaching, reframe, or metaphor RayJai used", max_length=500)
     context: Optional[str] = Field(default=None, description="What prompted this teaching")
     related_hd_concept: Optional[str] = Field(default=None, description="Which HD concept this relates to")
 
@@ -224,17 +224,73 @@ HD_EXTRACTION_INSTRUCTIONS = """
 You are extracting structured entities from a Human Design reading session transcript.
 
 CRITICAL: You MUST populate the specific attributes for each entity type. Do not leave attributes empty.
+Pull attribute values DIRECTLY from the surrounding prose — use RayJai's own words where possible.
+Definitions and insights should be full sentences, not just labels.
 
 For each entity found, extract:
-- HDType: populate type_name (e.g. "Manifesting Generator"), strategy, not_self_theme, signature
-- HDCenter: populate center_name (e.g. "Sacral", "Solar Plexus"), defined_or_open, function
-- HDGate: populate gate_number (e.g. "26", "44"), gate_name, center
-- HDChannel: populate gate_1, gate_2, theme
-- HDProfile: populate lines (e.g. "3/5"), conscious_line, unconscious_line
-- HDAuthority: populate authority_name (e.g. "Emotional", "Sacral"), decision_process
-- HDConcept: populate concept_name, definition, rayjai_reframe (RayJai's exact words or metaphor)
+- HDType: populate type_name, strategy, not_self_theme, signature
+- HDCenter: populate center_name, defined_or_open, function (describe what the centre governs in 1-2 sentences)
+- HDGate: populate number, gate_name, center, gift
+- HDChannel: populate gate_1, gate_2, channel_name, theme
+- HDProfile: populate lines, conscious_line, unconscious_line, archetype
+- HDAuthority: populate authority_name, decision_process
+- HDConcept: populate concept_name, definition (full sentence from the text), rayjai_reframe (RayJai's exact words)
 - RayJaiTeaching: populate insight with RayJai's EXACT teaching, reframe or metaphor — this is the most important field
 - Person: populate person_name, role (client or practitioner)
+
+CONCRETE EXAMPLES of well-populated nodes:
+
+HDType:
+  type_name: "Manifesting Generator"
+  strategy: "Respond to life — wait for something to light you up, then act"
+  not_self_theme: "Frustration when initiating without waiting to respond"
+  signature: "Satisfaction and bursts of sustainable energy"
+
+HDCenter:
+  center_name: "Solar Plexus"
+  defined_or_open: "defined"
+  function: "The emotional authority centre — it rides a wave of highs and lows, and wisdom only comes when the wave has moved through, never in the moment of emotional charge"
+
+HDCenter (open):
+  center_name: "Sacral"
+  defined_or_open: "open"
+  function: "An undefined Sacral amplifies and reflects the life-force energy of defined Sacrals around it — it is not a reliable source of sustainable work energy for this person"
+
+HDGate:
+  number: "26"
+  gate_name: "The Accumulator"
+  center: "Heart"
+  gift: "The ability to convince others and sell ideas with integrity when acting from the heart"
+
+HDConcept:
+  concept_name: "deconditioning"
+  definition: "The multi-year process of shedding the conditioning absorbed from open centres and living as others, returning to your authentic design"
+  rayjai_reframe: "Peeling back the layers of who you were told to be so you can land in who you actually are"
+
+HDConcept:
+  concept_name: "not-self"
+  definition: "The voice or behaviour pattern that runs when a person is living out of alignment with their design — driven by conditioning from open centres"
+  rayjai_reframe: "The imposter running the show — the you that learned to survive, not the you that was born to thrive"
+
+RayJaiTeaching:
+  insight: "Your open Head Centre is not a problem — it means you are a phenomenal receiver of inspiration. The key is: inspiration visits you, it doesn't live here. You don't need to solve every question that walks in."
+  context: "Client expressing anxiety about constant mental chatter"
+  related_hd_concept: "open Head Centre conditioning"
+
+HDAuthority:
+  authority_name: "Emotional"
+  decision_process: "Ride the emotional wave fully before deciding — clarity comes at the bottom of the wave, not in the high or the low. Sleep on it. If it still feels right after the wave has passed, it is correct."
+
+HDProfile:
+  lines: "3/5"
+  conscious_line: "Line 3 — the Martyr, learning through trial and error and lived experience"
+  unconscious_line: "Line 5 — the Heretic, projected onto by others as a practical problem-solver"
+  archetype: "The Resilient Revolutionary — someone whose mess becomes their medicine"
+
+Person:
+  person_name: "Linzie Lee"
+  role: "client"
+  hd_type: "Manifesting Generator"
 
 Focus especially on RayJaiTeaching nodes — capture RayJai's specific language, metaphors and reframes verbatim.
 Do NOT use meta-language like "no new attributes" or "entity unchanged" — only extract real content from the transcript.

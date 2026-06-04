@@ -32,8 +32,8 @@ MANUAL_FILE = "RayJai's reading training manual.docx.txt"
 llm_client = AnthropicClient(
     config=LLMConfig(
         api_key=os.getenv("ANTHROPIC_API_KEY"),
-        model="claude-haiku-4-5",
-        small_model="claude-haiku-4-5",
+        model="claude-sonnet-4-6",
+        small_model="claude-sonnet-4-6",
     )
 )
 
