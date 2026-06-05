@@ -305,16 +305,37 @@ Do NOT use meta-language like "no new attributes" or "entity unchanged" — only
 """
 
 
+# ── Episode windowing ─────────────────────────────────────────────────────────
+def group_episodes(episodes: list[dict], window_size: int = 5) -> list[dict]:
+    """Group consecutive speaker turns into windows for richer extraction context.
+
+    A single isolated turn like 'wow,' or 'yeah, okay' gives the LLM nothing to
+    extract. Grouping 5 turns together means each episode contains enough
+    conversational context for entities and relationships to be identified.
+    Also reduces total API calls ~5x, keeping token usage within rate limits.
+    """
+    segments = []
+    for i in range(0, len(episodes), window_size):
+        window = episodes[i : i + window_size]
+        body = "\n".join(f"{ep['speaker']}: {ep['text']}" for ep in window)
+        segments.append({
+            "name": f"segment-{i // window_size:04d}",
+            "body": body,
+            "timestamp": window[0]["timestamp"],
+        })
+    return segments
+
+
 # ── Turn classifier ───────────────────────────────────────────────────────────
 _haiku = _anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-async def classify_turn(speaker: str, text: str) -> tuple[str, str]:
+async def classify_segment(body: str) -> tuple[str, str]:
     """Return (decision, reason) where decision is RELEVANT or SKIP.
 
-    RELEVANT — turn contains HD concepts, teachings, chart readings, or
-               meaningful client reflections worth ingesting.
-    SKIP     — small talk, greetings, tech checks, scheduling, or
-               off-topic conversation.
+    RELEVANT — segment contains any Human Design concepts, teachings, chart
+               readings, or meaningful client reflections worth ingesting.
+    SKIP     — the ENTIRE segment is small talk, greetings, tech checks,
+               scheduling, or off-topic conversation with zero HD content.
     """
     response = await _haiku.messages.create(
         model="claude-haiku-4-5",
@@ -322,11 +343,14 @@ async def classify_turn(speaker: str, text: str) -> tuple[str, str]:
         messages=[{
             "role": "user",
             "content": (
-                f"Speaker: {speaker}\n"
-                f"Text: {text}\n\n"
-                "Classify this transcript turn. Reply with EXACTLY one of:\n"
+                f"{body}\n\n"
+                "Classify this transcript segment. Reply with EXACTLY one of:\n"
                 "  RELEVANT\n"
                 "  SKIP: <brief reason>\n"
+                "Mark RELEVANT if ANY part contains Human Design concepts, teachings, "
+                "chart readings, or meaningful reflections on HD or personal growth. "
+                "Mark SKIP only if the ENTIRE segment is small talk, greetings, "
+                "tech/audio checks, scheduling, or purely off-topic chatter.\n"
                 "Nothing else. No explanation outside that format."
             ),
         }],
@@ -344,16 +368,21 @@ async def ingest(episodes: list[dict]):
     print("Building Neo4j indices and constraints...")
     await graphiti.build_indices_and_constraints()
 
-    total = len(episodes)
-    for i, ep in enumerate(episodes):
-        episode_name = f"turn-{i:04d}"
-        body = f"{ep['speaker']}: {ep['text']}"
-        ref_time = datetime.strptime(ep["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    segments = group_episodes(episodes, window_size=5)
+    total = len(segments)
+    skipped = 0
+    print(f"Grouped {len(episodes)} turns into {total} segments of ~5 turns each.\n")
 
-        print(f"[{i+1}/{total}] {episode_name} — {ep['speaker']} ({ep['timestamp']})")
+    for i, seg in enumerate(segments):
+        episode_name = seg["name"]
+        body = seg["body"]
+        ref_time = datetime.strptime(seg["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
-        decision, reason = await classify_turn(ep["speaker"], ep["text"])
+        print(f"[{i+1}/{total}] {episode_name}")
+
+        decision, reason = await classify_segment(body)
         if decision == "SKIP":
+            skipped += 1
             print(f"  [SKIP] {episode_name} — {reason}")
             continue
 
@@ -384,7 +413,8 @@ async def ingest(episodes: list[dict]):
         await asyncio.sleep(2)
 
     await graphiti.close()
-    print(f"\nDone! {total} episodes ingested. Open Neo4j Browser to explore the graph:")
+    ingested = total - skipped
+    print(f"\nDone! {ingested}/{total} segments ingested ({skipped} skipped).")
     print("  http://localhost:7474")
     print("  MATCH (n)-[r]->(m) RETURN n, r, m")
 
