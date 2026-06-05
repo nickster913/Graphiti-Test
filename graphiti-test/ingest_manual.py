@@ -4,23 +4,19 @@ Ingests RayJai's training manual into the knowledge graph by section.
 Run: uv run python ingest_manual.py
 """
 import asyncio
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
 from graphiti_core import Graphiti
-from graphiti_core.llm_client.config import LLMConfig
-from graphiti_core.llm_client.anthropic_client import AnthropicClient
-from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
-from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
 
-# reuse same HD schema from ingest_transcript.py
+# reuse same HD schema and clients from ingest_transcript.py
 from ingest_transcript import (
     HD_ENTITY_TYPES,
     HD_EDGE_TYPES,
     HD_EDGE_TYPE_MAP,
     HD_EXTRACTION_INSTRUCTIONS,
+    llm_client,
     embedder,
     cross_encoder,
 )
@@ -28,14 +24,6 @@ from ingest_transcript import (
 load_dotenv()
 
 MANUAL_FILE = "RayJai's reading training manual.docx.txt"
-
-llm_client = AnthropicClient(
-    config=LLMConfig(
-        api_key=os.getenv("ANTHROPIC_API_KEY"),
-        model="claude-sonnet-4-6",
-        small_model="claude-sonnet-4-6",
-    )
-)
 
 graphiti = Graphiti(
     "bolt://localhost:7687",
@@ -99,15 +87,14 @@ async def ingest():
                 )
                 break
             except Exception as e:
-                is_rate_limit = "429" in str(e) or "rate" in str(e).lower()
-                wait = 15 * (2 ** attempt) if is_rate_limit else 15
+                wait = 15 * (2 ** attempt)
                 if attempt < max_retries - 1:
                     print(f"  Retry {attempt + 1}/{max_retries - 1} in {wait}s — {e}")
                     await asyncio.sleep(wait)
                 else:
                     print(f"  Failed after {max_retries} attempts: {e}")
                     raise
-        await asyncio.sleep(15)
+        await asyncio.sleep(5)
 
     await graphiti.close()
     print(f"\nDone! {total} sections ingested.")

@@ -3,7 +3,8 @@ ingest_transcript.py
 Reads transcript_episodes.json (produced by parse_transcript.py) and feeds
 each speaker turn into Graphiti as a timestamped episode.
 
-Uses Claude API for LLM (entity extraction) and Ollama/nomic-embed-text for embeddings.
+Uses Ollama/gemma4:26b for LLM (entity extraction) and Ollama/nomic-embed-text for embeddings.
+All inference is fully local — no external API calls required.
 
 Run:
     uv run python parse_transcript.py
@@ -16,17 +17,13 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import openai
 from dotenv import load_dotenv
 from graphiti_core import Graphiti
 from graphiti_core.llm_client.config import LLMConfig
 from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
 from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
 from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
-from graphiti_core.llm_client.anthropic_client import AnthropicClient
-from graphiti_core.nodes import EntityNode
-from graphiti_core.edges import EntityEdge
-
-import anthropic as _anthropic
 
 from pydantic import BaseModel, Field
 from typing import Optional
@@ -34,36 +31,33 @@ from typing import Optional
 load_dotenv()
 
 EPISODES_FILE = "transcript_episodes.json"
+OLLAMA_BASE_URL = "http://localhost:11434/v1"
+OLLAMA_MODEL = "gemma4:26b"
 
-# ── LLM: Claude Haiku via Anthropic ───────────────────────────────────────────
-llm_client = AnthropicClient(
-    config=LLMConfig(
-        api_key=os.getenv("ANTHROPIC_API_KEY"),
-        model="claude-sonnet-4-6",
-        small_model="claude-sonnet-4-6",
-    )
-)
+# ── LLM: Ollama/gemma4:26b (local) ────────────────────────────────────────────
+llm_client = OpenAIGenericClient(config=LLMConfig(
+    api_key="ollama",
+    model=OLLAMA_MODEL,
+    small_model=OLLAMA_MODEL,
+    base_url=OLLAMA_BASE_URL,
+))
 
 # ── Embeddings: Ollama/nomic-embed-text (local) ───────────────────────────────
 embedder = OpenAIEmbedder(config=OpenAIEmbedderConfig(
     api_key="ollama",
     embedding_model="nomic-embed-text",
     embedding_dim=768,
-    base_url="http://localhost:11434/v1",
+    base_url=OLLAMA_BASE_URL,
 ))
 
-# ── Cross-encoder: reuse Claude via OpenAI-compatible wrapper ─────────────────
-ollama_llm_config = LLMConfig(
-    api_key="ollama",
-    model="gemma4:26b",
-    small_model="gemma4:26b",
-    base_url="http://localhost:11434/v1",
-)
-ollama_client = OpenAIGenericClient(config=ollama_llm_config)
+# ── Cross-encoder: Ollama/gemma4:26b (local) ──────────────────────────────────
 cross_encoder = OpenAIRerankerClient(
     client=llm_client,
     config=llm_client.config,
 )
+
+# ── Raw OpenAI-compatible client for the segment classifier ───────────────────
+_ollama = openai.AsyncOpenAI(api_key="ollama", base_url=OLLAMA_BASE_URL)
 
 # ── Graphiti setup ────────────────────────────────────────────────────────────
 graphiti = Graphiti(
@@ -194,38 +188,40 @@ class RelatesTo(BaseModel):
     confidence: Optional[float] = Field(default=None)
 
 HD_EDGE_TYPES = {
-    "DEFINED_IN": DefinedIn,
-    "CONNECTS_TO": ConnectsTo,
-    "AUTHORITY_FOR": AuthorityFor,
-    "STRATEGY_FOR": StrategyFor,
-    "NOT_SELF_OF": NotSelfOf,
-    "SIGNATURE_OF": SignatureOf,
-    "TEACHES_THROUGH": TeachesThrough,
-    "REFRAMES": Reframes,
-    "ILLUSTRATES": Illustrates,
-    "BUILDS_ON": BuildsOn,
-    "GRANTS_PERMISSION": GrantsPermission,
-    "RESONATED_WITH": ResonatedWith,
-    "CONDITIONING_OF": ConditioningOf,
-    "RELATES_TO": RelatesTo,
+    "DefinedIn": DefinedIn,
+    "ConnectsTo": ConnectsTo,
+    "AuthorityFor": AuthorityFor,
+    "StrategyFor": StrategyFor,
+    "NotSelfOf": NotSelfOf,
+    "SignatureOf": SignatureOf,
+    "TeachesThrough": TeachesThrough,
+    "Reframes": Reframes,
+    "Illustrates": Illustrates,
+    "BuildsOn": BuildsOn,
+    "GrantsPermission": GrantsPermission,
+    "ResonatedWith": ResonatedWith,
+    "ConditioningOf": ConditioningOf,
+    "RelatesTo": RelatesTo,
 }
 
 HD_EDGE_TYPE_MAP = {
-    ("HDGate", "HDCenter"): ["DEFINED_IN"],
-    ("HDGate", "HDGate"): ["CONNECTS_TO"],
-    ("HDAuthority", "HDType"): ["AUTHORITY_FOR"],
-    ("HDStrategy", "HDType"): ["STRATEGY_FOR"],
-    ("HDConcept", "HDType"): ["NOT_SELF_OF", "SIGNATURE_OF", "BUILDS_ON"],
-    ("RayJaiTeaching", "HDConcept"): ["TEACHES_THROUGH", "REFRAMES", "ILLUSTRATES"],
-    ("RayJaiTeaching", "HDCenter"): ["ILLUSTRATES"],
-    ("RayJaiTeaching", "HDType"): ["ILLUSTRATES", "GRANTS_PERMISSION"],
-    ("RayJaiTeaching", "HDGate"): ["ILLUSTRATES"],
-    ("RayJaiTeaching", "Person"): ["GRANTS_PERMISSION"],
-    ("HDConcept", "HDConcept"): ["BUILDS_ON"],
-    ("HDCenter", "Person"): ["CONDITIONING_OF"],
-    ("RayJaiTeaching", "HDProfile"): ["ILLUSTRATES"],
-    ("HDProfile", "HDType"): ["BUILDS_ON"],
-    ("Entity", "Entity"): ["RELATES_TO"],
+    ("HDGate", "HDCenter"): ["DefinedIn"],
+    ("HDGate", "HDGate"): ["ConnectsTo"],
+    ("HDAuthority", "HDType"): ["AuthorityFor"],
+    ("HDType", "HDType"): ["StrategyFor", "NotSelfOf", "SignatureOf"],
+    ("HDConcept", "HDType"): ["NotSelfOf", "SignatureOf", "BuildsOn"],
+    ("RayJaiTeaching", "HDConcept"): ["TeachesThrough", "Reframes", "Illustrates"],
+    ("RayJaiTeaching", "HDCenter"): ["Illustrates"],
+    ("RayJaiTeaching", "HDType"): ["Illustrates", "GrantsPermission"],
+    ("RayJaiTeaching", "HDGate"): ["Illustrates"],
+    ("RayJaiTeaching", "Person"): ["GrantsPermission"],
+    ("HDConcept", "HDConcept"): ["BuildsOn"],
+    ("HDCenter", "Person"): ["ConditioningOf"],
+    ("RayJaiTeaching", "HDProfile"): ["Illustrates"],
+    ("HDProfile", "HDType"): ["BuildsOn"],
+    ("Person", "HDConcept"): ["ResonatedWith"],
+    ("Person", "RayJaiTeaching"): ["ResonatedWith"],
+    ("Entity", "Entity"): ["RelatesTo"],
 }
 
 HD_EXTRACTION_INSTRUCTIONS = """
@@ -302,6 +298,50 @@ Person:
 
 Focus especially on RayJaiTeaching nodes — capture RayJai's specific language, metaphors and reframes verbatim.
 Do NOT use meta-language like "no new attributes" or "entity unchanged" — only extract real content from the transcript.
+
+RELATIONSHIP EXTRACTION — CRITICAL:
+You must also identify relationships between entities. Use the relationship type names EXACTLY as listed below.
+
+Available relationship types and when to use them:
+- DefinedIn       — a Gate belongs to a Centre (e.g. Gate 26 is in the Heart Centre)
+- ConnectsTo      — a Gate connects to another Gate forming a Channel
+- AuthorityFor    — an Authority type belongs to an HD Type (e.g. Emotional authority → Generator)
+- StrategyFor     — a strategy concept links to an HD Type
+- NotSelfOf       — a not-self theme or concept belongs to an HD Type
+- SignatureOf     — a signature belongs to an HD Type
+- TeachesThrough  — a RayJai teaching is delivered through a HD concept
+- Reframes        — a RayJai teaching reframes a HD concept in his own language
+- Illustrates     — a RayJai teaching illustrates a centre, type, gate, profile or concept
+- BuildsOn        — a concept builds on another concept (must understand B to grasp A)
+- GrantsPermission — a RayJai teaching grants explicit permission to a person or type
+- ResonatedWith   — a teaching or concept resonated with the client in session
+- ConditioningOf  — an open centre is a conditioning source for a person
+- RelatesTo       — generic fallback; use ONLY when no other type fits
+
+CONCRETE EXAMPLES of correct relationship extraction:
+
+SOURCE TEXT: "Gate 26 which is in the heart centre — this is the gate of the Accumulator"
+→ HDGate(number="26") -[DefinedIn]-> HDCenter(center_name="Heart")
+
+SOURCE TEXT: "Your Sacral is undefined, which means you absorb and amplify others' energy"
+→ HDCenter(center_name="Sacral", defined_or_open="open") -[ConditioningOf]-> Person(person_name="client")
+
+SOURCE TEXT: "As an Emotional authority you ride a wave — never decide in the high or the low"
+→ HDAuthority(authority_name="Emotional") -[AuthorityFor]-> HDType(type_name="Generator")
+→ RayJaiTeaching(insight="Never decide in the high or the low...") -[Illustrates]-> HDAuthority(authority_name="Emotional")
+
+SOURCE TEXT: "RayJai says: your open Head Centre is not broken — it means inspiration visits you, it doesn't live here"
+→ RayJaiTeaching(insight="Your open Head Centre is not broken — inspiration visits you, it doesn't live here") -[Reframes]-> HDConcept(concept_name="open Head Centre")
+→ RayJaiTeaching(insight="...") -[GrantsPermission]-> Person(person_name="client")
+
+SOURCE TEXT: "The 3/5 profile means you learn through trial and error — your mess becomes your medicine"
+→ RayJaiTeaching(insight="Your mess becomes your medicine") -[Illustrates]-> HDProfile(lines="3/5")
+→ HDProfile(lines="3/5") -[BuildsOn]-> HDType(type_name="Manifesting Generator")
+
+SOURCE TEXT: "Gate 26 and Gate 44 together form the channel of Surrender"
+→ HDGate(number="26") -[ConnectsTo]-> HDGate(number="44")
+
+When in doubt between two types, prefer the more specific one over RelatesTo.
 """
 
 
@@ -327,8 +367,6 @@ def group_episodes(episodes: list[dict], window_size: int = 5) -> list[dict]:
 
 
 # ── Turn classifier ───────────────────────────────────────────────────────────
-_haiku = _anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-
 async def classify_segment(body: str) -> tuple[str, str]:
     """Return (decision, reason) where decision is RELEVANT or SKIP.
 
@@ -337,8 +375,8 @@ async def classify_segment(body: str) -> tuple[str, str]:
     SKIP     — the ENTIRE segment is small talk, greetings, tech checks,
                scheduling, or off-topic conversation with zero HD content.
     """
-    response = await _haiku.messages.create(
-        model="claude-haiku-4-5",
+    response = await _ollama.chat.completions.create(
+        model=OLLAMA_MODEL,
         max_tokens=64,
         messages=[{
             "role": "user",
@@ -355,7 +393,7 @@ async def classify_segment(body: str) -> tuple[str, str]:
             ),
         }],
     )
-    raw = response.content[0].text.strip()
+    raw = response.choices[0].message.content.strip()
     if raw.upper().startswith("RELEVANT"):
         return "RELEVANT", ""
     parts = raw.split(":", 1)
@@ -379,6 +417,9 @@ async def ingest(episodes: list[dict]):
         ref_time = datetime.strptime(seg["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
         print(f"[{i+1}/{total}] {episode_name}")
+[5/15] segment-0004
+[6/15] segment-0005
+  [SKIP] segment-0005 — Technical discussion ab
 
         decision, reason = await classify_segment(body)
         if decision == "SKIP":
