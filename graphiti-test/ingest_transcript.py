@@ -333,7 +333,7 @@ async def ingest(episodes: list[dict]):
                 else:
                     print(f"  Failed after {max_retries} attempts: {e}")
                     raise
-        await asyncio.sleep(15)
+        await asyncio.sleep(2)
 
     await graphiti.close()
     print(f"\nDone! {total} episodes ingested. Open Neo4j Browser to explore the graph:")
