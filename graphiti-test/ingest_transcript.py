@@ -370,7 +370,6 @@ async def ingest(episodes: list[dict]):
                     edge_types=HD_EDGE_TYPES,
                     edge_type_map=HD_EDGE_TYPE_MAP,
                     custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
-                    excluded_entity_types=["Location", "Organization"],
                 )
                 break
             except Exception as e:
