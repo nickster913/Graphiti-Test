@@ -417,9 +417,6 @@ async def ingest(episodes: list[dict]):
         ref_time = datetime.strptime(seg["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
         print(f"[{i+1}/{total}] {episode_name}")
-[5/15] segment-0004
-[6/15] segment-0005
-  [SKIP] segment-0005 — Technical discussion ab
 
         decision, reason = await classify_segment(body)
         if decision == "SKIP":
