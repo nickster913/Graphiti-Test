@@ -26,6 +26,8 @@ from graphiti_core.llm_client.anthropic_client import AnthropicClient
 from graphiti_core.nodes import EntityNode
 from graphiti_core.edges import EntityEdge
 
+import anthropic as _anthropic
+
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -187,6 +189,10 @@ class ConditioningOf(BaseModel):
     """An open centre is a source of conditioning for a person"""
     confidence: Optional[float] = Field(default=None)
 
+class RelatesTo(BaseModel):
+    """Generic fallback relationship between two entities"""
+    confidence: Optional[float] = Field(default=None)
+
 HD_EDGE_TYPES = {
     "DEFINED_IN": DefinedIn,
     "CONNECTS_TO": ConnectsTo,
@@ -201,6 +207,7 @@ HD_EDGE_TYPES = {
     "GRANTS_PERMISSION": GrantsPermission,
     "RESONATED_WITH": ResonatedWith,
     "CONDITIONING_OF": ConditioningOf,
+    "RELATES_TO": RelatesTo,
 }
 
 HD_EDGE_TYPE_MAP = {
@@ -218,6 +225,7 @@ HD_EDGE_TYPE_MAP = {
     ("HDCenter", "Person"): ["CONDITIONING_OF"],
     ("RayJaiTeaching", "HDProfile"): ["ILLUSTRATES"],
     ("HDProfile", "HDType"): ["BUILDS_ON"],
+    ("Entity", "Entity"): ["RELATES_TO"],
 }
 
 HD_EXTRACTION_INSTRUCTIONS = """
@@ -297,6 +305,40 @@ Do NOT use meta-language like "no new attributes" or "entity unchanged" — only
 """
 
 
+# ── Turn classifier ───────────────────────────────────────────────────────────
+_haiku = _anthropic.AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+async def classify_turn(speaker: str, text: str) -> tuple[str, str]:
+    """Return (decision, reason) where decision is RELEVANT or SKIP.
+
+    RELEVANT — turn contains HD concepts, teachings, chart readings, or
+               meaningful client reflections worth ingesting.
+    SKIP     — small talk, greetings, tech checks, scheduling, or
+               off-topic conversation.
+    """
+    response = await _haiku.messages.create(
+        model="claude-haiku-4-5",
+        max_tokens=64,
+        messages=[{
+            "role": "user",
+            "content": (
+                f"Speaker: {speaker}\n"
+                f"Text: {text}\n\n"
+                "Classify this transcript turn. Reply with EXACTLY one of:\n"
+                "  RELEVANT\n"
+                "  SKIP: <brief reason>\n"
+                "Nothing else. No explanation outside that format."
+            ),
+        }],
+    )
+    raw = response.content[0].text.strip()
+    if raw.upper().startswith("RELEVANT"):
+        return "RELEVANT", ""
+    parts = raw.split(":", 1)
+    reason = parts[1].strip() if len(parts) > 1 else raw
+    return "SKIP", reason
+
+
 # ── Ingestion ─────────────────────────────────────────────────────────────────
 async def ingest(episodes: list[dict]):
     print("Building Neo4j indices and constraints...")
@@ -309,6 +351,12 @@ async def ingest(episodes: list[dict]):
         ref_time = datetime.strptime(ep["timestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
         print(f"[{i+1}/{total}] {episode_name} — {ep['speaker']} ({ep['timestamp']})")
+
+        decision, reason = await classify_turn(ep["speaker"], ep["text"])
+        if decision == "SKIP":
+            print(f"  [SKIP] {episode_name} — {reason}")
+            continue
+
         max_retries = 5
         for attempt in range(max_retries):
             try:
@@ -322,6 +370,7 @@ async def ingest(episodes: list[dict]):
                     edge_types=HD_EDGE_TYPES,
                     edge_type_map=HD_EDGE_TYPE_MAP,
                     custom_extraction_instructions=HD_EXTRACTION_INSTRUCTIONS,
+                    excluded_entity_types=["Location", "Organization"],
                 )
                 break
             except Exception as e:
