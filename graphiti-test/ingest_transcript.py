@@ -394,11 +394,15 @@ async def classify_segment(body: str) -> tuple[str, str]:
         }],
     )
     raw = response.choices[0].message.content.strip()
-    if raw.upper().startswith("RELEVANT"):
+    upper = raw.upper()
+    if "RELEVANT" in upper:
         return "RELEVANT", ""
-    parts = raw.split(":", 1)
-    reason = parts[1].strip() if len(parts) > 1 else raw
-    return "SKIP", reason
+    if "SKIP" in upper:
+        parts = raw.split(":", 1)
+        reason = parts[1].strip() if len(parts) > 1 else ""
+        return "SKIP", reason
+    # unrecognised response — default to RELEVANT so we don't lose data
+    return "RELEVANT", ""
 
 
 # ── Ingestion ─────────────────────────────────────────────────────────────────
