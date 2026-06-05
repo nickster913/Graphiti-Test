@@ -32,7 +32,7 @@ load_dotenv()
 
 EPISODES_FILE = "transcript_episodes.json"
 OLLAMA_BASE_URL = "http://localhost:11434/v1"
-OLLAMA_MODEL = "gemma4:26b"
+OLLAMA_MODEL = "qwen3:30b"
 
 # ── LLM: Ollama/gemma4:26b (local) ────────────────────────────────────────────
 llm_client = OpenAIGenericClient(config=LLMConfig(
