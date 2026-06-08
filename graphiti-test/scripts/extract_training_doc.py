@@ -1,18 +1,22 @@
 """
-extract_nodes.py
+extract_training_doc.py
 
-Reads output/transcript_chunks.json (produced by chunk_transcript.py), sends
-each chunk to the Claude API for HD entity / relationship extraction, then
-merges all results into output/hd_graph_seed.json.
+One-shot extraction script for The 26•44 Agent Training document.
+Reads the raw training document from data/The2644_AgentTraining_v1.txt,
+sends it to the Claude API in sections, and outputs a structured JSON file
+to output/training_graph_seed.json.
+
+NOTE: Place the training document at data/The2644_AgentTraining_v1.txt
+before running this script. The data/ directory is in .gitignore.
 
 Usage:
-  python scripts/extract_nodes.py
+  uv run python scripts/extract_training_doc.py
 
 Environment:
   ANTHROPIC_API_KEY — required
 
 Output:
-  output/hd_graph_seed.json (merged with any existing content)
+  output/training_graph_seed.json
 """
 
 import json
@@ -29,77 +33,58 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------------------------
 
 _PROJECT_ROOT = Path(__file__).parent.parent
-CHUNKS_FILE = _PROJECT_ROOT / "output" / "transcript_chunks.json"
-OUTPUT_FILE = _PROJECT_ROOT / "output" / "hd_graph_seed.json"
+TRAINING_DOC = _PROJECT_ROOT / "data" / "The2644_AgentTraining_v1.txt"
+OUTPUT_FILE = _PROJECT_ROOT / "output" / "training_graph_seed.json"
 MODEL = "claude-haiku-4-5"
 MAX_TOKENS = 4096
 SLEEP_BETWEEN_CALLS = 1  # seconds
+SECTION_SEPARATOR = "________________"
 
 SYSTEM_PROMPT = """\
-You are a knowledge graph extraction specialist for Human Design (HD).
-Extract entities and relationships from the transcript chunk provided.
+You are a knowledge graph extraction specialist for the 26•44 Human Design platform.
+Extract agent behaviour nodes and relationships from this training document section.
 Return ONLY valid JSON. No preamble, no explanation, no markdown code blocks.
 The JSON must follow this exact schema:
-{
-  "nodes": [...],
-  "edges": [...]
-}"""
+{"nodes": [...], "edges": [...]}"""
 
 USER_PROMPT_TEMPLATE = """\
-Extract all HD entities and relationships from this transcript chunk.
+Extract all agent behaviour entities from this section of the training document.
 
-NODE TYPES AND THEIR FIELDS:
-- Person: name, role (practitioner/client), hd_type
-- HDType: name, type_name, strategy, not_self_theme, signature
-- HDCenter: name, center_name, defined_or_open, function
-- HDGate: name, number, gate_name, center, gift
-- HDChannel: name, gate_1, gate_2, theme
-- HDProfile: name, lines, conscious_line, unconscious_line, archetype
-- HDAuthority: name, authority_name, decision_process
-- HDConcept: name, definition, rayjai_reframe
-- RayJaiTeaching: name (short label), insight (RayJai's exact words), context, related_hd_concept, trigger_context (emotional/situational trigger), effect (what the phrasing achieves: normalise/grant permission/reframe shame/etc)
-- HDVoicePattern: name (short label), phrase (the exact phrase or pattern), usage_context (when to use it), trigger (what situation triggers it), avoid_if (when NOT to use it)
-- HDSessionFlow: name (short label), step_number (integer), instruction (what to do), purpose (why), example_variant (an acceptable variation)
-- HDBehaviourRule: name (short label), rule_type ("DO" or "DON'T"), rule (the rule itself), context (when it applies), rationale (why this rule exists)
-- HDToneProfile: name (short label), emotional_state (what state the user is in), instruction (how to respond), example_response (an example of this tone in action)
+NODE TYPES AND FIELDS:
 
-EDGE TYPES (from → to):
-- DEFINED_IN: HDGate → HDCenter
-- CONNECTS_TO: HDGate → HDGate
-- FORMS: HDGate → HDChannel
-- DEFINES: HDCenter → HDType
-- TYPE_OF: HDType → Person
-- BELONGS_TO: HDProfile → Person
-- ACTIVE_IN: HDGate → Person
-- CONDITIONING_OF: HDCenter → Person
-- ILLUSTRATES: RayJaiTeaching → any HD node
-- REFRAMES: RayJaiTeaching → HDConcept
-- GRANTS_PERMISSION: RayJaiTeaching → Person or HDType
-- TEACHES_THROUGH: RayJaiTeaching → HDConcept
-- PART_OF: HDGate or HDCenter → HDConcept
-- BUILDS_ON: HDConcept → HDConcept
-- EXPRESSES: HDVoicePattern → HDType or HDConcept
-- STEP_OF: HDSessionFlow → HDSessionFlow (ordering)
-- GOVERNS: HDBehaviourRule → HDType or HDConcept or HDToneProfile
-- CALIBRATES_FOR: HDToneProfile → HDType or Person
+HDVoicePattern: name (short label), phrase (the exact phrase or pattern), usage_context (when to use it), trigger (what situation triggers it), avoid_if (when NOT to use it)
+HDSessionFlow: name (short label), step_number (integer), instruction (what to do), purpose (why), example_variant (an acceptable variation)
+HDBehaviourRule: name (short label), rule_type ("DO" or "DON'T"), rule (the rule itself), context (when it applies), rationale (why this rule exists)
+HDToneProfile: name (short label), emotional_state (what state the user is in), instruction (how to respond), example_response (an example of this tone in action)
+RayJaiTeaching: name (short label), insight (RayJai's exact words where available), context (when he says this), related_hd_concept, trigger_context (emotional/situational trigger), effect (what the phrasing achieves: normalise/grant permission/reframe shame/etc)
+
+EDGE TYPES:
+
+EXPRESSES: HDVoicePattern → HDType or HDConcept
+STEP_OF: HDSessionFlow → HDSessionFlow
+GOVERNS: HDBehaviourRule → HDType or HDConcept or HDToneProfile
+CALIBRATES_FOR: HDToneProfile → HDType or Person
+ILLUSTRATES: RayJaiTeaching → any HD node
+REFRAMES: RayJaiTeaching → HDConcept
+GRANTS_PERMISSION: RayJaiTeaching → Person or HDType
 
 RULES:
-- Every node must have a "type" field matching one of the node types above
-- Every node must have a "name" field — this is the unique identifier
-- Every edge must have "from", "to", and "type" fields
-- "from" and "to" must exactly match node "name" values
-- Capture RayJai's EXACT words in RayJaiTeaching insight fields
-- Only extract what is explicitly in the transcript — do not invent
-- If nothing HD-related is in the chunk, return {{"nodes": [], "edges": []}}
 
-TRANSCRIPT CHUNK:
-{chunk_body}"""
+Every node must have "type" and "name" fields
+Every edge must have "from", "to", and "type" fields
+For HDVoicePattern: capture exact phrases from the document where they exist
+For HDSessionFlow: step_number must be an integer matching the session flow order
+For HDBehaviourRule: rule_type must be exactly "DO" or "DON'T"
+Only extract what is explicitly in the section — do not invent
+If nothing relevant is in the section, return {{"nodes": [], "edges": []}}
+
+TRAINING DOCUMENT SECTION:
+{section_body}"""
 
 # ---------------------------------------------------------------------------
 # JSON extraction
 # ---------------------------------------------------------------------------
 
-# Strips markdown code fences if the model wraps in them despite instructions.
 _FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)```", re.IGNORECASE)
 
 
@@ -115,8 +100,9 @@ def extract_json(raw: str) -> dict:
         text = m.group(1).strip()
     return json.loads(text)
 
+
 # ---------------------------------------------------------------------------
-# Merge logic
+# Merge logic (copied from extract_nodes.py — not imported to keep standalone)
 # ---------------------------------------------------------------------------
 
 def merge_node_fields(existing: dict, incoming: dict) -> dict:
@@ -129,7 +115,6 @@ def merge_node_fields(existing: dict, incoming: dict) -> dict:
         if key not in merged or merged[key] is None:
             merged[key] = val
         elif val is not None and isinstance(val, str) and isinstance(merged[key], str):
-            # Keep the longer / more detailed string.
             if len(val) > len(merged[key]):
                 merged[key] = val
     return merged
@@ -139,7 +124,6 @@ def merge_graphs(base: dict, incoming: dict) -> dict:
     """
     Merge incoming nodes/edges into base, deduplicating as described.
     """
-    # -- Nodes --
     node_map: dict[str, dict] = {n["name"]: n for n in base.get("nodes", [])}
     for node in incoming.get("nodes", []):
         name = node.get("name")
@@ -150,7 +134,6 @@ def merge_graphs(base: dict, incoming: dict) -> dict:
         else:
             node_map[name] = node
 
-    # -- Edges --
     edge_keys: set[tuple] = {
         (e["from"], e["type"], e["to"]) for e in base.get("edges", [])
     }
@@ -165,9 +148,6 @@ def merge_graphs(base: dict, incoming: dict) -> dict:
 
     return {"nodes": list(node_map.values()), "edges": merged_edges}
 
-# ---------------------------------------------------------------------------
-# Fix 1 — Auto-create stub nodes for dangling edge endpoints
-# ---------------------------------------------------------------------------
 
 def ensure_edge_nodes(graph: dict) -> dict:
     """
@@ -194,11 +174,6 @@ def ensure_edge_nodes(graph: dict) -> dict:
     return {"nodes": new_nodes, "edges": graph.get("edges", [])}
 
 
-# ---------------------------------------------------------------------------
-# Fix 2 — Cross-chunk node name normalisation
-# ---------------------------------------------------------------------------
-
-# Haiku sometimes prefixes RayJaiTeaching node names with the type name.
 _TEACHING_PREFIX_RE = re.compile(r"^RayJaiTeaching:\s*", re.IGNORECASE)
 
 
@@ -215,12 +190,10 @@ def normalise_graph(graph: dict) -> dict:
     1. Strip whitespace from every node name and edge endpoint.
     2. Remove the 'RayJaiTeaching: ' prefix from node names where present.
     3. Re-deduplicate nodes using case-insensitive name comparison, merging
-       fields with the usual prefer-longer-string rule. Original casing of
-       the first-seen form is preserved in the output.
+       fields with the usual prefer-longer-string rule.
     4. Update all edge endpoints to use the canonical (deduplicated) name.
     5. Re-deduplicate edges after endpoint canonicalisation.
     """
-    # -- Step 1 & 2: normalise node names and build a rename map --
     rename: dict[str, str] = {}
     for node in graph.get("nodes", []):
         old = node.get("name") or ""
@@ -229,7 +202,6 @@ def normalise_graph(graph: dict) -> dict:
         if old != new:
             rename[old] = new
 
-    # -- Step 3: case-insensitive node dedup (first-seen casing wins) --
     lower_to_node: dict[str, dict] = {}
     for node in graph.get("nodes", []):
         key = node["name"].lower()
@@ -238,18 +210,15 @@ def normalise_graph(graph: dict) -> dict:
         else:
             lower_to_node[key] = node
 
-    # canonical lookup: any casing → the preserved name stored in lower_to_node
     canonical: dict[str, str] = {
         key: node["name"] for key, node in lower_to_node.items()
     }
 
-    # -- Step 4 & 5: fix edge endpoints and re-dedup --
     deduped_edges: list[dict] = []
     seen_edges: set[tuple] = set()
     for edge in graph.get("edges", []):
         raw_from = (edge.get("from") or "").strip()
         raw_to = (edge.get("to") or "").strip()
-        # Apply prefix-removal rename if applicable, then canonicalise casing.
         raw_from = rename.get(raw_from, raw_from)
         raw_to = rename.get(raw_to, raw_to)
         edge["from"] = canonical.get(raw_from.lower(), raw_from)
@@ -267,12 +236,12 @@ def normalise_graph(graph: dict) -> dict:
 # API call
 # ---------------------------------------------------------------------------
 
-def call_claude(client: anthropic.Anthropic, chunk_body: str) -> dict:
+def call_claude(client: anthropic.Anthropic, section_body: str) -> dict:
     """
-    Send one chunk to Claude and return the parsed {nodes, edges} dict.
+    Send one section to Claude and return the parsed {nodes, edges} dict.
     Raises ValueError if the response cannot be parsed as JSON.
     """
-    user_prompt = USER_PROMPT_TEMPLATE.format(chunk_body=chunk_body)
+    user_prompt = USER_PROMPT_TEMPLATE.format(section_body=section_body)
     message = client.messages.create(
         model=MODEL,
         max_tokens=MAX_TOKENS,
@@ -281,6 +250,7 @@ def call_claude(client: anthropic.Anthropic, chunk_body: str) -> dict:
     )
     raw = message.content[0].text
     return extract_json(raw)
+
 
 # ---------------------------------------------------------------------------
 # Main
@@ -292,42 +262,32 @@ def main() -> None:
     if not api_key:
         raise SystemExit("Error: ANTHROPIC_API_KEY environment variable is not set.")
 
-    chunks_path = Path(CHUNKS_FILE)
-    if not chunks_path.exists():
+    if not TRAINING_DOC.exists():
         raise SystemExit(
-            f"Error: {CHUNKS_FILE} not found. Run chunk_transcript.py first."
+            f"Error: {TRAINING_DOC} not found.\n"
+            "Place the training document at data/The2644_AgentTraining_v1.txt"
         )
 
-    with chunks_path.open(encoding="utf-8") as f:
-        chunks: list[dict] = json.load(f)
+    raw_text = TRAINING_DOC.read_text(encoding="utf-8")
+    sections = [s.strip() for s in raw_text.split(SECTION_SEPARATOR) if s.strip()]
 
-    # Load existing graph (if present) as the merge base.
-    output_path = Path(OUTPUT_FILE)
-    if output_path.exists():
-        with output_path.open(encoding="utf-8") as f:
-            graph = json.load(f)
-        print(f"Loaded existing {OUTPUT_FILE}: "
-              f"{len(graph.get('nodes', []))} nodes, "
-              f"{len(graph.get('edges', []))} edges")
-    else:
-        graph = {"nodes": [], "edges": []}
-        print(f"No existing {OUTPUT_FILE} found — starting fresh.")
+    print(f"Training document loaded: {len(sections)} section(s) found.\n")
 
+    graph: dict = {"nodes": [], "edges": []}
     client = anthropic.Anthropic(api_key=api_key)
-    total = len(chunks)
-
-    nodes_before = len(graph["nodes"])
-    edges_before = len(graph["edges"])
+    total = len(sections)
     skipped = 0
 
-    for i, chunk in enumerate(chunks):
-        chunk_index = chunk["chunk_index"]
-        char_count = chunk["char_count"]
-        print(f"[{i + 1}/{total}] Extracting chunk {chunk_index} ({char_count:,} chars)...",
-              end=" ", flush=True)
+    for i, section_body in enumerate(sections):
+        print(
+            f"[{i + 1}/{total}] Extracting section {i + 1} "
+            f"({len(section_body):,} chars)...",
+            end=" ",
+            flush=True,
+        )
 
         try:
-            result = call_claude(client, chunk["body"])
+            result = call_claude(client, section_body)
         except Exception as exc:
             print(f"ERROR — {exc}")
             skipped += 1
@@ -342,28 +302,25 @@ def main() -> None:
         if i < total - 1:
             time.sleep(SLEEP_BETWEEN_CALLS)
 
-    # Post-processing: normalise names, then guarantee every edge has a node.
     print("\nNormalising graph...")
     graph = normalise_graph(graph)
     graph = ensure_edge_nodes(graph)
 
-    # Write output.
-    with output_path.open("w", encoding="utf-8") as f:
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with OUTPUT_FILE.open("w", encoding="utf-8") as f:
         json.dump(graph, f, indent=2, ensure_ascii=False)
 
-    nodes_after = len(graph["nodes"])
-    edges_after = len(graph["edges"])
-    nodes_added = nodes_after - nodes_before
-    edges_added = edges_after - edges_before
+    nodes_total = len(graph["nodes"])
+    edges_total = len(graph["edges"])
 
     print()
     print("=" * 50)
-    print("EXTRACTION COMPLETE")
+    print("TRAINING EXTRACTION COMPLETE")
     print("=" * 50)
-    print(f"Chunks processed : {total - skipped}/{total}  ({skipped} skipped)")
-    print(f"Total nodes      : {nodes_after}  (+{nodes_added} new)")
-    print(f"Total edges      : {edges_after}  (+{edges_added} new)")
-    print(f"Output written to: {OUTPUT_FILE}")
+    print(f"Sections processed : {total - skipped}/{total}  ({skipped} skipped)")
+    print(f"Total nodes        : {nodes_total}")
+    print(f"Total edges        : {edges_total}")
+    print(f"Output written to  : {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":

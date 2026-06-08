@@ -40,11 +40,15 @@ SYNTHESIS_MODEL = "claude-sonnet-4-6"
 CYPHER_SYSTEM = """\
 You are a Cypher query generator for a Neo4j Human Design knowledge graph.
 
-Node types: RayJaiTeaching, HDType, HDCenter, HDGate, HDChannel, HDProfile, HDAuthority, HDConcept, Person.
+Node types: RayJaiTeaching, HDVoicePattern, HDSessionFlow, HDBehaviourRule, HDToneProfile, HDType, HDCenter, HDGate, HDChannel, HDProfile, HDAuthority, HDConcept, Person.
 
-RayJaiTeaching fields: name, insight, context, related_hd_concept.
+RayJaiTeaching fields: name, insight, context, related_hd_concept, trigger_context, effect.
+HDVoicePattern fields: name, phrase, usage_context, trigger, avoid_if.
+HDSessionFlow fields: name, step_number, instruction, purpose.
+HDBehaviourRule fields: name, rule_type, rule, context.
+HDToneProfile fields: name, emotional_state, instruction, example_response.
 
-Valid relationship types ONLY: ILLUSTRATES, TEACHES_THROUGH, REFRAMES, GRANTS_PERMISSION, DEFINED_IN, CONNECTS_TO, FORMS, DEFINES, TYPE_OF, BELONGS_TO, ACTIVE_IN, CONDITIONING_OF, PART_OF, BUILDS_ON, RELATES_TO.
+Valid relationship types ONLY: ILLUSTRATES, TEACHES_THROUGH, REFRAMES, GRANTS_PERMISSION, DEFINED_IN, CONNECTS_TO, FORMS, DEFINES, TYPE_OF, BELONGS_TO, ACTIVE_IN, CONDITIONING_OF, PART_OF, BUILDS_ON, RELATES_TO, EXPRESSES, STEP_OF, GOVERNS, CALIBRATES_FOR.
 
 Do NOT use any relationship type not in that list.
 
@@ -58,17 +62,11 @@ SYNTHESIS_SYSTEM = """\
 You are RayJai Babauta — a Human Design reader and teacher.
 You are speaking directly to a client in a reading session.
 Speak in first person as RayJai. Never refer to RayJai in third person.
-Use RayJai's actual speech patterns from the teachings provided:
-- Speak conversationally, like you are talking not writing
-- Use short punchy sentences mixed with longer ones
-- Use "you know", "right?", "yeah", "babe", "to your point" naturally
-- Use analogies and metaphors — the turtle, the closed book, the battery
-- Do NOT use headers, bullet points, bold text, or markdown of any kind
-- Do NOT structure your response like an essay
-- Speak with warmth and directness — like you know this person
-- Grant permission naturally in your own words — not as a formal statement
-- Keep it conversational — 150 to 250 words maximum
-Answer using ONLY the teachings provided.
+Use the voice patterns, behaviour rules, and tone calibration provided in BEHAVIOUR CONTEXT to guide your response style and language.
+Use the teachings provided in TEACHINGS FROM THE GRAPH as the content of your response.
+Do NOT use headers, bullet points, bold text, or markdown of any kind.
+Keep it conversational — 150 to 250 words maximum.
+Answer using ONLY the teachings and context provided.
 If the teachings don't contain enough to answer, say "I haven't spoken about this yet in our sessions.\""""
 
 # ---------------------------------------------------------------------------
@@ -129,6 +127,42 @@ def run_query(driver: GraphDatabase.driver, cypher: str, question: str) -> list[
             return session.run(FALLBACK_QUERY, keyword=keyword).data()
 
 # ---------------------------------------------------------------------------
+# Step 2b — Retrieve behaviour context
+# ---------------------------------------------------------------------------
+
+BEHAVIOUR_QUERY = """\
+MATCH (v:HDVoicePattern)
+WHERE toLower(v.usage_context) CONTAINS toLower($keyword)
+   OR toLower(v.phrase) CONTAINS toLower($keyword)
+RETURN 'HDVoicePattern' AS node_type, v.name AS name, v.phrase AS content, v.usage_context AS context
+LIMIT 5
+
+UNION
+
+MATCH (b:HDBehaviourRule)
+WHERE b.rule_type = 'DO' OR toLower(b.context) CONTAINS toLower($keyword)
+RETURN 'HDBehaviourRule' AS node_type, b.name AS name, b.rule AS content, b.context AS context
+LIMIT 5
+
+UNION
+
+MATCH (t:HDToneProfile)
+WHERE toLower(t.emotional_state) CONTAINS toLower($keyword)
+RETURN 'HDToneProfile' AS node_type, t.name AS name, t.instruction AS content, t.emotional_state AS context
+LIMIT 3"""
+
+
+def retrieve_behaviour_context(driver: GraphDatabase.driver, question: str) -> list[dict]:
+    keyword = first_meaningful_word(question)
+    with driver.session() as session:
+        try:
+            return session.run(BEHAVIOUR_QUERY, keyword=keyword).data()
+        except Exception as exc:
+            print(f"  [BEHAVIOUR QUERY ERROR] {exc}")
+            return []
+
+
+# ---------------------------------------------------------------------------
 # Step 3 — Format teachings and synthesise response
 # ---------------------------------------------------------------------------
 
@@ -151,8 +185,31 @@ def format_teachings(results: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def synthesise(client: anthropic.Anthropic, question: str, teachings: str) -> str:
+def format_behaviour_context(results: list[dict]) -> str:
+    if not results:
+        return "(no behaviour context found)"
+    lines = []
+    for i, row in enumerate(results, 1):
+        node_type = row.get("node_type") or ""
+        name = row.get("name") or ""
+        content = row.get("content") or ""
+        context = row.get("context") or ""
+        lines.append(f"{i}. [{node_type}] {name}")
+        if content:
+            lines.append(f"   Rule/Pattern: {content}")
+        if context:
+            lines.append(f"   Context: {context}")
+    return "\n".join(lines)
+
+
+def synthesise(
+    client: anthropic.Anthropic,
+    question: str,
+    teachings: str,
+    behaviour_context: str,
+) -> str:
     user_content = (
+        f"BEHAVIOUR CONTEXT FROM GRAPH:\n{behaviour_context}\n\n"
         f"TEACHINGS FROM THE GRAPH:\n{teachings}\n\n"
         f"USER QUESTION: {question}"
     )
@@ -257,10 +314,17 @@ def main() -> None:
                         print(f"  {i}. [{name}] {insight[:120]}{'...' if len(insight) > 120 else ''}")
                     print()
 
+            # Step 2b — Retrieve behaviour context
+            behaviour_results = retrieve_behaviour_context(driver, question)
+
+            if debug:
+                print(f"Retrieved {len(behaviour_results)} behaviour context node(s).\n")
+
             # Step 3 — Synthesise
             teachings = format_teachings(results)
+            behaviour_context = format_behaviour_context(behaviour_results)
             try:
-                response = synthesise(client, question, teachings)
+                response = synthesise(client, question, teachings, behaviour_context)
             except Exception as exc:
                 print(f"[ERROR synthesising response] {exc}")
                 continue

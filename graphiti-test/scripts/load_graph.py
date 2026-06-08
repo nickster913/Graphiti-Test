@@ -18,6 +18,7 @@ NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "password"
 JSON_FILE = Path(__file__).parent.parent / "output" / "hd_graph_seed.json"
+TRAINING_JSON_FILE = Path(__file__).parent.parent / "output" / "training_graph_seed.json"
 
 # ── Node type → label mapping ─────────────────────────────────────────────────
 NODE_LABELS = {
@@ -30,6 +31,10 @@ NODE_LABELS = {
     "HDConcept": "HDConcept",
     "RayJaiTeaching": "RayJaiTeaching",
     "Person": "Person",
+    "HDVoicePattern": "HDVoicePattern",
+    "HDSessionFlow": "HDSessionFlow",
+    "HDBehaviourRule": "HDBehaviourRule",
+    "HDToneProfile": "HDToneProfile",
 }
 
 
@@ -85,6 +90,37 @@ def load_edges(tx, edges, node_name_to_label):
             print(f"  [WARN] Could not create edge: {from_name} -[{rel_type}]-> {to_name} (nodes not found?)")
 
 
+def load_training_graph(driver):
+    """Load training graph seed from output/training_graph_seed.json if it exists."""
+    if not TRAINING_JSON_FILE.exists():
+        print(f"  [SKIP] {TRAINING_JSON_FILE} not found — skipping training graph load.")
+        return
+
+    with open(TRAINING_JSON_FILE, encoding="utf-8") as f:
+        data = json.load(f)
+
+    nodes = data.get("nodes", [])
+    edges = data.get("edges", [])
+
+    print(f"Loaded {len(nodes)} nodes and {len(edges)} edges from {TRAINING_JSON_FILE}\n")
+
+    node_name_to_label = {}
+    for node in nodes:
+        name = node.get("name")
+        label = NODE_LABELS.get(node.get("type"), "Entity")
+        if name:
+            node_name_to_label[name] = label
+
+    with driver.session() as session:
+        print("── Loading training nodes ────────────────────────")
+        session.execute_write(load_nodes, nodes)
+
+        print("\n── Loading training edges ────────────────────────")
+        session.execute_write(load_edges, edges, node_name_to_label)
+
+    print(f"\n✓ Training graph done. {len(nodes)} nodes, {len(edges)} edges written to Neo4j.")
+
+
 def main():
     # Load JSON
     with open(JSON_FILE, encoding="utf-8") as f:
@@ -113,11 +149,14 @@ def main():
         print("\n── Loading edges ─────────────────────────────────")
         session.execute_write(load_edges, edges, node_name_to_label)
 
-    driver.close()
-
     print(f"\n✓ Done. {len(nodes)} nodes, {len(edges)} edges written to Neo4j.")
     print("  Open http://localhost:7474 and run:")
     print("  MATCH (n)-[r]->(m) RETURN n, r, m")
+
+    print("\n" + "─" * 50)
+    load_training_graph(driver)
+
+    driver.close()
 
 
 if __name__ == "__main__":
