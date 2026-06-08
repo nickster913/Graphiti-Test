@@ -33,7 +33,7 @@ from dotenv import load_dotenv
 # ---------------------------------------------------------------------------
 
 _PROJECT_ROOT = Path(__file__).parent.parent
-TRAINING_DOC = _PROJECT_ROOT / "data" / "The2644_AgentTraining_v1.txt"
+TRAINING_DOC = _PROJECT_ROOT / "transcripts" / "The2644 AgentTraining_v1.docx.txt"
 OUTPUT_FILE = _PROJECT_ROOT / "output" / "training_graph_seed.json"
 MODEL = "claude-haiku-4-5"
 MAX_TOKENS = 4096

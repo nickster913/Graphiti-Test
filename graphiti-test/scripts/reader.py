@@ -56,7 +56,9 @@ For most questions, query RayJaiTeaching directly using WHERE clauses on insight
 
 Always RETURN r.name, r.insight, r.context, r.related_hd_concept.
 Limit to 20 results.
-Return ONLY the Cypher query. No explanation. No markdown. No backticks."""
+Return ONLY the Cypher query. No explanation. No markdown. No backticks.
+When querying RayJaiTeaching, always match on related_hd_concept and context fields first using broad concept terms extracted from the question (e.g. "Manifestor", "Generator", "authority", "open center") — not literal words or phrases from the question itself.
+For questions about feelings or experiences (e.g. "too intense", "always angry", "can't decide"), map to the relevant HD concept: intensity/anger → Manifestor not-self, can't decide → authority, tired/exhausted → Generator or open Sacral, etc."""
 
 SYNTHESIS_SYSTEM = """\
 You are RayJai Babauta — a Human Design reader and teacher.
@@ -95,12 +97,16 @@ def first_meaningful_word(question: str) -> str:
     stopwords = {
         "what", "does", "rayjai", "teach", "about", "the", "and", "why",
         "it", "how", "is", "are", "do", "a", "an", "for", "to", "of",
-        "in", "on",
+        "in", "on", "i", "i'm", "im", "my", "me", "we", "us", "you",
+        "your", "this", "that", "keep", "getting", "told", "always",
+        "never", "just", "really", "so", "very", "too", "been", "have",
+        "has", "was", "were", "be", "am",
     }
-    for word in re.findall(r"[a-zA-Z]+", question):
-        if word.lower() not in stopwords:
+    words = re.findall(r"[a-zA-Z]+", question)
+    for word in words:
+        if word.lower() not in stopwords and len(word) > 2:
             return word
-    return question.split()[0] if question.split() else "design"
+    return words[0] if words else "design"
 
 
 FALLBACK_QUERY = """\
