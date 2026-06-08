@@ -1,0 +1,112 @@
+============================================================
+RAYJAI BABAUTA — WORD FREQUENCY ANALYSIS
+============================================================
+
+TOP 50 SINGLE WORDS
+----------------------------------------
+    1. design                         78
+    2. human                          61
+    3. where                          60
+    4. authority                      56
+    5. body                           55
+    6. always                         49
+    7. type                           47
+    8. center                         46
+    9. feel                           45
+   10. why                            45
+   11. aura                           41
+   12. life                           40
+   13. line                           40
+   14. something                      39
+   15. we're                          39
+   16. open                           39
+   17. again                          38
+   18. through                        36
+   19. centers                        34
+   20. different                      32
+   21. first                          31
+   22. generator                      31
+   23. sacral                         29
+   24. maybe                          27
+   25. basically                      25
+   26. other                          25
+   27. self                           25
+   28. most                           25
+   29. activated                      25
+   30. started                        24
+   31. able                           24
+   32. strategy                       24
+   33. alignment                      24
+   34. beautiful                      23
+   35. means                          22
+   36. around                         22
+   37. world                          22
+   38. individual                     21
+   39. before                         21
+   40. aligned                        21
+   41. live                           20
+   42. conditioning                   20
+   43. feeling                        20
+   44. take                           19
+   45. two                            19
+   46. within                         19
+   47. emotional                      19
+   48. doing                          18
+   49. living                         18
+   50. etc                            17
+
+TOP 30 BIGRAMS (2-word phrases)
+----------------------------------------
+    1. human design                   53
+    2. design type                    20
+    3. aura type                      17
+    4. manifesting generator          11
+    5. emotional authority            9
+    6. body graph                     6
+    7. sixth line                     6
+    8. fourth line                    5
+    9. design types                   5
+   10. life force                     5
+   11. outside world                  5
+   12. ego authority                  5
+   13. self projected                 5
+   14. manifesting generators         4
+   15. sacral center                  4
+   16. open centers                   4
+   17. other person                   4
+   18. first line                     4
+   19. next week                      3
+   20. pre brief                      3
+   21. design system                  3
+   22. first started                  3
+   23. full moon                      3
+   24. started realizing              3
+   25. started playing                3
+   26. plus six                       3
+   27. before making                  3
+   28. aura types                     3
+   29. generator manifesting          3
+   30. non sacral                     3
+
+TOP 20 TRIGRAMS (3-word phrases)
+----------------------------------------
+    1. strategy and authority              11
+    2. living in alignment                 5
+    3. live your life                      4
+    4. human design system                 3
+    5. generator manifesting generator     3
+    6. self projected authority            3
+    7. line they're called                 3
+    8. becomes the opportunity             3
+    9. human design type                   2
+   10. body is responding                  2
+   11. made the decision                   2
+   12. within the human                    2
+   13. type of interpretation              2
+   14. human design modality               2
+   15. important to note                   2
+   16. within my network                   2
+   17. clarity before making               2
+   18. making a decision                   2
+   19. embodied design type                2
+   20. five design types                   2

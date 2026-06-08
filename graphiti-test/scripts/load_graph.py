@@ -1,21 +1,23 @@
 """
 load_graph.py
-Loads hd_graph_seed.json into Neo4j via direct Cypher.
+Loads output/hd_graph_seed.json into Neo4j via direct Cypher.
 No Graphiti. No frameworks. Just the neo4j driver.
 
 Run:
     pip install neo4j
-    python load_graph.py
+    python scripts/load_graph.py
 """
 
 import json
+from pathlib import Path
+
 from neo4j import GraphDatabase
 
 # ── Config ────────────────────────────────────────────────────────────────────
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "password"
-JSON_FILE = "hd_graph_seed.json"
+JSON_FILE = Path(__file__).parent.parent / "output" / "hd_graph_seed.json"
 
 # ── Node type → label mapping ─────────────────────────────────────────────────
 NODE_LABELS = {
