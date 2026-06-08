@@ -22,6 +22,7 @@ import time
 from pathlib import Path
 
 import anthropic
+from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -157,6 +158,104 @@ def merge_graphs(base: dict, incoming: dict) -> dict:
     return {"nodes": list(node_map.values()), "edges": merged_edges}
 
 # ---------------------------------------------------------------------------
+# Fix 1 — Auto-create stub nodes for dangling edge endpoints
+# ---------------------------------------------------------------------------
+
+def ensure_edge_nodes(graph: dict) -> dict:
+    """
+    For every node name referenced in an edge that has no corresponding node,
+    auto-create a minimal HDConcept stub so that load_graph.py never fires a
+    WARN for a missing node and no edge is silently dropped.
+    """
+    node_names: set[str] = {n["name"] for n in graph.get("nodes", [])}
+    new_nodes: list[dict] = list(graph.get("nodes", []))
+    stubs: list[str] = []
+
+    for edge in graph.get("edges", []):
+        for endpoint in (edge.get("from"), edge.get("to")):
+            if endpoint and endpoint not in node_names:
+                new_nodes.append({"type": "HDConcept", "name": endpoint})
+                node_names.add(endpoint)
+                stubs.append(endpoint)
+
+    if stubs:
+        print(f"  [AUTO-NODE] Created {len(stubs)} stub HDConcept node(s):")
+        for s in stubs:
+            print(f"             • {s!r}")
+
+    return {"nodes": new_nodes, "edges": graph.get("edges", [])}
+
+
+# ---------------------------------------------------------------------------
+# Fix 2 — Cross-chunk node name normalisation
+# ---------------------------------------------------------------------------
+
+# Haiku sometimes prefixes RayJaiTeaching node names with the type name.
+_TEACHING_PREFIX_RE = re.compile(r"^RayJaiTeaching:\s*", re.IGNORECASE)
+
+
+def _normalise_name(name: str) -> str:
+    """Strip whitespace and remove any spurious 'RayJaiTeaching: ' prefix."""
+    name = name.strip()
+    return _TEACHING_PREFIX_RE.sub("", name).strip()
+
+
+def normalise_graph(graph: dict) -> dict:
+    """
+    One-pass normalisation of the fully-merged graph:
+
+    1. Strip whitespace from every node name and edge endpoint.
+    2. Remove the 'RayJaiTeaching: ' prefix from node names where present.
+    3. Re-deduplicate nodes using case-insensitive name comparison, merging
+       fields with the usual prefer-longer-string rule. Original casing of
+       the first-seen form is preserved in the output.
+    4. Update all edge endpoints to use the canonical (deduplicated) name.
+    5. Re-deduplicate edges after endpoint canonicalisation.
+    """
+    # -- Step 1 & 2: normalise node names and build a rename map --
+    rename: dict[str, str] = {}
+    for node in graph.get("nodes", []):
+        old = node.get("name") or ""
+        new = _normalise_name(old)
+        node["name"] = new
+        if old != new:
+            rename[old] = new
+
+    # -- Step 3: case-insensitive node dedup (first-seen casing wins) --
+    lower_to_node: dict[str, dict] = {}
+    for node in graph.get("nodes", []):
+        key = node["name"].lower()
+        if key in lower_to_node:
+            lower_to_node[key] = merge_node_fields(lower_to_node[key], node)
+        else:
+            lower_to_node[key] = node
+
+    # canonical lookup: any casing → the preserved name stored in lower_to_node
+    canonical: dict[str, str] = {
+        key: node["name"] for key, node in lower_to_node.items()
+    }
+
+    # -- Step 4 & 5: fix edge endpoints and re-dedup --
+    deduped_edges: list[dict] = []
+    seen_edges: set[tuple] = set()
+    for edge in graph.get("edges", []):
+        raw_from = (edge.get("from") or "").strip()
+        raw_to = (edge.get("to") or "").strip()
+        # Apply prefix-removal rename if applicable, then canonicalise casing.
+        raw_from = rename.get(raw_from, raw_from)
+        raw_to = rename.get(raw_to, raw_to)
+        edge["from"] = canonical.get(raw_from.lower(), raw_from)
+        edge["to"] = canonical.get(raw_to.lower(), raw_to)
+
+        key = (edge["from"], edge.get("type"), edge["to"])
+        if key not in seen_edges:
+            seen_edges.add(key)
+            deduped_edges.append(edge)
+
+    return {"nodes": list(lower_to_node.values()), "edges": deduped_edges}
+
+
+# ---------------------------------------------------------------------------
 # API call
 # ---------------------------------------------------------------------------
 
@@ -180,6 +279,7 @@ def call_claude(client: anthropic.Anthropic, chunk_body: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def main() -> None:
+    load_dotenv(_PROJECT_ROOT / ".env")
     api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
         raise SystemExit("Error: ANTHROPIC_API_KEY environment variable is not set.")
@@ -233,6 +333,11 @@ def main() -> None:
 
         if i < total - 1:
             time.sleep(SLEEP_BETWEEN_CALLS)
+
+    # Post-processing: normalise names, then guarantee every edge has a node.
+    print("\nNormalising graph...")
+    graph = normalise_graph(graph)
+    graph = ensure_edge_nodes(graph)
 
     # Write output.
     with output_path.open("w", encoding="utf-8") as f:

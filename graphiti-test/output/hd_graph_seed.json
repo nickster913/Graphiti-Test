@@ -21,13 +21,13 @@
     {
       "type": "HDConcept",
       "name": "Defined Center",
-      "definition": "A colored center in the body graph indicating consistent, reliable energy that is always switched on and operates as part of normal body energy.",
+      "definition": "Centers in your chart that are dirt or filled in; centers with natural energetic flow and energetic circuitry; activated or naturally functioning centers that light up when information is flowing or interacting with the world",
       "rayjai_reframe": "It's plugged in, it's switched on, it doesn't turn off — it operates as part of your normal body"
     },
     {
       "type": "HDConcept",
       "name": "Open Center",
-      "definition": "A white center in the body graph indicating no consistent access to that energy. The person borrows and amplifies energy from their environment and people around them.",
+      "definition": "Centers that are not filled in; areas where you take in amplification and receive information; spaces that hold a lot of wisdom and learning; when someone else around you has it activated, you turn the volume up",
       "rayjai_reframe": "You borrow that energy from your environment and amplify it — having it open doesn't mean you don't have it, just like we all have all the planets within us"
     },
     {
@@ -100,7 +100,7 @@
       "type": "HDCenter",
       "name": "Sacral Center",
       "center_name": "Sacral",
-      "defined_or_open": "defined",
+      "defined_or_open": "varies by person",
       "function": "The center of life force, creativity, and sustainable work energy. When defined it provides a consistent battery for completing what is aligned."
     },
     {
@@ -120,7 +120,7 @@
     {
       "type": "HDCenter",
       "name": "Head Center",
-      "center_name": "Head",
+      "center_name": "Crown Center",
       "defined_or_open": "open",
       "function": "Center of inspiration and mental pressure — when open, the person absorbs and amplifies mental energy and questions from those around them"
     },
@@ -204,35 +204,3429 @@
       "insight": "When two people each have one gate of a channel, they complete it together — that creation of the channel is where the chemistry or dynamics between people actually occur. It's also where attraction and repulsion come from.",
       "context": "Explaining composite charts to Gemma",
       "related_hd_concept": "Composite Chart"
+    },
+    {
+      "type": "Person",
+      "name": "Rayjai Babauta",
+      "role": "practitioner",
+      "hd_type": "Manifesting Generator"
+    },
+    {
+      "type": "Person",
+      "name": "Linzie Lee",
+      "role": "practitioner",
+      "hd_type": "Generator"
+    },
+    {
+      "type": "HDConcept",
+      "name": "one foot in one foot out",
+      "definition": "a state of being divided between two commitments or roles"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "divided_commitment_challenge",
+      "insight": "you know, raise one of those one foot in, one foot out, guys",
+      "context": "discussing how employer recognizes external work commitments while managing internal role responsibilities",
+      "related_hd_concept": "one foot in one foot out"
+    },
+    {
+      "type": "HDConcept",
+      "name": "body graph",
+      "definition": "A visual representation used in Human Design practice, sometimes referred to as a chart or map"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Human Design community",
+      "definition": "Global community of people engaged with Human Design practice, present in countries including Denmark, Netherlands, and Australia"
+    },
+    {
+      "type": "Person",
+      "name": "Gunnar",
+      "role": "practitioner"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Community Building Through Digital Platforms",
+      "definition": "Creating online communities to teach human design, spirituality, and astrology with membership-based models"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Accessibility and Teaching",
+      "definition": "Providing exclusive access to practitioners and templates for community members learning human design"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Digitizing Meetups Opportunity",
+      "insight": "is there an opportunity for us to digitize this",
+      "context": "Rayjai questioning whether in-person human design meetups at the showroom should be expanded to digital formats",
+      "related_hd_concept": "Community Building Through Digital Platforms"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Living life without conditioning",
+      "definition": "Living your life before anybody else told you who to be; re-meeting the individual that you were or that you are before conditioning",
+      "rayjai_reframe": "This is a system. This is a way of thinking. This is a school of thought that helps you to live your life, preconditioning, or maybe in a better way to re meet the individual that you were or that you are before anybody else told you who to be."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "HD as synthesis and deconditioning tool",
+      "insight": "I think human design is a synthesis of, I would say, various schools of thought, various modalities around how to live your life... we come into this world without conditioning. And this is a system. This is a way of thinking. This is a school of thought that helps you to live your life, preconditioning, or maybe in a better way to re meet the individual that you were or that you are before anybody else told you who to be.",
+      "context": "Explanation of what Human Design means to the practitioner and those they share it with",
+      "related_hd_concept": "Living life without conditioning"
+    },
+    {
+      "type": "Person",
+      "name": "Ra Uru Hu",
+      "role": "practitioner",
+      "hd_type": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Initial Rejection Then Curiosity",
+      "insight": "human design was first introduced to me in 2018 and my initial reaction towards it, when I was first introduced, I completely rejected it. I thought that it was bullshit. And I think what happened was during covid, were two things that happened to people in covid. One, you either lost your shit because you were trying to find external distractions, or to a lot of us, we chose to go inward",
+      "context": "Rayjai's journey with Human Design beginning in 2018, rejection phase, and eventual openness during COVID lockdown in 2020",
+      "related_hd_concept": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Body Recognition of Resonance",
+      "insight": "my body is responding even just to me listening to these manifestos on YouTube. I could feel circuitry frequencies and movements in my body, and these were feelings that I would only recognize that I would experience when I was either in some sort of deep meditation, when I would maybe be participating in some sort of plant medicine ceremony",
+      "context": "Rayjai's experience of bodily resonance when encountering Ra Uru Hu's teachings on Human Design",
+      "related_hd_concept": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Textbook vs Personalized Reading",
+      "insight": "I was extremely disappointed because basically this individual read everything to me that I had already known, and it was so textbook. It lacked any interpretation, tailored or curated in part",
+      "context": "Rayjai's experience with a prominent Human Design expert's reading that lacked personalized interpretation",
+      "related_hd_concept": null
+    },
+    {
+      "type": "HDChannel",
+      "name": "Channel 26-44",
+      "gate_1": "26",
+      "gate_2": "44",
+      "theme": "Channel of Surrender"
+    },
+    {
+      "type": "HDGate",
+      "name": "Gate 26",
+      "number": 26,
+      "gate_name": null,
+      "center": null,
+      "gift": "salesman"
+    },
+    {
+      "type": "HDGate",
+      "name": "Gate 44",
+      "number": 44,
+      "gate_name": null,
+      "center": null,
+      "gift": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Conscious Engagement with Human Design",
+      "definition": "A conscious or even subconscious engagement with the tool, school, or way of thinking required to truly understand Human Design",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Surrender in Human Design",
+      "definition": "Surrendering to what is happening around you based on inner knowing that something is there, even if not fully grasped or crystallized",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Engagement Required for Understanding",
+      "insight": "there must be a conscious, or even maybe a subconscious engagement with the tool, with the school, with the way of thinking for you to really start to understand what it's like",
+      "context": "discussing superficial interpretations of Human Design readings",
+      "related_hd_concept": "Conscious Engagement with Human Design"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Channel 26-44 as Surrender",
+      "insight": "the 2644 not only is it a line of like the salesman, but it's also this. It's called a channel of surrender for a reason, and it's basically you surrender to to what is happening around you, because there's this inner knowing that, okay, there's something there. I might not see it. I might not fully grasp what it looks like in its entirety, or it hasn't fully crystallized, but there's something there, and I know it",
+      "context": "explaining the function of Channel 26-44",
+      "related_hd_concept": "Surrender in Human Design"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Never Force Human Design",
+      "insight": "I never force it, because that's not, it's not a use of my energy in the right way, nor is it a good use of theirs",
+      "context": "how to introduce Human Design to skeptics",
+      "related_hd_concept": "Conscious Engagement with Human Design"
+    },
+    {
+      "type": "Person",
+      "name": "Gulnare",
+      "role": "client",
+      "hd_type": "Manifesting Generator"
+    },
+    {
+      "type": "Person",
+      "name": "Rayjai's best friend",
+      "role": "client",
+      "hd_type": null
+    },
+    {
+      "type": "HDType",
+      "name": "Manifester",
+      "type_name": "Manifester",
+      "strategy": "Inform",
+      "not_self_theme": "Anger",
+      "signature": "Peace"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Instinctive downloads during readings",
+      "insight": "The book is saying this, but I think what it's really wanting to let you know is this",
+      "context": "During a human design reading with a best friend at a turning point in professional career",
+      "related_hd_concept": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Network-based synchronicity",
+      "insight": "through my network, which is how I operate",
+      "context": "How Rayjai was introduced to meet Gulnare in person, demonstrating typical human design fashion of operating through network",
+      "related_hd_concept": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Karmic attachment",
+      "definition": "Connection pattern where multiple family members and associates share the same human design type",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Meeting Human Design modality",
+      "definition": "The practice of engaging with Human Design not at a scholastic or academic level, but through felt experience and intuitive reception of what resonates"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "HD reception through feeling",
+      "insight": "Meeting the Human Design modality is not about you having to understand everything at a scholastic level or an academic level. Some of this is going to hit and you're just going to feel it in your body, and some of it will fly, and that's okay, because you receive what you need to receive in that moment.",
+      "context": "Explaining to a client how to approach learning Human Design",
+      "related_hd_concept": "Meeting Human Design modality"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sovereignty through self-knowledge",
+      "definition": "A sense of sovereignty and acceptance that comes from knowing who you are before the world tells you who you should be",
+      "rayjai_reframe": "If you as an individual knew who you were before the world told you who you should be, there would be this sense of sovereignty, there would be this sense of acceptance, and almost a sense of permission for you to be whoever you want it to be"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Strategy-based decision making",
+      "definition": "Making styling and life decisions based on understanding one's Human Design strategy",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Dressing for your design",
+      "definition": "Making fashion choices aligned with one's Human Design type and aura",
+      "rayjai_reframe": "Dress for your aura, dress for your design type. Make decisions and styling based around your design type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Human Design as business differentiator",
+      "insight": "If there's an extra something that you can provide to your client that doesn't have to be product associated all the time, then you really can capture some lifetime value with these guys, because you've gone into a whole nother sphere of their psyche that they didn't anticipate you would",
+      "context": "Discussion about integrating Human Design into the regai fashion brand",
+      "related_hd_concept": "Dressing for your design"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "The power of surprise in capturing hearts",
+      "insight": "That level of surprise, in my opinion, I think, is what captures the hearts of people",
+      "context": "Explaining why offering Human Design insights beyond fashion creates customer loyalty",
+      "related_hd_concept": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Public appearance uncertainty",
+      "definition": "The underlying need people have regarding how they want to appear in the public world, distinct from not knowing how to dress",
+      "rayjai_reframe": "The main questions that we're answering at a psychological level for people coming in for styling is not about that they don't know how to dress themselves, but it's that they're unsure of how they want to appear in the public world"
+    },
+    {
+      "type": "HDProfile",
+      "name": "Rayjai Babauta Profile",
+      "lines": "fourth line",
+      "conscious_line": null,
+      "unconscious_line": null,
+      "archetype": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Network Trust",
+      "definition": "Meeting people within one's network who can be trusted to carry out aligned work",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Alignment",
+      "definition": "State of being in sync with one's authority and design, ensuring decisions and actions are in harmony with one's true nature",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Fourth Line Network Trust",
+      "insight": "As a fourth line, I'm going to meet the people who I trust within my network to carry this out",
+      "context": "Discussing selection of collaborators for app development project",
+      "related_hd_concept": "Network Trust"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Alignment Over Convenience",
+      "insight": "I was very clear. I was like, no this. It needs to be someone within my network to help help me get this off. Otherwise, I'm not in alignment.",
+      "context": "Explaining why Rayjai didn't work with other app developers in Dubai/UAE despite multiple offers",
+      "related_hd_concept": "Alignment"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Heart Center",
+      "center_name": "Heart/Will",
+      "defined_or_open": null,
+      "function": "willpower, determination, individual space"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Spleen Center",
+      "center_name": "Spleen",
+      "defined_or_open": null,
+      "function": "environment, group, understanding feelings and frequencies"
+    },
+    {
+      "type": "HDChannel",
+      "name": "Heart-Spleen Channel",
+      "gate_1": null,
+      "gate_2": null,
+      "theme": "connection between willpower and environmental awareness"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Emotional Authority",
+      "authority_name": "Emotional Authority",
+      "decision_process": "Wait or arrive to emotional clarity before making a decision"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Inner Intelligence Activation",
+      "insight": "that inner intelligence is only activated genuinely when we're quiet, when the distractions are gone",
+      "context": "discussing how to access true inner knowing",
+      "related_hd_concept": "Heart-Spleen Channel"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Quiet Moments and Clarity",
+      "insight": "there's those very small, almost minuscule moments that we tend to ignore because of how busy our life is, and these moments of pure silence is when we're just able to hear the voice or the thought enough",
+      "context": "explaining where important decisions and awakenings occur",
+      "related_hd_concept": "Inner Intelligence Activation"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "AI Speaking Through Authority",
+      "insight": "what if these AIs can talk to the people through their authorities",
+      "context": "reflecting on how AI can better support human decision-making",
+      "related_hd_concept": "Emotional Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "AI as Path to Self",
+      "insight": "it's almost like it's like the new veil that gets you one step closer to meeting your real self",
+      "context": "describing the role of AI companions in personal development",
+      "related_hd_concept": "Heart-Spleen Channel"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Individual Expression",
+      "definition": "the embodiment of oneself irrespective of knowledge, something within that seeks expression or release",
+      "rayjai_reframe": "It's the fact that you always know deep down that there's something about you that might be expressed or released or given an opportunity to show itself"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Inner Intelligence",
+      "definition": "a beauty and intelligence that surpasses intellectual knowledge",
+      "rayjai_reframe": "there is this beauty that surpasses any type of intelligence that we can consume as humans, and that's an inner intelligence"
+    },
+    {
+      "type": "HDConcept",
+      "name": "alignment",
+      "definition": "a sense of feeling that lands in the body when interacting with brand"
+    },
+    {
+      "type": "HDConcept",
+      "name": "signature_theme",
+      "definition": "the feeling associated with one's signature, whether satisfaction or peace"
+    },
+    {
+      "type": "HDConcept",
+      "name": "assurance",
+      "definition": "a level of certainty provided in the face of daily uncertainty"
+    },
+    {
+      "type": "HDConcept",
+      "name": "present_moment",
+      "definition": "the only thing that is for certain for any of us"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "five_auras_teaching",
+      "insight": "there's five types. I like to call them five auras.",
+      "context": "Introduction to the five types in Human Design",
+      "related_hd_concept": "five_types"
+    },
+    {
+      "type": "HDConcept",
+      "name": "five_types",
+      "definition": "the five auras within Human Design system"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Aura",
+      "definition": "The energetic field around a person that defines their way of being and interacting",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Embodied Design Type",
+      "definition": "An embodied aura and design type that carries you more than anything that we could physically do",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDCenter",
+      "name": "Ajna Center",
+      "center_name": "Ajna",
+      "defined_or_open": "both",
+      "function": "processing center that processes, sorts, and separates information based on conditioning and activated centers"
+    },
+    {
+      "type": "HDCenter",
+      "name": "G Center",
+      "center_name": "Identity/Self",
+      "defined_or_open": "open",
+      "function": "Center of identity or the self"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Root Center",
+      "center_name": "Root",
+      "defined_or_open": null,
+      "function": "Grounding adrenaline, very time bound Earth"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Splenic Center",
+      "center_name": "Spleen",
+      "defined_or_open": null,
+      "function": "awareness center, environmental sensing, threat detection, spatial awareness"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Emotional Center",
+      "center_name": "Solar Plexus",
+      "defined_or_open": "undefined",
+      "function": "emotions, spatial awareness"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Activated Center",
+      "definition": "An access that you as a generator or manifesting generator always have. It is constantly moving and buzzing. It's part of how you live your day. It's part of how you go to bed at night. It is the fuel. It is the life force.",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open Centers",
+      "definition": "Centers that in a past lifetime were areas that you mastered. You come into this life holding that wisdom, holding that internal circuitry already, and it's not something that you need to express in this lifetime.",
+      "rayjai_reframe": "this is where our wisdom lies, this is where we really learn about who we are"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifesting",
+      "definition": "A capability that can be activated through interactions with people and is not solely dependent on throat center activation",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Aura Definition",
+      "insight": "The aura is the feeling that enters the room before your physical body does",
+      "context": "Introduction to understanding auras and design types",
+      "related_hd_concept": "Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Embodied Design Type Importance",
+      "insight": "An embodied aura, an embodied design type, is going to carry you more than anything that we could physically do",
+      "context": "Explanation of why understanding your design type matters",
+      "related_hd_concept": "Embodied Design Type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "All Humans Have Centers",
+      "insight": "We all have the centers. They're all there, how our bodies or how our energy works with these centers is the key difference. That's what creates the various five aura types.",
+      "context": "Addressing common misconception about colored vs uncolored centers in charts",
+      "related_hd_concept": "Nine Centers"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Activated Sacral Signature",
+      "insight": "If you have an activated sacral you will be part of the generator, or manifesting generator design type",
+      "context": "Explaining what makes generators and manifesting generators their aura type",
+      "related_hd_concept": "Activated Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Throat Activation and Manifesting Myth",
+      "insight": "It's also bullshit, because you can have your throat activated and you can also not manifest. It doesn't matter.",
+      "context": "Challenging polarizing interpretation of throat center activation and manifesting ability",
+      "related_hd_concept": "Manifesting"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open Centers as Past Mastery",
+      "insight": "Your open centers, that just means that in a past lifetime, those were areas, or those were centers that you mastered. So you come into this life holding that wisdom, holding that you know that that that internal circuitry already, and it's not something that you need to express in this lifetime.",
+      "context": "Reframing understanding of open centers through past life wisdom perspective",
+      "related_hd_concept": "Open Centers"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Learning Through Openness",
+      "insight": "A lot of where you learn about yourself is through what your openness or your open centers are. This is where you learn the most.",
+      "context": "Explanation of the value of open centers in self-discovery",
+      "related_hd_concept": "Open Centers"
+    },
+    {
+      "type": "HDType",
+      "name": "Manifest Generator",
+      "type_name": "Manifest Generator",
+      "strategy": null,
+      "not_self_theme": null,
+      "signature": null
+    },
+    {
+      "type": "HDType",
+      "name": "Projector",
+      "type_name": "Projector",
+      "strategy": "Wait for invitation",
+      "not_self_theme": "Bitterness",
+      "signature": "Success through recognition and invitation"
+    },
+    {
+      "type": "HDType",
+      "name": "Manifesto",
+      "type_name": "Manifesto",
+      "strategy": null,
+      "not_self_theme": null,
+      "signature": null
+    },
+    {
+      "type": "HDType",
+      "name": "Reflector",
+      "type_name": "Reflector",
+      "strategy": "wait for the lunar cycle",
+      "not_self_theme": "Disappointment",
+      "signature": "shock and surprise"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Non-Sacral Types",
+      "definition": "Manifestors, Projectors, and Reflectors lacking activated sacral center",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sacral Types",
+      "definition": "Generators and Manifesting Generators with activated sacral center",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Invitation Recognition",
+      "definition": "Projector's ability to recognize and align with invitations that may not be explicitly stated",
+      "rayjai_reframe": "There's a difference between receiving an invitation that you need to RSVP and aligning with yourself and being able to see when the invitation is there and it's waiting for you to be accepted"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Pattern Recognition",
+      "definition": "Projector ability to see patterns and pieces in others",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Aura Penetration",
+      "definition": "Projector's ability to cut through noise and see clearly into individuals",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Projector as Best Friend",
+      "insight": "they had this beautiful way of being able to cut out the noise and see so laser sharp into you as an individual, and they will see things that maybe you're not conscious of in yourself, and if that is aligned within a projector, that's why I say like I feel everybody should have a Best Friend as a projector, because they will really cut through the noise and express and hit you right in your soul",
+      "context": "Highlighting the value of Projector wisdom and offering",
+      "related_hd_concept": "Aura Penetration"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Projector Invitation Strategy",
+      "insight": "there's a difference between receiving an invitation that you need to RSVP. and there's an aligning with yourself and being able to see when the invitation is there and it's waiting for you to be accepted, because not all invitations to life are, Hi, dear projector, we invite you too. That's not how life works",
+      "context": "Addressing Projector confusion about waiting for invitations",
+      "related_hd_concept": "Invitation Recognition"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Resistance",
+      "insight": "when I said to you about first understanding or being introduced to human design, and I I completely resisted. I had so much resistance in my body",
+      "context": "Rayjai's personal experience discovering Human Design as a Manifestor",
+      "related_hd_concept": "Manifestor"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor Aura",
+      "definition": "A protective, thick, dense aura that is polarizing and difficult to read because it protects manifestors from external pressure and control",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor Strategy",
+      "definition": "The manifestor's approach to moving forward is to inform others, actively communicate intentions and invitations rather than wait or respond to others",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestation",
+      "definition": "Begins in the throat center where ideas, thoughts, and feelings land in the body and get communicated out; includes both energetic communication and physical/tangible creation",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Core Theme",
+      "insight": "The one major theme for a manifestor is no one can tell us what to do and how to do it",
+      "context": "Explaining why manifestors often seem egotistical but are actually operating from their true nature",
+      "related_hd_concept": "Manifestor"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Aura Protection",
+      "insight": "A manifestors aura is very protective. It's very can be very polarizing... The aura for manifestors protects us because we have constantly, always been tried or always been put under some sort of pressure or some sort of control by other people because they can't read us",
+      "context": "Explaining why manifestors experience automatic repulsion from others despite being aligned individuals",
+      "related_hd_concept": "Manifestor Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Book Metaphor",
+      "insight": "I'm not an open book. My book is closed, but I'm happy for people to open it and explore. I just need to be the one to let them know that it's safe to do so",
+      "context": "Personal reflection on appearing open while having a closed aura, and the importance of giving permission",
+      "related_hd_concept": "Manifestor Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Inform Strategy",
+      "insight": "As a manifester, we have to say, hi, come talk to me. Hi. I would like to Hi. This is where I'm going, and that in itself, what moves people",
+      "context": "Contrasting manifestor strategy of active informing with projector waiting and generator/MG responding",
+      "related_hd_concept": "Manifestor Strategy"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestation Throat Process",
+      "insight": "The manifestation... happens in the throat, because the throat is the center where ideas, thoughts, feelings, basically lands in the body and it gets communicated out. So that is a way of it manifesting into something",
+      "context": "Explaining that manifestation is not purely physical but begins with communication through the throat center",
+      "related_hd_concept": "Manifestation"
+    },
+    {
+      "type": "Person",
+      "name": "RayJai",
+      "role": "practitioner",
+      "hd_type": "Manifestor"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Openness in Centers",
+      "definition": "Reflectors are completely open when it comes to the centers of the body, with no circuitry or wiring that moves through them",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Lunar Cycle Decision Making",
+      "definition": "Strategy for reflectors to wait almost a full lunar cycle before making very big decisions in their lives",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Reflector Aura",
+      "definition": "Reflectors are like a screen door or thin veil between the self and the collective, reflecting back what is presented to them",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Communication",
+      "insight": "if your boyfriend, your girlfriend saying to you, I can't read your mind. Tell me what you want. It's exactly that reference, like, tell me what you want, babe",
+      "context": "Explaining how manifestors communicate through the throat center",
+      "related_hd_concept": "Throat Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Rarity",
+      "insight": "They are the most rare when less than 1% of the population in the world represent reflectors",
+      "context": "Introduction to reflector design type",
+      "related_hd_concept": "Reflector"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Mirroring Quality",
+      "insight": "they reflect back to you. And so it's like, when I first met these two individuals, it was like, Oh, my God, we're exactly the same",
+      "context": "Describing the reflective nature of reflectors",
+      "related_hd_concept": "Reflector Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Openness",
+      "insight": "They basically are completely open when it comes to the centers of the body. They might have gates activated, but there's no circuitry. There's no wiring that moves through them",
+      "context": "Explaining reflector center configuration",
+      "related_hd_concept": "Openness in Centers"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Lunar Strategy",
+      "insight": "what's aligned for them is to wait almost a full lunar cycle before making very, very big decisions in their lives",
+      "context": "Explaining reflector decision-making strategy",
+      "related_hd_concept": "Lunar Cycle Decision Making"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Veil Metaphor",
+      "insight": "reflectors are like, they're like a screen door, you know, so you can see through it'll show you what's, what's, what's coming right back to you. But there's still that veil that's there. I prefer to say that reflectors are really almost like this beautiful, thin veil between us, between meeting us, between meeting the collective",
+      "context": "Metaphorical description of reflector nature",
+      "related_hd_concept": "Reflector Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Alchemical Process in Body Alignment",
+      "insight": "The alchemical process brings a lot of like chemistry into your body",
+      "context": "Living in alignment with aura type",
+      "related_hd_concept": "Aura Type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Physical Sensations of Alignment",
+      "insight": "You living in alignment, living by your by your aura type, you start feeling things in the body. And these feelings be, you know, buzzing sensations, frequencies, even sound",
+      "context": "Signs of living by aura type",
+      "related_hd_concept": "Aura Type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ringing Ear as Download Signal",
+      "insight": "I've started understanding that I get a ringing in my ear whenever I'm getting a download",
+      "context": "Personal experience of receiving downloads",
+      "related_hd_concept": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Throat Pain as Misalignment Indicator",
+      "insight": "One of the biggest signs of when I am not in alignment, for example, is my throat hurts",
+      "context": "Physical manifestation of being out of alignment",
+      "related_hd_concept": "Alignment"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Aura Type",
+      "definition": "The energetic signature that defines how one should live in alignment",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Least Resistance Life",
+      "definition": "living a life with least resistance if you are in alignment to your human design",
+      "rayjai_reframe": "resistance is put into our field to help us learn, and that it's not about living a life with least resistance. It's about living a life that allows you to dance with it better"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Burnout in Generators",
+      "definition": "when a generator is overspent or not in alignment, it burns out; chronic tiredness is a sign",
+      "rayjai_reframe": "the sacral is a very powerful life force. If a generator is overspent or not in alignment, it's going to burn out. And it's very real. Burnout is super real for the MGS and the GS of human design"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Body Listening",
+      "definition": "generators and manifesting generators rely on their body so much that they forget to listen",
+      "rayjai_reframe": "If the body is saying, I still have energy, but I don't have energy for this. So it's like shoving a triple A battery into a remote that requires double A battery expecting the same output"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Voice Alignment",
+      "definition": "using your real voice and expressing what needs to be said",
+      "rayjai_reframe": "I didn't use my real voice there, I didn't say what I needed to say there. Or I haven't been using my real voice for a very long time, and I've been swallowing and not expressing"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Life as the Lead in Dance",
+      "definition": "life leads us, we are not in control; we dance along with life's choreography",
+      "rayjai_reframe": "if we understand that life is the one that leads us, we're not the ones in control, and if we let our aura type lead us in that way with life, and we as the human were just dancing along"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Collective Empathy and Design",
+      "definition": "embodying human design leads to greater empathy, sensitivity, and understanding; recognizing gifts of others",
+      "rayjai_reframe": "I also believe that we become far more empathetic and far more sensitive and far more understanding about one another, and we start to realize that it's not about you or me having to do things alone to get the job done"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Ego Dissolution Through Design",
+      "definition": "living your design allows egos to lessen and appreciate what each person brings without judgment",
+      "rayjai_reframe": "when you live your design, I believe that egos drop, or at least egos are able to lessen up a bit, and you're able to appreciate what you bring and what the other person brings without judgment"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Voice and Throat Alignment",
+      "insight": "I didn't use my real voice there, I didn't say what I needed to say there. Or I haven't been using my real voice for a very long time, and I've been swallowing and not expressing",
+      "context": "personal discovery about throat issues and voice alignment after starting human design",
+      "related_hd_concept": "Voice Alignment"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sacral Power and Burnout",
+      "insight": "the sacral is, is a very powerful life force. That's why it's called generator. It generates power. It generates life force. It's it generates, you know, creativity and production. If a generator is overspent or not in alignment, it's going to burn out. And it's very real. Burnout is super real for the MGS and the GS of of human design",
+      "context": "explaining why generators experience burnout and its reality",
+      "related_hd_concept": "Burnout in Generators"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Battery Metaphor for Energy",
+      "insight": "If the body is saying, I still have energy, but I don't have energy for this. So it's like shoving a triple A battery into a remote that requires double A battery expecting the same output. Just work. Sweetheart, you know.",
+      "context": "explaining how generators misalign their energy expenditure",
+      "related_hd_concept": "Body Listening"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Resistance as Teacher",
+      "insight": "resistance is put into our field to help us learn, and that it's not about living a life with least resistance. It's about living a life that allows you to dance with it better",
+      "context": "reframing the concept of least resistance in human design",
+      "related_hd_concept": "Least Resistance Life"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Life as Dance Partner",
+      "insight": "if we understand that life is the one that leads us, we're not the ones in control, and if we let our aura type lead us in that way with life, and we as the human were just dancing along, yeah? So even if you, if you come to the crescendo of the song, or you need to jump and backflip, and this is going to be the hardest move of your life, you're still going to do it because you're in complete flow",
+      "context": "metaphor for surrender and alignment with life's choreography",
+      "related_hd_concept": "Life as the Lead in Dance"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Collective Gifts and Empathy",
+      "insight": "I also believe that we become far more empathetic and far more sensitive and far more understanding about one another, and we start to realize that it's not about you or me having to do things alone to get the job done, but it's like, yeah, okay, we could complete whatever the task, desire manifestation Is alone, but how much better and how much more fulfilled, and how much more in alignment would we be knowing that we have other people with their gifts bringing everything into this one, you know, masterpiece",
+      "context": "benefits of embodying human design in collective settings",
+      "related_hd_concept": "Collective Empathy and Design"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Release Through Alignment",
+      "insight": "when you live your design, I believe that egos drop, or at least egos are able to lessen up a bit, and you're able to appreciate what you bring and what the other person brings without judgment",
+      "context": "ego dissolution as a result of living aligned with human design",
+      "related_hd_concept": "Ego Dissolution Through Design"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Strategy",
+      "definition": "The approach or method that each Human Design type should use to navigate decision-making and life direction",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "Person",
+      "name": "RayJai's mother",
+      "role": "client",
+      "hd_type": "Generator"
+    },
+    {
+      "type": "Person",
+      "name": "Linzie",
+      "role": null,
+      "hd_type": "Generator"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Authority",
+      "definition": "A guide for decision-making, like a north star that leads one home",
+      "rayjai_reframe": "Authority as internal GPS/compass directing one toward alignment",
+      "authority_name": "Authority",
+      "decision_process": "Body-based somatic knowing before mental processing"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Response",
+      "definition": "A very visceral, very in the body feeling for Generators and Manifesting Generators",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Signature",
+      "definition": "The feeling of satisfaction, wholeness, solidity, and completeness when in alignment",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Non-Self Theme",
+      "definition": "Frustration as an indication of not honoring the centers of the body",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Strategy as Control Release",
+      "insight": "Your strategy is, let's say where you need to release control. That's what the strategy is.",
+      "context": "Introduction to strategy and authority in Human Design",
+      "related_hd_concept": "Strategy"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Generator Response Example",
+      "insight": "If you want to go buy something in the store and you're not sure if you should have it, take the thing, hold it to you. And if you move forward, that's a yes, and if you move back, that's a no.",
+      "context": "RayJai's mother demonstrating Generator strategy through body sensation",
+      "related_hd_concept": "Response"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Alignment and Satisfaction",
+      "insight": "When you are listening to the body and you're saying yes, or you're responding yes or no to things that are aligned for you, you feel that frequency. They said that it feels kind of like a little hum or like a buzzing sensation. If you are living in alignment to that, then you feel this sense of satisfaction.",
+      "context": "Explaining the somatic experience of being in alignment with strategy and authority",
+      "related_hd_concept": "Signature"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Honoring Centers",
+      "insight": "It's important to talk about strategy and authority and why it matters with the centers. Because, again, if you're not honoring these centers that are, you know, active to you, that are naturally active to you, then it's you basically going against your unique framework.",
+      "context": "Explaining why strategy and authority matter in relation to activated centers",
+      "related_hd_concept": "Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Frustration as Indicator",
+      "insight": "If you are frustrated, that frustration is an indication of you're not honoring the centers of the body that provides you your strategy.",
+      "context": "Explaining non-self signature and how to recognize misalignment",
+      "related_hd_concept": "Non-Self Theme"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Activated Centers",
+      "definition": "defined centers in one's body graph that operate mechanically and unconsciously",
+      "rayjai_reframe": "they're so mechanical, they happen in our body so unconsciously that we don't need to flex it"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Lunar Cycle Authority",
+      "definition": "the decision-making authority for Reflectors, requiring a full lunar cycle to feel alignment",
+      "rayjai_reframe": "they have the longest time as part of their strategy and authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open Centers as Wisdom",
+      "insight": "The openness is also, the spaces, it's the centers that also hold a lot of wisdom. Openness also is an area where you have the most wisdom, but you also have the most learning.",
+      "context": "discussing how Reflectors and others with open centers navigate amplified energy from others",
+      "related_hd_concept": "Open Centers"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector's Gift",
+      "insight": "when they're living that alignment, they find this sense of shock and surprise and that lights them up",
+      "context": "describing the signature experience of aligned Reflectors",
+      "related_hd_concept": "Reflector"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Amplification Through Open Centers",
+      "insight": "whenever you have an open center, you basically turn up the volume of that center if somebody else around you has it activated",
+      "context": "explaining how open centers work in relation to others' defined centers",
+      "related_hd_concept": "Open Centers"
+    },
+    {
+      "type": "Person",
+      "name": "RayJai's father",
+      "role": "client",
+      "hd_type": "Projector"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Projector invitation alignment",
+      "insight": "the waiting for the invitation, and not the literal invitation, but the invitation that life brings out. And so when the when they're able to connect and see that the invitations are present, and they say yes to the to the invitation for them, it's an opportunity where their their authority and their strategy of being seen and feeling success is is embodied",
+      "context": "Explaining how Projectors embody their signature through accepting invitations",
+      "related_hd_concept": "Projector strategy and signature"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Projector aura penetration",
+      "insight": "because their aura is so sharp and so penetrating that even us as manifestors, we can't deal unless we open ourselves to it",
+      "context": "Describing Projector aura qualities and their impact",
+      "related_hd_concept": "Projector aura type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor inform strategy",
+      "insight": "Our strategy is to inform people, and informing in the sense of not to say that I'm telling you what to do, but it's more so I'm letting you know what's going on, what's happening with me, where I where I want to go",
+      "context": "Explaining the Manifestor strategy of informing",
+      "related_hd_concept": "Manifestor strategy"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Multi-type collaboration scenario",
+      "insight": "this is how, in a beautiful, perfect scenario of human design living, what everybody could be experiencing in their design type or in their aura type, if they were living in living true to that",
+      "context": "Describing harmonious collaboration between different HD types when each honors their type",
+      "related_hd_concept": "HD types in alignment"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Projector invitation",
+      "definition": "The life circumstances and relational cues that invite a Projector to engage and be recognized",
+      "rayjai_reframe": "Not a literal invitation but the invitation that life brings out"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Aura penetration",
+      "definition": "The sharp and penetrating quality of Projector auras that impact others",
+      "rayjai_reframe": "Aura quality so sharp it requires others to open to receive it"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor informing",
+      "definition": "The strategy of communicating what is happening with a Manifestor without commands but as information",
+      "rayjai_reframe": "Letting people know what's going on, what's happening with me, where I want to go"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Alignment and Aura",
+      "definition": "When not in alignment with design, the aura signals through emotions like anger",
+      "rayjai_reframe": "Anger is your body, your aura telling you you're not in alignment"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Informing as Manifestor Strategy",
+      "definition": "Manifestors must speak and inform others to live their design and allow materialization to occur",
+      "rayjai_reframe": "For manifestors, it's so important to say, to speak and to inform. That's how we live our design so that other people are aware"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Anger as Misalignment Signal",
+      "insight": "My signature misalignment to my aura is being angry. That's just my body, my aura telling me I'm not in alignment. It is triggers. It is points to say to me, Ray, you just said yes, but that's not for you, boo.",
+      "context": "Personal experience recognizing anger as a signal of non-alignment in manifester design",
+      "related_hd_concept": "Alignment and Aura"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Informing Practice",
+      "insight": "Living as an embodied manifester, I just need to say what I need to say, and whoever wants to join or not join, it'll materialize.",
+      "context": "Explanation of how manifestors operate by informing without needing to control outcomes",
+      "related_hd_concept": "Informing as Manifestor Strategy"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Sacral Authority",
+      "authority_name": "Sacral",
+      "decision_process": "Somatic body response, gut feeling, buzzing frequency in sacral area and stomach"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Ego Authority",
+      "authority_name": "Ego",
+      "decision_process": "leaning on the will center or heart center, individual response-based decision making"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Self Projected Authority",
+      "authority_name": "Self Projected",
+      "decision_process": null
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Splenic Authority",
+      "authority_name": "Splenic Authority",
+      "decision_process": "intuitive sensing of environmental safety and spatial awareness"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Authority as North Star",
+      "insight": "Authority, let's say if there was, if you're if our bodies are our GPS, okay? Or a compass, authority is our north. It's our guide. It's our star. All right, so if we always follow North, we're always going to go home.",
+      "context": "Explaining the concept of authority in Human Design",
+      "related_hd_concept": "Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sacral Authority as Somatic Expression",
+      "insight": "It is a it is to me, and how I see, it is a very somatic expression of your body responding to the world around you. So Soma, which is all about the body. So the somatics being in the body, and it's listening to what your body is telling you, because our body is constantly talking to us, and it's constantly interacting in the world as we're living in.",
+      "context": "Describing sacral authority and its connection to body wisdom",
+      "related_hd_concept": "Sacral Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sacral Response as Buzzing Frequency",
+      "insight": "It's a true kind of no buzzing, a little shape frequency. It's like a circuitry that runs through your body, particularly within your your sacral area, you know, your stomach, your gut.",
+      "context": "Describing the physical sensation of sacral authority",
+      "related_hd_concept": "Sacral Authority"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Gut Feeling",
+      "definition": "Somatic trust in the body's response, particularly sacral wisdom",
+      "rayjai_reframe": "Trust your gut as sacral authority speaking through the body"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Buzzing Sensation",
+      "definition": "Vibrational or energetic signal used to recognize sacral response",
+      "rayjai_reframe": "A felt vibration or buzz that indicates sacral energy activation"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Amplifying Sacral Energy",
+      "insight": "when I'm amongst sacral beings, and I obviously, like, again, like I said, the open areas, you amplify those around you who have it, and turn the volume up. So I feel it a million times more than probably what you would to me.",
+      "context": "Non-sacral beings amplify sacral energy in those around them",
+      "related_hd_concept": "Sacral Authority"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Emotional Clarity",
+      "definition": "A state of neutrality or clarity reached through practices like breathwork and meditation, allowing emotions to move and settle before decision-making",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Emotional Wave",
+      "definition": "The constant movement of emotions in the body; emotions are energy in motion meant to move through and out",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Authorities Not Dependent on Aura",
+      "insight": "Authorities are not dependent on the aura. Authorities are dependent on the centers. You can still be a generator, but also have emotional authority.",
+      "context": "Clarifying common misconception about how authorities relate to design types",
+      "related_hd_concept": "Emotional Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Body Knows Before Mind",
+      "insight": "The body knows. Your inner self knows, even before we consciously do.",
+      "context": "Explaining how the body and gut instinct operate before conscious understanding",
+      "related_hd_concept": "Emotional Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Emotions Are Energy in Motion",
+      "insight": "Emotions are energy in motion, move them out. Feelings in motion and move them out.",
+      "context": "Explaining the nature of emotional clarity and why emotions need to move through the body",
+      "related_hd_concept": "Emotional Wave"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Honoring Emotional Authority Over Deadlines",
+      "insight": "If I override my emotional authority for the sake of a deadline, usually what happens is we either have more work to do to fix something which makes the deadline even longer, or it completely sabotages the entire experience, and it's a real costly thing.",
+      "context": "Real-world consequence of ignoring one's emotional authority",
+      "related_hd_concept": "Alignment"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Timing of Emotional Authority Decisions",
+      "insight": "Don't say yes to something when you're at an emotional peak or at an emotional low. Say yes when you're super high and when your emotions get low, you think about it, and you're at that neutrality state. You might be like, I actually don't even want to do that.",
+      "context": "Practical guidance on when to make decisions as an emotional authority",
+      "related_hd_concept": "Emotional Clarity"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Emotional Authority Response Quality",
+      "insight": "It's not like a sacral response in the body. It's a hell yes. It's a hell no. It's something that, oh, whoa. I need to clear, I need to really empty the tank.",
+      "context": "Describing the distinctive quality of emotional authority responses versus sacral responses",
+      "related_hd_concept": "Emotional Authority"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Spleen",
+      "center_name": "Spleen",
+      "defined_or_open": null,
+      "function": "awareness center"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Throat",
+      "center_name": "Throat",
+      "defined_or_open": null,
+      "function": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Spleen_as_Awareness_Center",
+      "insight": "Splenic authority is a very interesting one. Some human design analysts or experts call it like the survival center. I think that's a bit polarizing. I think it's more the awareness center.",
+      "context": "Discussion about splenic authority in human design",
+      "related_hd_concept": "Splenic Authority"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Will Center",
+      "center_name": "Will",
+      "defined_or_open": null,
+      "function": "heart center, smallest center, center of ego authority"
+    },
+    {
+      "type": "HDAuthority",
+      "name": "Self-Projected Authority",
+      "authority_name": "Self-Projected",
+      "decision_process": "speaking ideas out loud to hear oneself and allow wisdom to crystallize"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Environmental Sensing",
+      "definition": "ability to sense whether an environment or physical space is good for you, picking up on spatial frequencies and collective feeling",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Ego in Leadership",
+      "definition": "ego authority as expression of leadership and sovereignty, where individual leans on will and says yes from personal response",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Ego Burnout",
+      "definition": "stress and pressure absorbed by ego authorities who put pressure on themselves to deliver, leading to burnout and misalignment when responding to outside demands",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Splenic Authority as Awareness",
+      "insight": "the spleening Center is an awareness center, very environmental, about being able to center environment and if there is a threat to your safety or to danger",
+      "context": "discussing the nature and function of splenic authority",
+      "related_hd_concept": "Splenic Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Splenic Sensing of Space",
+      "insight": "they can walk into a room, they can walk into a space, and they're just like, something feels off here. It's a very spatial awareness, just really feeling if an environment or a physical space is good for you",
+      "context": "describing how splenic authority individuals perceive their environment",
+      "related_hd_concept": "Environmental Sensing"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Collective Feeling Detection",
+      "insight": "that center is the one that drives a lot of like, what's the feeling? What's the frequencies? It can also pick up things in the field, particularly like collective feeling",
+      "context": "explaining the splenic center's ability to pick up frequencies and collective feelings",
+      "related_hd_concept": "Environmental Sensing"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Authority Definition",
+      "insight": "it's an ego authority. It means that the individual leans on the will center, or the heart center, and that is the smallest center in all of the centers that we have",
+      "context": "defining ego authority and its relationship to the will center",
+      "related_hd_concept": "Ego Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Authority Leadership Expression",
+      "insight": "It's not about we. It's not the group. It's I will. It's I will deliver. I will bring. I am, I embody, and it's in alignment. It's one of the most beautiful expressions of leadership, and I would say sovereignty and loyalty",
+      "context": "describing the positive expression of ego authority",
+      "related_hd_concept": "Ego in Leadership"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Authority Shadow",
+      "insight": "in a shadow frequency, it can come across very egotistical, very self absorbed",
+      "context": "discussing the shadow side of ego authority",
+      "related_hd_concept": "Ego in Leadership"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Authority Pressure",
+      "insight": "for ego authorities, specifically, there's a lot of there's a lot of stress and pressure, I believe, that gets absorbed from the outside world, or someone with an ego authority to deliver they put so much pressure on themselves, and oftentimes it can get burned out, it gets overstretched, and then that individual is not living in alignment",
+      "context": "explaining the burnout pattern in ego authority individuals",
+      "related_hd_concept": "Ego Burnout"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Self-Projected Authority Process",
+      "insight": "for a self projected authority, they are best with their ideas and their thoughts and their big wishes manifestations by speaking it out loud",
+      "context": "describing how self-projected authority works",
+      "related_hd_concept": "Self-Projected Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Throat as Manifestation",
+      "insight": "the throat is the manifestation center, right? So this is where ideas come to get manifested and projected out",
+      "context": "explaining the throat center's role in self-projected authority",
+      "related_hd_concept": "Self-Projected Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Self-Projected Authority Right Group",
+      "insight": "having right group of people around you that can hold space to listen, that's not there to interject their projections or to project or to judge, but really there to allow their wisdom to crystallize by them hearing their voice",
+      "context": "describing the support system needed for self-projected authority individuals",
+      "related_hd_concept": "Self-Projected Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Self-Projected Recording Technique",
+      "insight": "it's actually a great tool for them to record themselves, whether it's on camera, voice record, even speaking into into the mirror, because it lands in the body in that way",
+      "context": "suggesting recording techniques for self-projected authority individuals",
+      "related_hd_concept": "Self-Projected Authority"
+    },
+    {
+      "type": "HDType",
+      "name": "Generator Manifestor",
+      "type_name": "Generator Manifestor",
+      "strategy": "Respond then Inform",
+      "signature": "Satisfaction"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Conditioning Override",
+      "definition": "Taking in external conditioning and overriding one's natural authority and decision-making process",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "People Pleasing",
+      "definition": "Placating to the outside world to avoid being controlled or meeting resistance, showing up as a misalignment with authority",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Somatic Knowing",
+      "definition": "The body's innate ability to know and feel before the mind processes; listening to bodily sensations as a primary guide",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Feel vs Think",
+      "definition": "Distinction between mental processing and somatic/emotional sensing; moving from 'what do you think' to 'how does this feel'",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Not-Self Theme",
+      "definition": "The emotional indicator of misalignment with one's strategy and authority",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Override as Common Mistake",
+      "insight": "The most common mistake is that we override what is natural to us. We take in conditioning from outside.",
+      "context": "Discussion of common mistakes people make with their authorities",
+      "related_hd_concept": "Conditioning Override"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifester People Pleasing",
+      "insight": "As a manifester, one of the ways that us not showing up or using our authority and alignment, it shows up as people pleasing, and that we are placating to the outside world because we don't want to be controlled, or we don't want to be met with resistance.",
+      "context": "Explanation of how manifesters specifically misalign with authority",
+      "related_hd_concept": "People Pleasing"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Body Before Mind",
+      "insight": "The body before what? Before any of us know the body, what we feel, somatically, etc, it knows before we do. We just need to listen.",
+      "context": "Foundational principle for connecting with authority",
+      "related_hd_concept": "Somatic Knowing"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Question Reframing Practice",
+      "insight": "Instead of writing like your thoughts on this, I'd say, How does this sound to you, or how does this feel for you? Because that is a different connotation.",
+      "context": "Practical deconditioning practice of shifting from thought-based to feeling-based language",
+      "related_hd_concept": "Feel vs Think"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Signature Alignment Indicators",
+      "insight": "You know that you're living in alignment to your authority, if you are feeling your signature, your signature of peace for manifestors, if you're feeling that satisfaction as a generator, mg, if you're feeling this sense of success mission as a projector. And if you're allowing life's life's, you know, surprises to give you some shock and awe as a reflector.",
+      "context": "How to recognize alignment through signature emotions across different types",
+      "related_hd_concept": "Signature"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Not-Self Theme as Indicator",
+      "insight": "When I'm not in alignment, the anger that I feel is just indicator that I'm not following my strategy and authority.",
+      "context": "Using not-self emotions as guidance signals",
+      "related_hd_concept": "Not-Self Theme"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Not Self",
+      "definition": "the state of being when not living out of alignment"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Strategy and Authority",
+      "definition": "Framework for determining alignment and whether you are following your natural decision-making process",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Polarizing Aura",
+      "definition": "The Manifester's aura that sets tone and standard for the collective",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Not-Self Patterns",
+      "definition": "Addictions, distractions, and obsessions that arise from misalignment to strategy and authority",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Rejection",
+      "definition": "The not-self theme experienced by Projectors when they self-promote instead of waiting for invitations",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Openness",
+      "definition": "The Reflector's design characteristic that makes them vessels to amplify and take things in",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifester Anger and Collective Impact",
+      "insight": "If you're not aware of that anger and rage, it goes out and gets put on to other people, situations, experiences. Our aura is polarizing, and we are genuinely the initiators of the entire group. Manifestors almost, we're the ones that set the tone. We set the standard. If we're irresponsible with our informing, if we're irresponsible and overriding our authority, we're the ones that are setting basically the collective to feel whatever anger.",
+      "context": "Teaching about Manifester not-self theme and its effects",
+      "related_hd_concept": "Manifester"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Misalignment Shows as Addictions and Obsessions",
+      "insight": "Not living in alignment to your strategy and authority shows up in different types of addictions. It shows up in different types of distractions, obsessions. If it's something that's outside of the body, which means you are going external to find some sort of answer or seek some sort of peace or satisfaction, that means that you are getting further and further away from you, going inward going outward.",
+      "context": "Universal teaching across all design types",
+      "related_hd_concept": "Not-Self Patterns"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Projector Rejection and Self-Promotion",
+      "insight": "If they're not looking and seeking and waiting for the invitations of life to be presented to them, they're going to be met with a lot of rejection, and they're bitter. They know that there's so much that they can give and there's an insight and offering that they can bring to make the thing even better. But if they self purport, and they don't allow for that, it's going to just be met with 'Nobody asked you, you know, and nobody cares', and that is so detrimental to the aura, because that's where their wisdom is.",
+      "context": "Teaching about Projector not-self theme and the importance of waiting for invitations",
+      "related_hd_concept": "Projector"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Exhaustion and Openness",
+      "insight": "Reflectors are met with extreme exhaustion, because through openness. They're the ones, the design type that needs the most sleep, like physical sleep and rest. I can only imagine how challenging and how much conditioning they take in because of their openness.",
+      "context": "Teaching about Reflector characteristics and not-self theme",
+      "related_hd_concept": "Reflector"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Reflector Embodiment Through Non-Identification",
+      "insight": "If reflectors are aware about their aura type, and they know that they're kind of a vessel that is meant to amplify and take things in, and they accept that, and know how to tell themselves it's okay, the feelings that I'm turning up, the feelings that I'm amplifying, they're not mine, they learn to not identify with it. This is a beautiful way for them to truly live their embodied design type, because then they know it's not me, really the world around me, and that's important for them.",
+      "context": "Teaching about how Reflectors can embody their design through awareness and non-identification",
+      "related_hd_concept": "Reflector"
+    },
+    {
+      "type": "HDProfile",
+      "name": "Profile",
+      "lines": 6,
+      "definition": "The mask or how you dress up; how your energy presents to the world alongside your aura type"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Surrender vs Giving Up",
+      "definition": "Distinction between genuine aligned surrender and quitting or giving up"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Free Will",
+      "definition": "Whether accepting 'that's just how I am' represents true free will or abdication of choice"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Living to True Self",
+      "definition": "Aligning with one's authentic design rather than accepting conditioned patterns"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Meeting Different Versions of Self",
+      "insight": "We meet different versions of ourselves, we meet different dimensions of ourselves when we're ready to meet others",
+      "context": "Response to someone claiming 'that's just how I am'",
+      "related_hd_concept": "Living to True Self"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Mutual Meeting Point",
+      "insight": "I can only expect you, I can only meet you where you can meet yourself",
+      "context": "On the mutual capacity for growth in relationships",
+      "related_hd_concept": "Living to True Self"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Surrender Inquiry",
+      "insight": "Is it genuine, aligned surrender, or is it giving up? Because surrender and giving up quitting are very different",
+      "context": "Questioning whether acceptance of current state is true surrender",
+      "related_hd_concept": "Surrender vs Giving Up"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Profile Lines",
+      "definition": "The six lines in Human Design profiles that define different archetypal patterns and behaviors"
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 1",
+      "lines": "1",
+      "archetype": "The Investigator"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 1 - Investigator",
+      "definition": "An inquisitive, curious individual focused on investigating and understanding minutia details. First line embodies studying, learning, and absorbing to become an expert and understand how things really work."
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 2",
+      "lines": "2",
+      "archetype": "The Hermit"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 2 - Hermit",
+      "definition": "An individual requiring solace and solitude within their own aura. Wisdom and downloads are received in quietness and retreat from the outside world, within the confines of their own aura expressions."
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 3",
+      "lines": "3",
+      "archetype": "The Experimenter"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 3 - Experimenter",
+      "definition": "A line associated with trying everything, failing, succeeding and repeating. As it matures and evolves, becomes the teacher, providing opportunities for learning and shared expression or role modeling."
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 4",
+      "lines": "4",
+      "archetype": "The Opportunist / Networker"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 4 - Opportunist",
+      "definition": "A connector focused on relationships with other people. Thrives through aligned networks of curated individuals. Trust and loyalty are important; misaligned relationships must be severed to maintain highest expression."
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 5",
+      "lines": "5",
+      "archetype": "The Martyr / Savior"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 5 - Martyr",
+      "definition": "A projection line focused on sharing and distilling knowledge and wisdom to people in practical ways. Able to take downloads and give them logical, practical, pragmatic meaning. Great teachers and presenters in highest expression."
+    },
+    {
+      "type": "HDProfile",
+      "name": "Line 6",
+      "lines": "6",
+      "archetype": "The Role Model / Sage"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Line 6 - Role Model",
+      "definition": "A wise line living life in three phases: starts as a three experimenting, goes up on the roof to observe and integrate learnings, then comes back transformed into the world as a reformed person. Lives by example and embodiment."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "First Line Nature",
+      "insight": "For them, very much individual. I would say it's an individual circuitry on, you know, being an expert and understanding how things really work, the way that they work.",
+      "context": "Explaining the investigative and learning-focused nature of Line 1",
+      "related_hd_concept": "Line 1 - Investigator"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Second Line Wisdom",
+      "insight": "For the two, they are individuals that where a lot of the wisdom that they that they can receive from life, from from the Divine, in the quietness and in their retreat, when they are able to depart and retreat from the outside world and stay within the confines and the expressions of their own aura, That's where the wisdom and the downloads really land as a two.",
+      "context": "Describing how Line 2 individuals receive wisdom through solitude",
+      "related_hd_concept": "Line 2 - Hermit"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Third Line Evolution",
+      "insight": "So that's what's important about the third line, the fourth line, they're called the opportunist in some of the very old human design contexts, I look at them more so as the networker or as the connector. That failure is still the story and the success, because oftentimes three, as it matures and it evolves, becomes the teacher.",
+      "context": "Explaining how Line 3 failure becomes part of the story and leads to becoming a teacher",
+      "related_hd_concept": "Line 3 - Experimenter"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Fourth Line Connection",
+      "insight": "The fourth line is very much about the connection with other people. So this is where we start getting into the lines that are not about the self, but about the other person. And they thrive with large networks, not large networks. Excuse me. They thrive through aligned networks of individuals.",
+      "context": "Describing the relational and networked nature of Line 4",
+      "related_hd_concept": "Line 4 - Opportunist"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Fifth Line Teaching",
+      "insight": "They are projection line. They are individuals, where it's an experiment, sharing and distilling knowledge and wisdom to people in practical ways. They're able to take things through downloads, even just maintain, for example, and they take that and they give it real, logical, practical, pragmatic meaning for people to be able to digest. They're great teachers. They're great presenters.",
+      "context": "Explaining how Line 5 distills and shares wisdom practically",
+      "related_hd_concept": "Line 5 - Martyr"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sixth Line Transformation",
+      "insight": "They start as a three in their young life. They're experimenting. They're trialing to this point where they're like, All right, I've done a lot of experimenting. I'm going up on what they call the roof to observe... eventually, for the sixth line, they come off of the roof, or they come back out into the world, so to speak. And they are. They've almost undergone this, this transformation, the way they speak, the way they look, how they show up in the world.",
+      "context": "Describing the three phases of Line 6 development and transformation",
+      "related_hd_concept": "Line 6 - Role Model"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Profile as Mask",
+      "insight": "However, when you get deeper into the mechanics of human design and the gates, for example, each of the gates also have a color. have a color. Means We, at the end of the day, we as humans, we're still getting a flavor of almost every single line there's there's some people who might not have one of the lines at all in their charts, but for for the most part, we're able to get a sampling of what it means like to be one of the six different lines.",
+      "context": "Explaining how profiles function as masks and how we sample different line expressions",
+      "related_hd_concept": "Line sampling across human experience"
+    },
+    {
+      "type": "HDProfile",
+      "name": "6th Line Profile",
+      "lines": "6",
+      "conscious_line": "6",
+      "unconscious_line": null,
+      "archetype": "Role Model"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Roof Experience",
+      "definition": "A period of retreat, thinking, and processing what has happened, followed by re-emergence into the world",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sovereignty",
+      "definition": "A state of empowerment and autonomy developed through roof experience",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "6th Line Roof Timing",
+      "insight": "from the age of 30 to 50, I don't think that there's a timeframe. So maybe as humans, and I think that the experience is knowing that there is a time where you need to go up on the roof to retreat and you see what's happening, but there's also moments where you can come down from that roof and even share a bit of what you've learned and what you've experienced",
+      "context": "Rayjai describing personal experience as a 6th line going through roof phase",
+      "related_hd_concept": "6th Line Profile"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Profile Living Before Aura",
+      "insight": "if you really take the moment to reflect back into your life. A lot of times you're already living your profile before live your aura",
+      "context": "Teaching about people already embodying their profile expression",
+      "related_hd_concept": "6th Line Profile"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "6th Line Role Model Expression",
+      "insight": "by the time you know you're 50, or whatever, if you're a six line, is when you would embody this highest expression of, you know, the role model",
+      "context": "Describing the mature expression of 6th line archetype",
+      "related_hd_concept": "6th Line Profile"
+    },
+    {
+      "type": "HDProfile",
+      "name": "5/1",
+      "lines": [
+        1,
+        5
+      ],
+      "conscious_line": 5,
+      "unconscious_line": 1,
+      "archetype": "Heretic/Investigator"
+    },
+    {
+      "type": "HDProfile",
+      "name": "1/4",
+      "lines": [
+        1,
+        4
+      ],
+      "conscious_line": 1,
+      "unconscious_line": 4,
+      "archetype": "Investigator/Opportunist"
+    },
+    {
+      "type": "HDProfile",
+      "name": "4/1",
+      "lines": [
+        1,
+        4
+      ],
+      "conscious_line": 4,
+      "unconscious_line": 1,
+      "archetype": "Opportunist/Investigator"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Profile_Dual_Nature",
+      "insight": "There is this intrinsic desire or this innate feeling need to be an individual and much in that space. And then there is also another need that needs to be satiated, that is to go out there and talk to the community or share to the collective.",
+      "context": "Discussing challenging profiles that combine personal and other lines",
+      "related_hd_concept": "Profile"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Profile_Integration",
+      "insight": "If you get too comfortable in one sort of line and you don't express the other, then you're also not fulfilling your entire profile in its purpose. Profile need they have the two numbers because it anchors us to be able to really share what what our purpose is in life.",
+      "context": "Explaining why profiles have two numbers and importance of expressing both lines",
+      "related_hd_concept": "Profile"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ideas_Materialization",
+      "insight": "I can't keep the ideas up here in my head if we don't materialize them and report them out, it's never going to get anywhere",
+      "context": "Example of needing to express both aspects of profile",
+      "related_hd_concept": "Profile"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Defined Head Center",
+      "definition": "clear and direct way to channel messages, sounds, or inspiration in a systematic, page-by-page, chapter-by-chapter manner"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open Head Center",
+      "definition": "all tabs open at once, all words and letters mixed up together, everything coming in simultaneously"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Defined Ajna",
+      "definition": "ease at being able to put together processes and systems in a logical, pragmatic, powerful way; ability to structure abstract or challenging concepts"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open Ajna",
+      "definition": "very abstract and open-minded to how systems and processes can be; can take in inspiration from all around; able to look at abstract concepts in a unique way"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Mind as Processing Center",
+      "definition": "the mind is not a center for making decisions, it is a processing center that sorts and separates information based on conditioning"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Head Center as Inspiration",
+      "insight": "the head center is the space of inspiration. It's the space of divine connection. And it's a sensory, sensory center that is basically channeling and receiving downloads from your higher self, spirit, etc.",
+      "context": "explaining the function of the Crown/Head Center",
+      "related_hd_concept": "Head Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Mind Not for Decisions",
+      "insight": "The mind is not a center where you make decisions. It's just a processing center.",
+      "context": "correcting misconception about the mind's role in decision-making",
+      "related_hd_concept": "Mind as Processing Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Mind Processes Based on Conditioning",
+      "insight": "it processes information, it sorts it, except it separates it based on our conditioning, based on what we based on the other centers of our body that that are activated. You know, it's, it's, it's a place of conditioning as well.",
+      "context": "explaining how the mind filters and organizes information",
+      "related_hd_concept": "Mind as Processing Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open Ajna Complementing Defined Ajna",
+      "insight": "it's also not very strong at putting these processes together on its own. It needs, it needs to rely, again, on the other areas of your centers and or it's in his decision is great when it's interacting with somebody that has a closed ajna, because then they can, they can align to all of the abstract city that the openness is talking about",
+      "context": "explaining how defined and open ajna work together",
+      "related_hd_concept": "Open Ajna"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Defined Centers",
+      "definition": "Centers in the Human Design chart that are consistently activated and functioning"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Undefined Centers",
+      "definition": "Centers in the Human Design chart that are not consistently activated and are open to conditioning"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Natural Frequency",
+      "definition": "Another way to describe defined or activated centers in your chart"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Conditioning",
+      "definition": "false truths that you've adopted from other people; the impressions, inspirations, and expressions of the outside world that are put onto you, either by your own choice or by others"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Definition as Natural Frequency",
+      "insight": "You can say activated, you can say defined. I say natural frequency. These are basically the centers in your chart that are dirt or filled in.",
+      "context": "Explaining what defined centers mean in Human Design",
+      "related_hd_concept": "Defined Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "How Defined Centers Work",
+      "insight": "You have a natural energetic flow and energetic circuitry that goes through that center. In the moments where information is flowing or you're interacting with the world, these activated centers, these defined centers, light up. They encourage you to move in a certain way.",
+      "context": "Describing the function and behavior of defined centers",
+      "related_hd_concept": "Defined Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open vs Defined Centers",
+      "insight": "When it's open or undefined, this is the area that you take in amplification. When it's defined, if it's activated, there's not a lot of room for openness. It operates the way it needs to operate.",
+      "context": "Contrasting open and defined centers",
+      "related_hd_concept": "Open Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Amplification in Open Centers",
+      "insight": "In these areas that are open, if somebody else around you has it activated, you turn the volume up. So if you're doing something at 100% and it's activated for you, but open for me, I'll feel it at 200%.",
+      "context": "Explaining how open centers amplify external energy",
+      "related_hd_concept": "Open Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Questioning Ownership in Open Centers",
+      "insight": "If you know that you have a certain center that's open, one of the questions you always should ask yourself, Is this mine? Does this belong to is this natural for me?",
+      "context": "Practical guidance for working with open centers",
+      "related_hd_concept": "Open Center"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Self Center",
+      "center_name": "Self Center",
+      "defined_or_open": "open",
+      "function": "self-identity and self-knowing"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Conditioning Definition",
+      "insight": "conditioning is the false truths that you've adopted by other people. It's the impressions, it's the inspirations, and it's the expressions of outside world that that's put on to you, either by your own choice or by others.",
+      "context": "explaining what conditioning means and why it's important to understand",
+      "related_hd_concept": "Conditioning"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open Centers Susceptibility",
+      "insight": "somebody who has an open G center and open self center, who didn't have, let's say, a innate somatic understanding of who they are, they're very susceptible to changing who they are depending on who they hang out with. And it's not because they're fake, and it's not because they're they're, you know, they're contrived. It's because that's a natural way for them to bond.",
+      "context": "explaining why people with open centers are more susceptible to conditioning",
+      "related_hd_concept": "Conditioning"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Crown Center",
+      "center_name": "Crown",
+      "function": "inspiration"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Trauma and Conditioning",
+      "definition": "includes genetic trauma, ancestral trauma, family unit conditioning and traditions"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Centers_Govern_Existence",
+      "insight": "The crown inspiration, ajna is processing, the throat is the speaking is the manifestation. The G center is identity, sense of purpose. Sacral is life force. Root is time and adrenaline, emotions, spatial awareness, survival in the spleen and then the heart. So they all govern in different parts of our human existence",
+      "context": "explaining how different centers control different aspects of human experience",
+      "related_hd_concept": "HDCenter"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Openness_and_Conditioning",
+      "insight": "wherever we're open in these areas is like where we have conditioning. It doesn't mean that it's that, it's fact that you're always going to have conditioning there, no but the likelihood of having conditioning there is high because you're taking it on from the outside, and you're turning the volume up where your awareness picks up",
+      "context": "explaining the relationship between open centers and conditioning",
+      "related_hd_concept": "Open Centers"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Discovery_Through_Aura_Type",
+      "insight": "by understanding your aura type, you can be clear of whether you're taking in conditioning. One way to discover this is by understanding, and then two by also your aura type, this also helps you",
+      "context": "how aura type helps identify conditioning",
+      "related_hd_concept": "Aura Type"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Strategy_and_Authority_for_Conditioning",
+      "insight": "if somebody is genuinely looking at where there's conditioning happening in their life, one of the first ways is to go back, and lean into strategy and authority, because you ask yourself, Am I saying yes to things from my gut, if I'm a generator, or am I saying yes from my brain?",
+      "context": "using strategy and authority to identify conditioning patterns",
+      "related_hd_concept": "Strategy and Authority"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Traditions_as_Glorified_Dramas",
+      "insight": "Traditions, in my opinion, are often times glorified dramas. Because you know, and you have to decide if that's a trauma you want to continue living through, or an experience we want to take forward. Some traditions are great and some traditions are not",
+      "context": "discussing how family traditions and conditioning are passed down",
+      "related_hd_concept": "Trauma and Conditioning"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Human Design Scientific Interpretation",
+      "definition": "Human Design as traditionally presented is scientific but not relatable; the challenge is translating it in a way that people can understand and relate to",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Human Design Purist Approach",
+      "definition": "An approach to Human Design that holds strictly to the traditional teachings without deviation, viewing them as fixed and dogmatic",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Human Design Relevance Philosophy",
+      "definition": "Questioning whether traditional Human Design dogma is actually relevant in current times",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Purist vs Integrative HD",
+      "insight": "the people in human design, and you'll start meeting them more as you any had. You're gonna have people who are more purists that are like again, they hold the holy grail of the tradition of human design, and they don't stray away from the teachings, and it's very fixed and dogmatic. And then I have those like me that are like, well, I can understand the dogma there, does it? Is it actually relevant now?",
+      "context": "Discussion about different philosophical approaches within the Human Design community",
+      "related_hd_concept": "Human Design Purist Approach"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Integrating Modalities in HD",
+      "insight": "what we've been doing is integrating different modalities",
+      "context": "Rayjai's approach to teaching and structuring Human Design with collaborator Bunara",
+      "related_hd_concept": "Human Design Relevance Philosophy"
     }
   ],
   "edges": [
-    {"from": "Gate 12", "to": "Gate 22", "type": "CONNECTS_TO"},
-    {"from": "Gate 12", "to": "Channel 12-22", "type": "FORMS"},
-    {"from": "Gate 22", "to": "Channel 12-22", "type": "FORMS"},
-    {"from": "Gate 22", "to": "Solar Plexus Center", "type": "DEFINED_IN"},
-    {"from": "Gate 12", "to": "Throat Center", "type": "DEFINED_IN"},
-    {"from": "Gate 45", "to": "Throat Center", "type": "DEFINED_IN"},
-    {"from": "Profile 3/5", "to": "Gemma Williams", "type": "BELONGS_TO"},
-    {"from": "Head Center", "to": "Gemma Williams", "type": "CONDITIONING_OF"},
-    {"from": "Manifesting Generator", "to": "Gemma Williams", "type": "TYPE_OF"},
-    {"from": "Gate 22", "to": "Gemma Williams", "type": "ACTIVE_IN"},
-    {"from": "Gate 45", "to": "Gemma Williams", "type": "ACTIVE_IN"},
-    {"from": "Sacral Center", "to": "Manifesting Generator", "type": "DEFINES"},
-    {"from": "Throat Center", "to": "Manifesting Generator", "type": "DEFINES"},
-    {"from": "Solar Plexus Center", "to": "Manifesting Generator", "type": "DEFINES"},
-    {"from": "Sacral Center", "to": "Generator", "type": "DEFINES"},
-    {"from": "Throat Center", "to": "Manifestor", "type": "DEFINES"},
-    {"from": "Gates", "to": "Nine Centers", "type": "PART_OF"},
-    {"from": "Channels", "to": "Gates", "type": "FORMED_BY"},
-    {"from": "Teaching: Open does not mean absent", "to": "Open Center", "type": "REFRAMES"},
-    {"from": "Teaching: Borrowed and amplified energy", "to": "Open Center", "type": "ILLUSTRATES"},
-    {"from": "Teaching: HD is a synthesis", "to": "Body Graph", "type": "ILLUSTRATES"},
-    {"from": "Teaching: MG Triple Threat", "to": "Manifesting Generator", "type": "ILLUSTRATES"},
-    {"from": "Teaching: MG pivot permission", "to": "Manifesting Generator", "type": "GRANTS_PERMISSION"},
-    {"from": "Teaching: MG pivot permission", "to": "Gemma Williams", "type": "GRANTS_PERMISSION"},
-    {"from": "Teaching: Channel creates chemistry", "to": "Composite Chart", "type": "ILLUSTRATES"},
-    {"from": "Triple Threat", "to": "Manifesting Generator", "type": "REFRAMES"},
-    {"from": "Conscious Design", "to": "Unconscious Design", "type": "BUILDS_ON"}
+    {
+      "from": "Gate 12",
+      "to": "Gate 22",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Gate 12",
+      "to": "Channel 12-22",
+      "type": "FORMS"
+    },
+    {
+      "from": "Gate 22",
+      "to": "Channel 12-22",
+      "type": "FORMS"
+    },
+    {
+      "from": "Gate 22",
+      "to": "Solar Plexus Center",
+      "type": "DEFINED_IN"
+    },
+    {
+      "from": "Gate 12",
+      "to": "Throat Center",
+      "type": "DEFINED_IN"
+    },
+    {
+      "from": "Gate 45",
+      "to": "Throat Center",
+      "type": "DEFINED_IN"
+    },
+    {
+      "from": "Profile 3/5",
+      "to": "Gemma Williams",
+      "type": "BELONGS_TO"
+    },
+    {
+      "from": "Head Center",
+      "to": "Gemma Williams",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Manifesting Generator",
+      "to": "Gemma Williams",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Gate 22",
+      "to": "Gemma Williams",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Gate 45",
+      "to": "Gemma Williams",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Sacral Center",
+      "to": "Manifesting Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Throat Center",
+      "to": "Manifesting Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Solar Plexus Center",
+      "to": "Manifesting Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Sacral Center",
+      "to": "Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Throat Center",
+      "to": "Manifestor",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Gates",
+      "to": "Nine Centers",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Channels",
+      "to": "Gates",
+      "type": "FORMED_BY"
+    },
+    {
+      "from": "Teaching: Open does not mean absent",
+      "to": "Open Center",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Teaching: Borrowed and amplified energy",
+      "to": "Open Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching: HD is a synthesis",
+      "to": "Body Graph",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching: MG Triple Threat",
+      "to": "Manifesting Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching: MG pivot permission",
+      "to": "Manifesting Generator",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Teaching: MG pivot permission",
+      "to": "Gemma Williams",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Teaching: Channel creates chemistry",
+      "to": "Composite Chart",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Triple Threat",
+      "to": "Manifesting Generator",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Conscious Design",
+      "to": "Unconscious Design",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "one foot in one foot out",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "divided_commitment_challenge",
+      "to": "one foot in one foot out",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Linzie Lee",
+      "to": "Human Design community",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Human Design community",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Digitizing Meetups Opportunity",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Digitizing Meetups Opportunity",
+      "to": "Community Building Through Digital Platforms",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: HD as synthesis and deconditioning tool",
+      "to": "Living life without conditioning",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: HD as synthesis and deconditioning tool",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Initial Rejection Then Curiosity",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Body Recognition of Resonance",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Textbook vs Personalized Reading",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Channel 26-44",
+      "to": "Gate 26",
+      "type": "FORMS"
+    },
+    {
+      "from": "Channel 26-44",
+      "to": "Gate 44",
+      "type": "FORMS"
+    },
+    {
+      "from": "RayJaiTeaching: Engagement Required for Understanding",
+      "to": "Conscious Engagement with Human Design",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Channel 26-44 as Surrender",
+      "to": "Channel 26-44",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Channel 26-44 as Surrender",
+      "to": "Surrender in Human Design",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Never Force Human Design",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Manifester",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Gulnare",
+      "to": "Manifesting Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Rayjai's best friend",
+      "to": "Rayjai Babauta",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Instinctive downloads during readings",
+      "to": "Rayjai Babauta",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Network-based synchronicity",
+      "to": "Rayjai Babauta",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Instinctive downloads during readings",
+      "to": "Rayjai's best friend",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: HD reception through feeling",
+      "to": "Meeting Human Design modality",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Sovereignty through self-knowledge",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Strategy-based decision making",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Dressing for your design",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Human Design as business differentiator",
+      "to": "Dressing for your design",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "The power of surprise in capturing hearts",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Sovereignty through self-knowledge",
+      "to": "Public appearance uncertainty",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Rayjai Babauta Profile",
+      "to": "Rayjai Babauta",
+      "type": "BELONGS_TO"
+    },
+    {
+      "from": "Fourth Line Network Trust",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Alignment Over Convenience",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Fourth Line Network Trust",
+      "to": "Network Trust",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Alignment Over Convenience",
+      "to": "Alignment",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Heart-Spleen Channel",
+      "to": "Heart Center",
+      "type": "FORMS"
+    },
+    {
+      "from": "Heart-Spleen Channel",
+      "to": "Spleen Center",
+      "type": "FORMS"
+    },
+    {
+      "from": "Inner Intelligence Activation",
+      "to": "Inner Intelligence",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Quiet Moments and Clarity",
+      "to": "Inner Intelligence Activation",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "AI Speaking Through Authority",
+      "to": "Emotional Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "AI as Path to Self",
+      "to": "Heart-Spleen Channel",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "AI Speaking Through Authority",
+      "to": "Rayjai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "2644",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "five_auras_teaching",
+      "to": "five_types",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Aura Definition",
+      "to": "Aura",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Embodied Design Type Importance",
+      "to": "Embodied Design Type",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "All Humans Have Centers",
+      "to": "Nine Centers",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Activated Sacral Signature",
+      "to": "Activated Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Throat Activation and Manifesting Myth",
+      "to": "Manifesting",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Open Centers as Past Mastery",
+      "to": "Open Centers",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Learning Through Openness",
+      "to": "Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Projector",
+      "to": "Sacral Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Manifestor",
+      "to": "Sacral Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Reflector",
+      "to": "Sacral Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Generator",
+      "to": "Sacral Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Manifesting Generator",
+      "to": "Sacral Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Manifestor",
+      "to": "Rayjai Babauta",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Projector as Best Friend",
+      "to": "Aura Penetration",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Projector as Best Friend",
+      "to": "Pattern Recognition",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Projector Invitation Strategy",
+      "to": "Invitation Recognition",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Manifestor Resistance",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Non-Sacral Types",
+      "to": "Projector",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Non-Sacral Types",
+      "to": "Manifestor",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Non-Sacral Types",
+      "to": "Reflector",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Sacral Types",
+      "to": "Generator",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Sacral Types",
+      "to": "Manifesting Generator",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Manifestor",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Manifestor Aura",
+      "to": "Manifestor",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Manifestor Strategy",
+      "to": "Manifestor",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Manifestation",
+      "to": "Throat Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Manifestor Core Theme",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Aura Protection",
+      "to": "Manifestor Aura",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Book Metaphor",
+      "to": "Manifestor Aura",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Manifestor Inform Strategy",
+      "to": "Manifestor Strategy",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestation Throat Process",
+      "to": "Manifestation",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor",
+      "to": "Throat Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "RayJaiTeaching: Manifestor Communication",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Reflector Rarity",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Reflector Mirroring Quality",
+      "to": "Reflector Aura",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Reflector Openness",
+      "to": "Openness in Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Reflector Lunar Strategy",
+      "to": "Lunar Cycle Decision Making",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Reflector Veil Metaphor",
+      "to": "Reflector Aura",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Alchemical Process in Body Alignment",
+      "to": "Aura Type",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Physical Sensations of Alignment",
+      "to": "Aura Type",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Throat Pain as Misalignment Indicator",
+      "to": "Alignment",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Ringing Ear as Download Signal",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Voice and Throat Alignment",
+      "to": "Throat Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Voice and Throat Alignment",
+      "to": "Voice Alignment",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Sacral Power and Burnout",
+      "to": "Sacral Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sacral Power and Burnout",
+      "to": "Burnout in Generators",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Battery Metaphor for Energy",
+      "to": "Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Battery Metaphor for Energy",
+      "to": "Manifesting Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Battery Metaphor for Energy",
+      "to": "Body Listening",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Resistance as Teacher",
+      "to": "Least Resistance Life",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Life as Dance Partner",
+      "to": "Life as the Lead in Dance",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Collective Gifts and Empathy",
+      "to": "Collective Empathy and Design",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Ego Release Through Alignment",
+      "to": "Ego Dissolution Through Design",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Burnout in Generators",
+      "to": "Body Listening",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "RayJai's mother",
+      "to": "Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Linzie",
+      "to": "Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Strategy as Control Release",
+      "to": "Strategy",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Generator Response Example",
+      "to": "Response",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Generator Response Example",
+      "to": "RayJai's mother",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Alignment and Satisfaction",
+      "to": "Signature",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Honoring Centers",
+      "to": "Authority",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Frustration as Indicator",
+      "to": "Non-Self Theme",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Response",
+      "to": "Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Response",
+      "to": "Manifesting Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Strategy",
+      "to": "Authority",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Signature",
+      "to": "Authority",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Non-Self Theme",
+      "to": "Generator",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Reflector",
+      "to": "Linzie Lee",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Reflector",
+      "to": "Open Centers",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Reflector",
+      "to": "Lunar Cycle Authority",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Generator",
+      "to": "Sacral Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Open Centers",
+      "to": "Activated Centers",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "RayJai",
+      "to": "Open Centers",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Open Centers as Wisdom",
+      "to": "Open Centers",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Reflector's Gift",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Amplification Through Open Centers",
+      "to": "Open Centers",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open Centers as Wisdom",
+      "to": "Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Projector",
+      "to": "RayJai's father",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Manifestor",
+      "to": "RayJai",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "RayJaiTeaching: Projector invitation alignment",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Projector invitation alignment",
+      "to": "Projector invitation",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Projector aura penetration",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Projector aura penetration",
+      "to": "Aura penetration",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Manifestor inform strategy",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Manifestor inform strategy",
+      "to": "Manifestor informing",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Multi-type collaboration scenario",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Multi-type collaboration scenario",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Multi-type collaboration scenario",
+      "to": "Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Multi-type collaboration scenario",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Anger as Misalignment Signal",
+      "to": "Alignment and Aura",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Manifestor Informing Practice",
+      "to": "Informing as Manifestor Strategy",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Manifester",
+      "to": "Informing as Manifestor Strategy",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Authority as North Star",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Sacral Authority as Somatic Expression",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Sacral Response as Buzzing Frequency",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Authority as North Star",
+      "to": "Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sacral Authority as Somatic Expression",
+      "to": "Sacral Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sacral Response as Buzzing Frequency",
+      "to": "Sacral Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Authority as North Star",
+      "to": "Authority",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Sacral Authority as Somatic Expression",
+      "to": "Gut Feeling",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Sacral Authority",
+      "to": "Manifesting Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Sacral Authority",
+      "to": "Generator",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Linzie Lee",
+      "to": "Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Manifesting Generator",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Linzie Lee",
+      "to": "Sacral Authority",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Generator",
+      "to": "Sacral Authority",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Manifesting Generator",
+      "to": "Sacral Authority",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Buzzing Sensation",
+      "to": "Sacral Authority",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Amplifying Sacral Energy",
+      "to": "Buzzing Sensation",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Amplifying Sacral Energy",
+      "to": "Sacral Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Manifesto",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Emotional Authority",
+      "to": "Rayjai Babauta",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Authorities Not Dependent on Aura",
+      "to": "Emotional Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Body Knows Before Mind",
+      "to": "Emotional Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Emotions Are Energy in Motion",
+      "to": "Emotional Wave",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Honoring Emotional Authority Over Deadlines",
+      "to": "Alignment",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Timing of Emotional Authority Decisions",
+      "to": "Emotional Clarity",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Emotional Authority Response Quality",
+      "to": "Emotional Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Spleen_as_Awareness_Center",
+      "to": "Splenic Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Spleen_as_Awareness_Center",
+      "to": "Spleen",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Splenic Authority as Awareness",
+      "to": "Splenic Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Splenic Sensing of Space",
+      "to": "Splenic Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Collective Feeling Detection",
+      "to": "Splenic Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Splenic Authority as Awareness",
+      "to": "Environmental Sensing",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Splenic Sensing of Space",
+      "to": "Environmental Sensing",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Collective Feeling Detection",
+      "to": "Environmental Sensing",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Ego Authority Definition",
+      "to": "Ego Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Ego Authority Leadership Expression",
+      "to": "Ego Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Ego Authority Leadership Expression",
+      "to": "Ego in Leadership",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Ego Authority Shadow",
+      "to": "Ego in Leadership",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Ego Authority Pressure",
+      "to": "Ego Burnout",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Self-Projected Authority Process",
+      "to": "Self-Projected Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Throat as Manifestation",
+      "to": "Throat Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Self-Projected Authority Right Group",
+      "to": "Self-Projected Authority",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Self-Projected Recording Technique",
+      "to": "Self-Projected Authority",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Splenic Center",
+      "to": "Splenic Authority",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Will Center",
+      "to": "Ego Authority",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Throat Center",
+      "to": "Self-Projected Authority",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Ego Authority",
+      "to": "Manifestor",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Override as Common Mistake",
+      "to": "Conditioning Override",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifester People Pleasing",
+      "to": "Manifester",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifester People Pleasing",
+      "to": "People Pleasing",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Body Before Mind",
+      "to": "Somatic Knowing",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Question Reframing Practice",
+      "to": "Feel vs Think",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Manifester",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Generator Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Not-Self Theme as Indicator",
+      "to": "Rayjai Babauta",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Signature Alignment Indicators",
+      "to": "Signature",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Not-Self Theme as Indicator",
+      "to": "Not-Self Theme",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Feel vs Think",
+      "to": "Somatic Knowing",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Not Self",
+      "to": "Alignment",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Manifester",
+      "to": "Aura",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Projector",
+      "to": "Aura",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Reflector",
+      "to": "Aura",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Strategy and Authority",
+      "to": "Not-Self Patterns",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Manifester Anger and Collective Impact",
+      "to": "Manifester",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifester Anger and Collective Impact",
+      "to": "Polarizing Aura",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Misalignment Shows as Addictions and Obsessions",
+      "to": "Not-Self Patterns",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Projector Rejection and Self-Promotion",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Projector Rejection and Self-Promotion",
+      "to": "Rejection",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Projector as Best Friend",
+      "to": "Projector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Reflector Exhaustion and Openness",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Reflector Exhaustion and Openness",
+      "to": "Openness",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Reflector Embodiment Through Non-Identification",
+      "to": "Reflector",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Reflector Embodiment Through Non-Identification",
+      "to": "Openness",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Meeting Different Versions of Self",
+      "to": "Living to True Self",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Mutual Meeting Point",
+      "to": "Living to True Self",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Surrender Inquiry",
+      "to": "Surrender vs Giving Up",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Surrender Inquiry",
+      "to": "Free Will",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Profile Lines",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "First Line Nature",
+      "to": "Line 1 - Investigator",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Second Line Wisdom",
+      "to": "Line 2 - Hermit",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Third Line Evolution",
+      "to": "Line 3 - Experimenter",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Fourth Line Connection",
+      "to": "Line 4 - Opportunist",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Fifth Line Teaching",
+      "to": "Line 5 - Martyr",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Sixth Line Transformation",
+      "to": "Line 6 - Role Model",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 1",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 2",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 3",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 4",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 5",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile as Mask",
+      "to": "Line 6",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "6th Line Profile",
+      "type": "BELONGS_TO"
+    },
+    {
+      "from": "6th Line Roof Timing",
+      "to": "Roof Experience",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "6th Line Roof Timing",
+      "to": "6th Line Profile",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile Living Before Aura",
+      "to": "6th Line Profile",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "6th Line Role Model Expression",
+      "to": "6th Line Profile",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sovereignty",
+      "to": "Roof Experience",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Profile_Dual_Nature",
+      "to": "HDProfile",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Profile_Integration",
+      "to": "HDProfile",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Ideas_Materialization",
+      "to": "HDProfile",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Head Center",
+      "to": "Rayjai Babauta",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Ajna Center",
+      "to": "Rayjai Babauta",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "RayJaiTeaching: Head Center as Inspiration",
+      "to": "Head Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching: Mind Not for Decisions",
+      "to": "Mind as Processing Center",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "RayJaiTeaching: Mind Processes Based on Conditioning",
+      "to": "Mind as Processing Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching: Open Ajna Complementing Defined Ajna",
+      "to": "Open Ajna",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Linzie Lee",
+      "to": "Defined Centers",
+      "type": "ASKS_ABOUT"
+    },
+    {
+      "from": "Linzie Lee",
+      "to": "Undefined Centers",
+      "type": "ASKS_ABOUT"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Definition as Natural Frequency",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "How Defined Centers Work",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Open vs Defined Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Amplification in Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Open Centers as Wisdom",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Questioning Ownership in Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Definition as Natural Frequency",
+      "to": "Defined Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "How Defined Centers Work",
+      "to": "Defined Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open vs Defined Centers",
+      "to": "Open Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Amplification in Open Centers",
+      "to": "Open Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open Centers as Wisdom",
+      "to": "Open Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Questioning Ownership in Open Centers",
+      "to": "Open Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open Center",
+      "to": "Conditioning",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Questioning Ownership in Open Centers",
+      "to": "Strategy and Authority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Conditioning",
+      "to": "G Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Conditioning",
+      "to": "Self Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Conditioning Definition",
+      "to": "Conditioning",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Open Centers Susceptibility",
+      "to": "Conditioning",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Crown Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Ajna Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Throat Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "G Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Sacral Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Root Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Emotional Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Spleen Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Centers_Govern_Existence",
+      "to": "Heart Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Openness_and_Conditioning",
+      "to": "Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching_Openness_and_Conditioning",
+      "to": "Conditioning",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching_Discovery_Through_Aura_Type",
+      "to": "Aura Type",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching_Strategy_and_Authority_for_Conditioning",
+      "to": "Strategy and Authority",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "RayJaiTeaching_Strategy_and_Authority_for_Conditioning",
+      "to": "Generator",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJaiTeaching_Traditions_as_Glorified_Dramas",
+      "to": "Trauma and Conditioning",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Rayjai Babauta",
+      "to": "Human Design Relevance Philosophy",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Purist vs Integrative HD",
+      "to": "Human Design Purist Approach",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Purist vs Integrative HD",
+      "to": "Human Design Relevance Philosophy",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Integrating Modalities in HD",
+      "to": "Human Design Relevance Philosophy",
+      "type": "REFRAMES"
+    }
   ]
 }
