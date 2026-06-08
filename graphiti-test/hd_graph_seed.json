@@ -1,0 +1,238 @@
+{
+  "nodes": [
+    {
+      "type": "Person",
+      "name": "RayJai Babauta",
+      "role": "practitioner",
+      "hd_type": null
+    },
+    {
+      "type": "Person",
+      "name": "Gemma Williams",
+      "role": "client",
+      "hd_type": "Manifesting Generator"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Body Graph",
+      "definition": "A visual chart showing the nine energy centers, gates, and channels of a person's Human Design. It looks like a geometric figure with colored and white centers connected by lines.",
+      "rayjai_reframe": "It's not reader friendly, not user friendly — it's presented in a polarizing way that puts off self-explorers"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Defined Center",
+      "definition": "A colored center in the body graph indicating consistent, reliable energy that is always switched on and operates as part of normal body energy.",
+      "rayjai_reframe": "It's plugged in, it's switched on, it doesn't turn off — it operates as part of your normal body"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open Center",
+      "definition": "A white center in the body graph indicating no consistent access to that energy. The person borrows and amplifies energy from their environment and people around them.",
+      "rayjai_reframe": "You borrow that energy from your environment and amplify it — having it open doesn't mean you don't have it, just like we all have all the planets within us"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Gates",
+      "definition": "The 64 numbered points within the nine centers of the body graph, each governing a specific gift or dynamic within that center.",
+      "rayjai_reframe": "Each gate governs a special gift or a certain dynamic that is part of that center"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Channels",
+      "definition": "A channel is formed when two gates connect via a black or red line in the body graph, creating a defined energy circuit between two centers.",
+      "rayjai_reframe": "When the numbers connect with a black or red line, this is what they call channels"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Nine Centers",
+      "definition": "All Human Design body graphs contain nine energy centers. Each person has the same nine centers — the difference is which are defined or open based on their design.",
+      "rayjai_reframe": "All of us have them — just like the astrological belt, we all have all of the planets within us, depending on how it's activated"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Conscious Design",
+      "definition": "The personality column — the right side of the body graph shown in black. These are the traits and gates you are aware of and can identify with consciously.",
+      "rayjai_reframe": "Personality is another word for what is conscious to you"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Unconscious Design",
+      "definition": "The design column — the left side of the body graph shown in red. These are traits and gates operating below conscious awareness, often felt but not easily identified.",
+      "rayjai_reframe": "Design is just another word for what is unconscious"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Composite Chart",
+      "definition": "A combined chart of two people's designs showing where their centers overlap, where channels are completed by the other person, and where tension or chemistry arises.",
+      "rayjai_reframe": "Where one person has one gate and another has the other gate — if they meet they create a channel, and that creation is where the chemistry or dynamics between people actually occur"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Triple Threat",
+      "definition": "RayJai's term for Manifesting Generators — they have the Manifestor's ability to initiate through the throat, the Generator's sacral battery to complete, and the emotional Solar Plexus motor connecting both.",
+      "rayjai_reframe": "You have the ability to command through your voice to initiate and inform, AND the sacral battery to complete the job. You have the best of both."
+    },
+    {
+      "type": "HDType",
+      "name": "Manifesting Generator",
+      "type_name": "Manifesting Generator",
+      "strategy": "Respond then inform — wait for something to light you up, initiate, then inform others",
+      "not_self_theme": "Frustration from trying to complete everything they initiate",
+      "signature": "Satisfaction and sustainable bursts of energy"
+    },
+    {
+      "type": "HDType",
+      "name": "Generator",
+      "type_name": "Generator",
+      "strategy": "Respond — wait for life to present something before acting",
+      "not_self_theme": "Frustration",
+      "signature": "Satisfaction"
+    },
+    {
+      "type": "HDType",
+      "name": "Manifestor",
+      "type_name": "Manifestor",
+      "strategy": "Inform before acting",
+      "not_self_theme": "Anger",
+      "signature": "Peace"
+    },
+    {
+      "type": "HDCenter",
+      "name": "Sacral Center",
+      "center_name": "Sacral",
+      "defined_or_open": "defined",
+      "function": "The center of life force, creativity, and sustainable work energy. When defined it provides a consistent battery for completing what is aligned."
+    },
+    {
+      "type": "HDCenter",
+      "name": "Throat Center",
+      "center_name": "Throat",
+      "defined_or_open": "defined",
+      "function": "The center of manifestation and expression. A defined throat gives consistent access to voice, communication, and the ability to initiate and inform."
+    },
+    {
+      "type": "HDCenter",
+      "name": "Solar Plexus Center",
+      "center_name": "Solar Plexus",
+      "defined_or_open": "defined",
+      "function": "A motor center governing emotional energy. When defined it creates an emotional wave that runs through expression and communication — powerful but not always consistent."
+    },
+    {
+      "type": "HDCenter",
+      "name": "Head Center",
+      "center_name": "Head",
+      "defined_or_open": "open",
+      "function": "Center of inspiration and mental pressure — when open, the person absorbs and amplifies mental energy and questions from those around them"
+    },
+    {
+      "type": "HDGate",
+      "name": "Gate 22",
+      "number": "22",
+      "gate_name": "Gate of Grace",
+      "center": "Solar Plexus",
+      "gift": "Grace — visibility and potency in emotional expression"
+    },
+    {
+      "type": "HDGate",
+      "name": "Gate 12",
+      "number": "12",
+      "gate_name": null,
+      "center": "Throat",
+      "gift": null
+    },
+    {
+      "type": "HDGate",
+      "name": "Gate 45",
+      "number": "45",
+      "gate_name": "The King and Queen Gate",
+      "center": "Throat",
+      "gift": "The ability to use voice to communicate and express what needs to happen for the good of the group"
+    },
+    {
+      "type": "HDChannel",
+      "name": "Channel 12-22",
+      "gate_1": "12",
+      "gate_2": "22",
+      "theme": "Connects Throat to Solar Plexus — the channel of openness, social knowing"
+    },
+    {
+      "type": "HDProfile",
+      "name": "Profile 3/5",
+      "lines": "3/5",
+      "conscious_line": "Line 3 — the Martyr, experimenter, learns through trial and error, highly individual in approach",
+      "unconscious_line": "Line 5 — the Heretic, savior, projected onto by others as a practical problem-solver",
+      "archetype": "The experimenter and the savior — someone with deep curiosity who tries things out independently"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: Open does not mean absent",
+      "insight": "Having an open or undefined center doesn't mean you don't have it. It's there — just like the astrological belt, we all have all of the planets within us. The nuance is in how it's activated.",
+      "context": "Gemma expressing uncertainty about her open Head Center",
+      "related_hd_concept": "Open Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: Borrowed and amplified energy",
+      "insight": "With open centers you borrow energy from your environment — from friends, family, whoever is in your field — and you amplify it. It's not yours to keep, but it moves through you.",
+      "context": "Explaining the difference between defined and open centers",
+      "related_hd_concept": "Open Center"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: HD is a synthesis",
+      "insight": "Human Design is a synthesis of all these other modalities. It's presented in a polarizing way — not reader friendly, not user friendly, especially for someone who prefers to self-explore.",
+      "context": "Validating Gemma's experience of finding HD confusing",
+      "related_hd_concept": "Body Graph"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: MG Triple Threat",
+      "insight": "Manifesting Generators are triple threats. You have the manifestor's throat to initiate and inform, the generator's sacral to complete, and the solar plexus motor connecting them. Manifestors can initiate but can't sustain. Generators can sustain but can't initiate. MGs have both.",
+      "context": "Explaining Gemma's type as a Manifesting Generator",
+      "related_hd_concept": "Manifesting Generator"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: MG pivot permission",
+      "insight": "As a Manifesting Generator it is okay to not finish everything. You can start 10 things and finish five. Not every initiation you bring forward is yours to complete — sometimes the initiation is done from your end for someone else to complete.",
+      "context": "Addressing the MG shadow of feeling they must complete everything they start",
+      "related_hd_concept": "Manifesting Generator"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching: Channel creates chemistry",
+      "insight": "When two people each have one gate of a channel, they complete it together — that creation of the channel is where the chemistry or dynamics between people actually occur. It's also where attraction and repulsion come from.",
+      "context": "Explaining composite charts to Gemma",
+      "related_hd_concept": "Composite Chart"
+    }
+  ],
+  "edges": [
+    {"from": "Gate 12", "to": "Gate 22", "type": "CONNECTS_TO"},
+    {"from": "Gate 12", "to": "Channel 12-22", "type": "FORMS"},
+    {"from": "Gate 22", "to": "Channel 12-22", "type": "FORMS"},
+    {"from": "Gate 22", "to": "Solar Plexus Center", "type": "DEFINED_IN"},
+    {"from": "Gate 12", "to": "Throat Center", "type": "DEFINED_IN"},
+    {"from": "Gate 45", "to": "Throat Center", "type": "DEFINED_IN"},
+    {"from": "Profile 3/5", "to": "Gemma Williams", "type": "BELONGS_TO"},
+    {"from": "Head Center", "to": "Gemma Williams", "type": "CONDITIONING_OF"},
+    {"from": "Manifesting Generator", "to": "Gemma Williams", "type": "TYPE_OF"},
+    {"from": "Gate 22", "to": "Gemma Williams", "type": "ACTIVE_IN"},
+    {"from": "Gate 45", "to": "Gemma Williams", "type": "ACTIVE_IN"},
+    {"from": "Sacral Center", "to": "Manifesting Generator", "type": "DEFINES"},
+    {"from": "Throat Center", "to": "Manifesting Generator", "type": "DEFINES"},
+    {"from": "Solar Plexus Center", "to": "Manifesting Generator", "type": "DEFINES"},
+    {"from": "Sacral Center", "to": "Generator", "type": "DEFINES"},
+    {"from": "Throat Center", "to": "Manifestor", "type": "DEFINES"},
+    {"from": "Gates", "to": "Nine Centers", "type": "PART_OF"},
+    {"from": "Channels", "to": "Gates", "type": "FORMED_BY"},
+    {"from": "Teaching: Open does not mean absent", "to": "Open Center", "type": "REFRAMES"},
+    {"from": "Teaching: Borrowed and amplified energy", "to": "Open Center", "type": "ILLUSTRATES"},
+    {"from": "Teaching: HD is a synthesis", "to": "Body Graph", "type": "ILLUSTRATES"},
+    {"from": "Teaching: MG Triple Threat", "to": "Manifesting Generator", "type": "ILLUSTRATES"},
+    {"from": "Teaching: MG pivot permission", "to": "Manifesting Generator", "type": "GRANTS_PERMISSION"},
+    {"from": "Teaching: MG pivot permission", "to": "Gemma Williams", "type": "GRANTS_PERMISSION"},
+    {"from": "Teaching: Channel creates chemistry", "to": "Composite Chart", "type": "ILLUSTRATES"},
+    {"from": "Triple Threat", "to": "Manifesting Generator", "type": "REFRAMES"},
+    {"from": "Conscious Design", "to": "Unconscious Design", "type": "BUILDS_ON"}
+  ]
+}
