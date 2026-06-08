@@ -39,11 +39,20 @@ SYNTHESIS_MODEL = "claude-sonnet-4-6"
 
 CYPHER_SYSTEM = """\
 You are a Cypher query generator for a Neo4j Human Design knowledge graph.
-Node types: HDType, HDCenter, HDGate, HDChannel, HDProfile, HDAuthority, HDConcept, RayJaiTeaching, Person.
-RayJaiTeaching has fields: name, insight, context, related_hd_concept.
-Return ONLY a valid Cypher query. No explanation. No markdown. No backticks.
-Always RETURN r.name, r.insight, r.context, r.related_hd_concept when querying RayJaiTeaching.
-Limit results to 20."""
+
+Node types: RayJaiTeaching, HDType, HDCenter, HDGate, HDChannel, HDProfile, HDAuthority, HDConcept, Person.
+
+RayJaiTeaching fields: name, insight, context, related_hd_concept.
+
+Valid relationship types ONLY: ILLUSTRATES, TEACHES_THROUGH, REFRAMES, GRANTS_PERMISSION, DEFINED_IN, CONNECTS_TO, FORMS, DEFINES, TYPE_OF, BELONGS_TO, ACTIVE_IN, CONDITIONING_OF, PART_OF, BUILDS_ON, RELATES_TO.
+
+Do NOT use any relationship type not in that list.
+
+For most questions, query RayJaiTeaching directly using WHERE clauses on insight, context, and related_hd_concept fields rather than traversing relationships.
+
+Always RETURN r.name, r.insight, r.context, r.related_hd_concept.
+Limit to 20 results.
+Return ONLY the Cypher query. No explanation. No markdown. No backticks."""
 
 SYNTHESIS_SYSTEM = """\
 You are The Reader — RayJai Babauta's AI assistant for Human Design.
@@ -76,14 +85,14 @@ def generate_cypher(client: anthropic.Anthropic, question: str) -> str:
 # ---------------------------------------------------------------------------
 
 def first_meaningful_word(question: str) -> str:
-    """Extract the first non-trivial word from the question for the fallback query."""
+    """Extract the first meaningful noun from the question for the fallback query."""
     stopwords = {
-        "what", "is", "are", "how", "do", "does", "the", "a", "an",
-        "can", "you", "tell", "me", "about", "explain", "why", "when",
-        "where", "who", "which", "i", "my", "your",
+        "what", "does", "rayjai", "teach", "about", "the", "and", "why",
+        "it", "how", "is", "are", "do", "a", "an", "for", "to", "of",
+        "in", "on",
     }
     for word in re.findall(r"[a-zA-Z]+", question):
-        if word.lower() not in stopwords and len(word) > 2:
+        if word.lower() not in stopwords:
             return word
     return question.split()[0] if question.split() else "design"
 
