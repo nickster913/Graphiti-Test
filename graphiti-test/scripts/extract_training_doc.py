@@ -2,31 +2,28 @@
 extract_training_doc.py
 
 One-shot extraction script for The 26•44 Agent Training document.
-Reads the raw training document from data/The2644_AgentTraining_v1.txt,
-sends it to the Claude API in sections, and outputs a structured JSON file
-to output/training_graph_seed.json.
-
-NOTE: Place the training document at data/The2644_AgentTraining_v1.txt
-before running this script. The data/ directory is in .gitignore.
+Reads the raw training document, sends it to a local Ollama model in sections,
+and outputs a structured JSON file to output/training_graph_seed.json.
 
 Usage:
   uv run python scripts/extract_training_doc.py
 
 Environment:
-  ANTHROPIC_API_KEY — required
+  OLLAMA_HOST           — optional, default http://localhost:11434
+  OLLAMA_EXTRACT_MODEL  — optional, default qwen3.6:27b (see scripts/ollama_chat.py)
 
 Output:
   output/training_graph_seed.json
 """
 
 import json
-import os
 import re
 import time
 from pathlib import Path
 
-import anthropic
 from dotenv import load_dotenv
+
+from ollama_chat import EXTRACT_MODEL, chat_json
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -35,9 +32,8 @@ from dotenv import load_dotenv
 _PROJECT_ROOT = Path(__file__).parent.parent
 TRAINING_DOC = _PROJECT_ROOT / "transcripts" / "The2644 AgentTraining_v1.docx.txt"
 OUTPUT_FILE = _PROJECT_ROOT / "output" / "training_graph_seed.json"
-MODEL = "claude-haiku-4-5"
-MAX_TOKENS = 4096
-SLEEP_BETWEEN_CALLS = 1  # seconds
+MODEL = EXTRACT_MODEL
+SLEEP_BETWEEN_CALLS = 0  # seconds (local model — no rate limit)
 SECTION_SEPARATOR = "________________"
 
 SYSTEM_PROMPT = """\
@@ -236,19 +232,13 @@ def normalise_graph(graph: dict) -> dict:
 # API call
 # ---------------------------------------------------------------------------
 
-def call_claude(client: anthropic.Anthropic, section_body: str) -> dict:
+def call_model(section_body: str) -> dict:
     """
-    Send one section to Claude and return the parsed {nodes, edges} dict.
-    Raises ValueError if the response cannot be parsed as JSON.
+    Send one section to the local Ollama model and return the parsed
+    {nodes, edges} dict. Raises ValueError if the response is not valid JSON.
     """
     user_prompt = USER_PROMPT_TEMPLATE.format(section_body=section_body)
-    message = client.messages.create(
-        model=MODEL,
-        max_tokens=MAX_TOKENS,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_prompt}],
-    )
-    raw = message.content[0].text
+    raw = chat_json(SYSTEM_PROMPT, user_prompt)
     return extract_json(raw)
 
 
@@ -258,9 +248,7 @@ def call_claude(client: anthropic.Anthropic, section_body: str) -> dict:
 
 def main() -> None:
     load_dotenv(_PROJECT_ROOT / ".env")
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        raise SystemExit("Error: ANTHROPIC_API_KEY environment variable is not set.")
+    print(f"Extraction model (Ollama): {MODEL}\n")
 
     if not TRAINING_DOC.exists():
         raise SystemExit(
@@ -274,7 +262,6 @@ def main() -> None:
     print(f"Training document loaded: {len(sections)} section(s) found.\n")
 
     graph: dict = {"nodes": [], "edges": []}
-    client = anthropic.Anthropic(api_key=api_key)
     total = len(sections)
     skipped = 0
 
@@ -287,7 +274,7 @@ def main() -> None:
         )
 
         try:
-            result = call_claude(client, section_body)
+            result = call_model(section_body)
         except Exception as exc:
             print(f"ERROR — {exc}")
             skipped += 1

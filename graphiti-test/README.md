@@ -14,10 +14,11 @@ This project demonstrates how to use `graphiti-core` to ingest unstructured text
 
 The working pipeline turns raw reading transcripts and the agent training doc into
 a Human Design knowledge graph in Neo4j, adds a **semantic (RAG) layer** with local
-embeddings, then serves it through an interactive "Reader". Extraction and answer
-synthesis are powered by the Anthropic Claude API; embeddings run locally via Ollama;
-the graph is loaded with direct Cypher (the `graphiti-core` path in this README is
-legacy and not used at runtime).
+embeddings, then serves it through an interactive "Reader". Entity/relationship
+**extraction runs on a local Ollama model** (`qwen3.6:27b` by default); embeddings
+also run locally via Ollama; answer **synthesis** uses the Anthropic Claude API
+(Sonnet). The graph is loaded with direct Cypher (the `graphiti-core` path in this
+README is legacy and not used at runtime).
 
 [![graphiti-test knowledge graph + RAG pipeline](docs/architecture-preview.png)](docs/architecture.html)
 
@@ -27,13 +28,14 @@ legacy and not used at runtime).
 **Flow at a glance:**
 
 1. **Sources** — reading session `.txt` transcripts and the `The2644` agent training doc.
-2. **Extract (Claude)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call Claude Haiku to pull HD entities and relationships.
+2. **Extract (local Qwen)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call a local Ollama model (`qwen3.6:27b` by default, via `scripts/ollama_chat.py` with `format=json`) to pull HD entities and relationships. Override with `OLLAMA_EXTRACT_MODEL`.
 3. **Graph seeds** — merged, deduplicated JSON: `output/hd_graph_seed.json` and `output/training_graph_seed.json`.
 4. **Neo4j + Vectors** — `load_graph.py` MERGEs both seeds into Neo4j via direct Cypher; `embed_graph.py` then embeds `RayJaiTeaching.insight` and `HDVoicePattern.phrase` with Ollama `nomic-embed-text` (768-d) and builds Neo4j vector indexes. `cleanup_centers.py` optionally dedupes `HDCenter` nodes.
 5. **Consume (RAG)** — `reader.py` embeds the question, vector-searches teachings (anchor), expands via the graph for multi-hop context, and pulls verbatim voice exemplars, then Claude Sonnet synthesises the answer in RayJai's voice. Retrieval falls back to keyword search if embeddings are absent. `analyze_voice.py` is a standalone stylometry utility; the Neo4j Browser is available for visual exploration.
 
-Claude calls require `ANTHROPIC_API_KEY` in `.env`; embeddings require a local Ollama
-server with `nomic-embed-text` pulled.
+Extraction and embeddings require a local Ollama server with `qwen3.6:27b` and
+`nomic-embed-text` pulled; answer synthesis (`reader.py`) requires `ANTHROPIC_API_KEY`
+in `.env`.
 
 ## Prerequisites
 
@@ -45,8 +47,8 @@ server with `nomic-embed-text` pulled.
 ### Pull required Ollama models
 
 ```bash
-ollama pull gemma4:26b
-ollama pull nomic-embed-text
+ollama pull qwen3.6:27b      # entity/relationship extraction
+ollama pull nomic-embed-text # embeddings for the RAG layer
 ```
 
 ### Start Neo4j
@@ -88,9 +90,9 @@ graphiti-test/
 
 | Package | Purpose |
 |---|---|
-| `anthropic` | Claude API — entity extraction (Haiku) and answer synthesis (Sonnet) |
+| `anthropic` | Claude API — answer synthesis in `reader.py` (Sonnet) |
 | `neo4j` | Neo4j driver — graph load, Cypher queries, and vector search |
-| `httpx` | Calls the local Ollama embeddings endpoint (no separate client needed) |
+| `httpx` | Calls the local Ollama endpoints for extraction (`qwen3.6:27b`) and embeddings (no separate client needed) |
 | `python-dotenv` | Environment variable management |
 | `graphiti-core` | Declared dependency; not used at runtime by the current pipeline |
 
