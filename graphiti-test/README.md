@@ -13,12 +13,13 @@ This project demonstrates how to use `graphiti-core` to ingest unstructured text
 ## Architecture
 
 The working pipeline turns raw reading transcripts and the agent training doc into
-a Human Design knowledge graph in Neo4j, then serves it through an interactive
-"Reader". Extraction and Q&A are powered by the Anthropic Claude API; the graph is
-loaded with direct Cypher (the Ollama + `graphiti-core` path in this README is
-legacy and no longer used at runtime).
+a Human Design knowledge graph in Neo4j, adds a **semantic (RAG) layer** with local
+embeddings, then serves it through an interactive "Reader". Extraction and answer
+synthesis are powered by the Anthropic Claude API; embeddings run locally via Ollama;
+the graph is loaded with direct Cypher (the `graphiti-core` path in this README is
+legacy and not used at runtime).
 
-[![graphiti-test knowledge graph pipeline](docs/architecture-preview.png)](docs/architecture.html)
+[![graphiti-test knowledge graph + RAG pipeline](docs/architecture-preview.png)](docs/architecture.html)
 
 > Open [`docs/architecture.html`](docs/architecture.html) for the interactive,
 > pan/zoom/search diagram (source spec: [`docs/architecture.dataflow.json`](docs/architecture.dataflow.json)).
@@ -26,12 +27,13 @@ legacy and no longer used at runtime).
 **Flow at a glance:**
 
 1. **Sources** — reading session `.txt` transcripts and the `The2644` agent training doc.
-2. **Extract (Claude)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call Claude Haiku 4.5 to pull HD entities and relationships.
+2. **Extract (Claude)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call Claude Haiku to pull HD entities and relationships.
 3. **Graph seeds** — merged, deduplicated JSON: `output/hd_graph_seed.json` and `output/training_graph_seed.json`.
-4. **Neo4j store** — `load_graph.py` MERGEs both seeds into Neo4j via direct Cypher; `cleanup_centers.py` optionally dedupes `HDCenter` nodes afterward.
-5. **Consume** — `reader.py` (Claude generates Cypher → Neo4j → Claude Sonnet 4.6 synthesises the answer) and the Neo4j Browser for visual exploration. `analyze_voice.py` is a standalone utility that computes RayJai word/phrase frequency straight from the transcripts.
+4. **Neo4j + Vectors** — `load_graph.py` MERGEs both seeds into Neo4j via direct Cypher; `embed_graph.py` then embeds `RayJaiTeaching.insight` and `HDVoicePattern.phrase` with Ollama `nomic-embed-text` (768-d) and builds Neo4j vector indexes. `cleanup_centers.py` optionally dedupes `HDCenter` nodes.
+5. **Consume (RAG)** — `reader.py` embeds the question, vector-searches teachings (anchor), expands via the graph for multi-hop context, and pulls verbatim voice exemplars, then Claude Sonnet synthesises the answer in RayJai's voice. Retrieval falls back to keyword search if embeddings are absent. `analyze_voice.py` is a standalone stylometry utility; the Neo4j Browser is available for visual exploration.
 
-All Claude calls require `ANTHROPIC_API_KEY` in `.env`.
+Claude calls require `ANTHROPIC_API_KEY` in `.env`; embeddings require a local Ollama
+server with `nomic-embed-text` pulled.
 
 ## Prerequisites
 
@@ -86,5 +88,12 @@ graphiti-test/
 
 | Package | Purpose |
 |---|---|
-| `graphiti-core` | Knowledge graph construction and querying |
+| `anthropic` | Claude API — entity extraction (Haiku) and answer synthesis (Sonnet) |
+| `neo4j` | Neo4j driver — graph load, Cypher queries, and vector search |
+| `httpx` | Calls the local Ollama embeddings endpoint (no separate client needed) |
 | `python-dotenv` | Environment variable management |
+| `graphiti-core` | Declared dependency; not used at runtime by the current pipeline |
+
+> **Embeddings / RAG:** no extra Python package is required — `embed_graph.py` and
+> `reader.py` call Ollama's HTTP API via `httpx`. You only need the Ollama server
+> running with `nomic-embed-text` pulled, and Neo4j 5.11+ (native vector indexes).

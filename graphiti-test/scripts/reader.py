@@ -1,16 +1,32 @@
 """
-reader.py — The Reader
+reader.py — The Reader (hybrid RAG)
 
-Takes a user question, generates a Cypher query via Claude, retrieves
-relevant RayJai teachings from Neo4j, then synthesises a response in
-RayJai's voice using Claude Sonnet.
+Takes a user question and answers it in RayJai's voice using a hybrid
+retrieval-augmented pipeline over the Neo4j knowledge graph:
+
+  1. ANCHOR  — embed the question (Ollama nomic-embed-text) and vector-search
+               RayJaiTeaching nodes for the most semantically relevant teachings.
+  2. EXPAND  — traverse the graph from those anchors (shared related_hd_concept)
+               to gather connected teachings for multi-hop context.
+  3. VOICE   — vector-search HDVoicePattern nodes for verbatim voice exemplars
+               matching the question (falls back to keyword behaviour context).
+  4. SYNTHESISE — Claude Sonnet composes the reply, using the teachings as
+               content and the exemplars to mirror RayJai's phrasing.
+
+If embeddings/vector indexes are not present (embed_graph.py not run) or Ollama
+is unreachable, retrieval gracefully falls back to the previous behaviour:
+Claude-generated Cypher, then a keyword CONTAINS search.
 
 Usage:
   python scripts/reader.py           # normal mode — response only
-  python scripts/reader.py --debug   # prints query, teachings, saves log
+  python scripts/reader.py --debug   # prints retrieval details, saves a log
 
 Environment:
   ANTHROPIC_API_KEY — required (.env in project root is loaded automatically)
+
+Prerequisites for full RAG mode:
+  - Run scripts/load_graph.py then scripts/embed_graph.py
+  - Ollama running with nomic-embed-text pulled
 """
 
 import json
@@ -23,6 +39,8 @@ from pathlib import Path
 import anthropic
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
+
+from embed_utils import embed_text
 
 # ---------------------------------------------------------------------------
 # Config
@@ -37,42 +55,58 @@ NEO4J_PASSWORD = "password"
 CYPHER_MODEL = "claude-haiku-4-5"
 SYNTHESIS_MODEL = "claude-sonnet-4-6"
 
+TEACHING_INDEX = "rayjai_teaching_embedding"
+VOICE_INDEX = "hdvoice_embedding"
+
+# Retrieval sizing
+ANCHOR_K = 8        # vector hits used as anchors
+EXPAND_LIMIT = 6    # extra teachings pulled in by graph expansion
+VOICE_K = 5         # voice exemplars
+MAX_TEACHINGS = 12  # cap sent to synthesis
+
 CYPHER_SYSTEM = """\
 You are a Cypher query generator for a Neo4j Human Design knowledge graph.
 
 Node types: RayJaiTeaching, HDVoicePattern, HDSessionFlow, HDBehaviourRule, HDToneProfile, HDType, HDCenter, HDGate, HDChannel, HDProfile, HDAuthority, HDConcept, Person.
 
 RayJaiTeaching fields: name, insight, context, related_hd_concept, trigger_context, effect.
-HDVoicePattern fields: name, phrase, usage_context, trigger, avoid_if.
-HDSessionFlow fields: name, step_number, instruction, purpose.
-HDBehaviourRule fields: name, rule_type, rule, context.
-HDToneProfile fields: name, emotional_state, instruction, example_response.
 
 Valid relationship types ONLY: ILLUSTRATES, TEACHES_THROUGH, REFRAMES, GRANTS_PERMISSION, DEFINED_IN, CONNECTS_TO, FORMS, DEFINES, TYPE_OF, BELONGS_TO, ACTIVE_IN, CONDITIONING_OF, PART_OF, BUILDS_ON, RELATES_TO, EXPRESSES, STEP_OF, GOVERNS, CALIBRATES_FOR.
 
-Do NOT use any relationship type not in that list.
-
-For most questions, query RayJaiTeaching directly using WHERE clauses on insight, context, and related_hd_concept fields rather than traversing relationships.
-
+For most questions, query RayJaiTeaching directly using WHERE clauses on insight, context, and related_hd_concept fields.
 Always RETURN r.name, r.insight, r.context, r.related_hd_concept.
 Limit to 20 results.
 Return ONLY the Cypher query. No explanation. No markdown. No backticks.
-When querying RayJaiTeaching, always match on related_hd_concept and context fields first using broad concept terms extracted from the question (e.g. "Manifestor", "Generator", "authority", "open center") — not literal words or phrases from the question itself.
-For questions about feelings or experiences (e.g. "too intense", "always angry", "can't decide"), map to the relevant HD concept: intensity/anger → Manifestor not-self, can't decide → authority, tired/exhausted → Generator or open Sacral, etc."""
+Match on related_hd_concept and context using broad concept terms extracted from the question (e.g. "Manifestor", "Generator", "authority", "open center").
+For questions about feelings (e.g. "too intense", "always angry", "can't decide"), map to the relevant HD concept: intensity/anger → Manifestor not-self, can't decide → authority, tired/exhausted → Generator or open Sacral, etc."""
 
 SYNTHESIS_SYSTEM = """\
 You are RayJai Babauta — a Human Design reader and teacher.
 You are speaking directly to a client in a reading session.
 Speak in first person as RayJai. Never refer to RayJai in third person.
-Use the voice patterns, behaviour rules, and tone calibration provided in BEHAVIOUR CONTEXT to guide your response style and language.
-Use the teachings provided in TEACHINGS FROM THE GRAPH as the content of your response.
+Use the teachings provided in TEACHINGS FROM THE GRAPH as the CONTENT of your response.
+Use the voice patterns, behaviour rules, and tone calibration in BEHAVIOUR CONTEXT to guide HOW you speak.
+Mirror the phrasing, rhythm, and characteristic word choices shown in the exemplars — reuse his expressions where they fit naturally, rather than inventing your own style.
 Do NOT use headers, bullet points, bold text, or markdown of any kind.
 Keep it conversational — 150 to 250 words maximum.
 Answer using ONLY the teachings and context provided.
 If the teachings don't contain enough to answer, say "I haven't spoken about this yet in our sessions.\""""
 
 # ---------------------------------------------------------------------------
-# Step 1 — Generate Cypher query
+# Question embedding (graceful if Ollama is down)
+# ---------------------------------------------------------------------------
+
+def safe_embed(question: str, debug: bool) -> list[float] | None:
+    """Embed the question, or return None (so retrieval falls back to keyword)."""
+    try:
+        return embed_text(question)
+    except Exception as exc:  # noqa: BLE001
+        if debug:
+            print(f"  [embed unavailable — falling back to keyword search] {exc}")
+        return None
+
+# ---------------------------------------------------------------------------
+# Legacy fallback — Claude-generated Cypher + keyword search
 # ---------------------------------------------------------------------------
 
 def generate_cypher(client: anthropic.Anthropic, question: str) -> str:
@@ -82,18 +116,14 @@ def generate_cypher(client: anthropic.Anthropic, question: str) -> str:
         system=CYPHER_SYSTEM,
         messages=[{"role": "user", "content": question}],
     )
-    # Strip any accidental fences or whitespace the model sneaks in.
     raw = message.content[0].text.strip()
     raw = re.sub(r"^```[a-zA-Z]*\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
     return raw.strip()
 
-# ---------------------------------------------------------------------------
-# Step 2 — Run query against Neo4j
-# ---------------------------------------------------------------------------
 
 def first_meaningful_word(question: str) -> str:
-    """Extract the first meaningful noun from the question for the fallback query."""
+    """Extract the first meaningful noun from the question for keyword fallback."""
     stopwords = {
         "what", "does", "rayjai", "teach", "about", "the", "and", "why",
         "it", "how", "is", "are", "do", "a", "an", "for", "to", "of",
@@ -112,29 +142,132 @@ def first_meaningful_word(question: str) -> str:
 FALLBACK_QUERY = """\
 MATCH (r:RayJaiTeaching)
 WHERE toLower(r.insight) CONTAINS toLower($keyword)
-RETURN r.name, r.insight, r.context, r.related_hd_concept
+RETURN r.name AS name, r.insight AS insight, r.context AS context,
+       r.related_hd_concept AS related
 LIMIT 20"""
 
 
-def run_query(driver: GraphDatabase.driver, cypher: str, question: str) -> list[dict]:
+def legacy_content(driver, client, question, debug) -> list[dict]:
+    """Old path: LLM-generated Cypher, then keyword CONTAINS fallback."""
+    try:
+        cypher = generate_cypher(client, question)
+        if debug:
+            print(f"  [fallback Cypher]\n{cypher}\n")
+        with driver.session() as session:
+            rows = session.run(cypher).data()
+        rows = [_normalise_legacy_row(r) for r in rows]
+        rows = [r for r in rows if r["name"] or r["insight"]]
+        if rows:
+            return rows
+    except Exception as exc:  # noqa: BLE001
+        if debug:
+            print(f"  [fallback Cypher error] {exc}")
+
+    keyword = first_meaningful_word(question)
+    if debug:
+        print(f"  [keyword fallback: {keyword!r}]")
     with driver.session() as session:
-        try:
-            results = session.run(cypher).data()
-            if results:
-                return results
-            # Query ran fine but returned nothing — try fallback.
-            keyword = first_meaningful_word(question)
-            print(f"  (no results — falling back to keyword search: {keyword!r})")
-            return session.run(FALLBACK_QUERY, keyword=keyword).data()
-        except Exception as exc:
-            keyword = first_meaningful_word(question)
-            print(f"  [QUERY ERROR] {exc}")
-            print(f"  (falling back to keyword search: {keyword!r})")
-            return session.run(FALLBACK_QUERY, keyword=keyword).data()
+        rows = session.run(FALLBACK_QUERY, keyword=keyword).data()
+    return [_normalise_legacy_row(r) for r in rows]
+
+
+def _normalise_legacy_row(row: dict) -> dict:
+    """Accept either aliased (name/insight/...) or r.-prefixed keys."""
+    return {
+        "name": row.get("name") or row.get("r.name") or "",
+        "insight": row.get("insight") or row.get("r.insight") or "",
+        "context": row.get("context") or row.get("r.context") or "",
+        "related": row.get("related") or row.get("r.related_hd_concept") or "",
+    }
 
 # ---------------------------------------------------------------------------
-# Step 2b — Retrieve behaviour context
+# Hybrid retrieval — vector anchor + graph expansion
 # ---------------------------------------------------------------------------
+
+VECTOR_TEACHING_QUERY = f"""
+CALL db.index.vector.queryNodes('{TEACHING_INDEX}', $k, $vec)
+YIELD node, score
+RETURN node.name AS name, node.insight AS insight, node.context AS context,
+       node.related_hd_concept AS related, score
+"""
+
+EXPAND_QUERY = """
+UNWIND $concepts AS concept
+MATCH (r:RayJaiTeaching)
+WHERE r.related_hd_concept = concept AND NOT r.name IN $seen
+RETURN DISTINCT r.name AS name, r.insight AS insight, r.context AS context,
+       r.related_hd_concept AS related
+LIMIT $limit
+"""
+
+
+def retrieve_content(driver, client, question, qvec, debug) -> tuple[list[dict], str]:
+    """
+    Return (teachings, mode). mode is "vector" for RAG or "keyword" for fallback.
+    """
+    if qvec is not None:
+        try:
+            with driver.session() as session:
+                anchors = session.run(
+                    VECTOR_TEACHING_QUERY, k=ANCHOR_K, vec=qvec
+                ).data()
+
+                seen = [a["name"] for a in anchors if a.get("name")]
+                concepts = sorted(
+                    {a["related"] for a in anchors if a.get("related")}
+                )
+                expanded = []
+                if concepts:
+                    expanded = session.run(
+                        EXPAND_QUERY,
+                        concepts=concepts,
+                        seen=seen,
+                        limit=EXPAND_LIMIT,
+                    ).data()
+
+            rows = _dedupe_by_name(anchors + expanded)[:MAX_TEACHINGS]
+            rows = [_strip_score(r) for r in rows]
+            if rows:
+                return rows, "vector"
+            if debug:
+                print("  [vector search returned nothing — using fallback]")
+        except Exception as exc:  # noqa: BLE001
+            if debug:
+                print(f"  [vector search unavailable — using fallback] {exc}")
+
+    return legacy_content(driver, client, question, debug), "keyword"
+
+
+def _dedupe_by_name(rows: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    out: list[dict] = []
+    for r in rows:
+        name = r.get("name") or ""
+        if name in seen:
+            continue
+        seen.add(name)
+        out.append(r)
+    return out
+
+
+def _strip_score(row: dict) -> dict:
+    return {
+        "name": row.get("name") or "",
+        "insight": row.get("insight") or "",
+        "context": row.get("context") or "",
+        "related": row.get("related") or "",
+    }
+
+# ---------------------------------------------------------------------------
+# Voice retrieval — vector exemplars, keyword fallback
+# ---------------------------------------------------------------------------
+
+VECTOR_VOICE_QUERY = f"""
+CALL db.index.vector.queryNodes('{VOICE_INDEX}', $k, $vec)
+YIELD node, score
+RETURN 'HDVoicePattern' AS node_type, node.name AS name,
+       node.phrase AS content, node.usage_context AS context, score
+"""
 
 BEHAVIOUR_QUERY = """\
 MATCH (v:HDVoicePattern)
@@ -158,18 +291,38 @@ RETURN 'HDToneProfile' AS node_type, t.name AS name, t.instruction AS content, t
 LIMIT 3"""
 
 
-def retrieve_behaviour_context(driver: GraphDatabase.driver, question: str) -> list[dict]:
-    keyword = first_meaningful_word(question)
-    with driver.session() as session:
+def retrieve_voice(driver, question, qvec, debug) -> tuple[list[dict], str]:
+    if qvec is not None:
         try:
-            return session.run(BEHAVIOUR_QUERY, keyword=keyword).data()
-        except Exception as exc:
-            print(f"  [BEHAVIOUR QUERY ERROR] {exc}")
-            return []
+            with driver.session() as session:
+                rows = session.run(VECTOR_VOICE_QUERY, k=VOICE_K, vec=qvec).data()
+            rows = [
+                {
+                    "node_type": r.get("node_type") or "HDVoicePattern",
+                    "name": r.get("name") or "",
+                    "content": r.get("content") or "",
+                    "context": r.get("context") or "",
+                }
+                for r in rows
+            ]
+            if rows:
+                return rows, "vector"
+        except Exception as exc:  # noqa: BLE001
+            if debug:
+                print(f"  [voice vector search unavailable — using fallback] {exc}")
 
+    keyword = first_meaningful_word(question)
+    try:
+        with driver.session() as session:
+            rows = session.run(BEHAVIOUR_QUERY, keyword=keyword).data()
+        return rows, "keyword"
+    except Exception as exc:  # noqa: BLE001
+        if debug:
+            print(f"  [behaviour query error] {exc}")
+        return [], "keyword"
 
 # ---------------------------------------------------------------------------
-# Step 3 — Format teachings and synthesise response
+# Formatting + synthesis
 # ---------------------------------------------------------------------------
 
 def format_teachings(results: list[dict]) -> str:
@@ -177,17 +330,13 @@ def format_teachings(results: list[dict]) -> str:
         return "(no teachings found)"
     lines = []
     for i, row in enumerate(results, 1):
-        name = row.get("r.name") or ""
-        insight = row.get("r.insight") or ""
-        context = row.get("r.context") or ""
-        concept = row.get("r.related_hd_concept") or ""
-        lines.append(f"{i}. [{name}]")
-        if insight:
-            lines.append(f"   Insight: {insight}")
-        if context:
-            lines.append(f"   Context: {context}")
-        if concept:
-            lines.append(f"   Concept: {concept}")
+        lines.append(f"{i}. [{row.get('name', '')}]")
+        if row.get("insight"):
+            lines.append(f"   Insight: {row['insight']}")
+        if row.get("context"):
+            lines.append(f"   Context: {row['context']}")
+        if row.get("related"):
+            lines.append(f"   Concept: {row['related']}")
     return "\n".join(lines)
 
 
@@ -196,24 +345,15 @@ def format_behaviour_context(results: list[dict]) -> str:
         return "(no behaviour context found)"
     lines = []
     for i, row in enumerate(results, 1):
-        node_type = row.get("node_type") or ""
-        name = row.get("name") or ""
-        content = row.get("content") or ""
-        context = row.get("context") or ""
-        lines.append(f"{i}. [{node_type}] {name}")
-        if content:
-            lines.append(f"   Rule/Pattern: {content}")
-        if context:
-            lines.append(f"   Context: {context}")
+        lines.append(f"{i}. [{row.get('node_type', '')}] {row.get('name', '')}")
+        if row.get("content"):
+            lines.append(f"   Rule/Pattern: {row['content']}")
+        if row.get("context"):
+            lines.append(f"   Context: {row['context']}")
     return "\n".join(lines)
 
 
-def synthesise(
-    client: anthropic.Anthropic,
-    question: str,
-    teachings: str,
-    behaviour_context: str,
-) -> str:
+def synthesise(client, question, teachings, behaviour_context) -> str:
     user_content = (
         f"BEHAVIOUR CONTEXT FROM GRAPH:\n{behaviour_context}\n\n"
         f"TEACHINGS FROM THE GRAPH:\n{teachings}\n\n"
@@ -234,31 +374,21 @@ def synthesise(
 _LOG_FILE = _PROJECT_ROOT / "output" / "reader_log.jsonl"
 
 
-def log_interaction(
-    question: str,
-    cypher: str,
-    results: list[dict],
-    response: str,
-) -> None:
-    """Append one JSON object to the JSONL log file."""
+def log_interaction(question, retrieval_mode, results, response) -> None:
     _LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "question": question,
-        "cypher_query": cypher,
+        "retrieval_mode": retrieval_mode,
         "teachings_retrieved": len(results),
         "teachings": [
-            {
-                "name": r.get("r.name") or "",
-                "insight": r.get("r.insight") or "",
-            }
+            {"name": r.get("name", ""), "insight": r.get("insight", "")}
             for r in results
         ],
         "response": response,
     }
     with _LOG_FILE.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
-
 
 # ---------------------------------------------------------------------------
 # Main loop
@@ -295,43 +425,31 @@ def main() -> None:
                 print("Goodbye.")
                 break
 
-            # Step 1 — Generate Cypher
-            if debug:
-                print("\nGenerating query...")
-            try:
-                cypher = generate_cypher(client, question)
-            except Exception as exc:
-                print(f"[ERROR generating query] {exc}")
-                continue
+            # Embed the question once (shared by content + voice retrieval).
+            qvec = safe_embed(question, debug)
+
+            # Step 1-2 — content: vector anchor + graph expansion (or fallback)
+            results, content_mode = retrieve_content(driver, client, question, qvec, debug)
+
+            # Step 3 — voice exemplars
+            behaviour_results, voice_mode = retrieve_voice(driver, question, qvec, debug)
 
             if debug:
-                print(f"\nCypher:\n{cypher}\n")
+                print(f"\nRetrieval: content={content_mode}, voice={voice_mode}")
+                print(f"Retrieved {len(results)} teaching(s), "
+                      f"{len(behaviour_results)} voice exemplar(s).\n")
+                for i, row in enumerate(results, 1):
+                    insight = row.get("insight", "")
+                    print(f"  {i}. [{row.get('name', '')}] "
+                          f"{insight[:120]}{'...' if len(insight) > 120 else ''}")
+                print()
 
-            # Step 2 — Run query
-            results = run_query(driver, cypher, question)
-
-            if debug:
-                print(f"Retrieved {len(results)} teaching(s).\n")
-                if results:
-                    print("Teachings:")
-                    for i, row in enumerate(results, 1):
-                        name = row.get("r.name") or ""
-                        insight = row.get("r.insight") or ""
-                        print(f"  {i}. [{name}] {insight[:120]}{'...' if len(insight) > 120 else ''}")
-                    print()
-
-            # Step 2b — Retrieve behaviour context
-            behaviour_results = retrieve_behaviour_context(driver, question)
-
-            if debug:
-                print(f"Retrieved {len(behaviour_results)} behaviour context node(s).\n")
-
-            # Step 3 — Synthesise
+            # Step 4 — synthesise
             teachings = format_teachings(results)
             behaviour_context = format_behaviour_context(behaviour_results)
             try:
                 response = synthesise(client, question, teachings, behaviour_context)
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001
                 print(f"[ERROR synthesising response] {exc}")
                 continue
 
@@ -339,7 +457,7 @@ def main() -> None:
             print("-" * 60)
 
             if debug:
-                log_interaction(question, cypher, results, response)
+                log_interaction(question, f"{content_mode}/{voice_mode}", results, response)
     finally:
         driver.close()
 
