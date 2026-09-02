@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "graphiti-test Knowledge Graph Pipeline",
+    "output": "docs/architecture.html",
+    "viewBox": [1080, 780],
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    { "label": "Sources" },
+    { "label": "Extract (Claude)" },
+    { "label": "Graph Seeds" },
+    { "label": "Neo4j Store" },
+    { "label": "Consume" }
+  ],
+  "nodes": [
+    { "id": "transcripts", "type": "external", "label": "Reading Transcripts", "sublabel": ".txt session exports", "stage": 0, "row": 0, "tag": "raw" },
+    { "id": "training", "type": "external", "label": "Agent Training Doc", "sublabel": "The2644 v1", "stage": 0, "row": 4, "tag": "raw" },
+    { "id": "chunk", "type": "backend", "label": "chunk_transcript.py", "sublabel": "~3000-char chunks", "stage": 1, "row": 0, "width": 176 },
+    { "id": "extract", "type": "backend", "label": "extract_nodes.py", "sublabel": "per-chunk entities", "stage": 1, "row": 1, "width": 160 },
+    { "id": "claude", "type": "cloud", "label": "Claude API", "sublabel": "Haiku 4.5 LLM", "stage": 1, "row": 2, "tag": "LLM" },
+    { "id": "train_extract", "type": "backend", "label": "extract_training_doc.py", "sublabel": "per-section entities", "stage": 1, "row": 4, "width": 178 },
+    { "id": "hd_seed", "type": "database", "label": "hd_graph_seed.json", "sublabel": "804 nodes / 888 edges", "stage": 2, "row": 1, "tag": "seed", "width": 176 },
+    { "id": "train_seed", "type": "database", "label": "training_graph_seed.json", "sublabel": "172 nodes / 119 edges", "stage": 2, "row": 4, "tag": "seed", "width": 178 },
+    { "id": "load", "type": "backend", "label": "load_graph.py", "sublabel": "direct Cypher MERGE", "stage": 3, "row": 2, "width": 160 },
+    { "id": "neo4j", "type": "database", "label": "Neo4j", "sublabel": "bolt://localhost:7687", "stage": 3, "row": 3, "tag": "graph" },
+    { "id": "reader", "type": "backend", "label": "reader.py", "sublabel": "RAG Q&A REPL", "stage": 4, "row": 2 },
+    { "id": "browser", "type": "frontend", "label": "Neo4j Browser", "sublabel": "localhost:7474", "stage": 4, "row": 4 }
+  ],
+  "flows": [
+    { "id": "src-chunk", "from": "transcripts", "to": "chunk", "label": "session turns", "classification": "raw text", "labelDy": 53 },
+    { "id": "chunk-extract", "from": "chunk", "to": "extract", "label": "transcript_chunks.json", "classification": "chunks", "labelDy": 24 },
+    { "id": "extract-claude", "from": "extract", "to": "claude", "label": "chunk text", "classification": "prompt", "labelDy": 24 },
+    { "id": "train-extract-claude", "from": "train_extract", "to": "claude", "label": "section text", "classification": "prompt", "labelAt": [315, 500] },
+    { "id": "extract-hdseed", "from": "extract", "to": "hd_seed", "label": "hd_graph_seed.json", "classification": "merged graph", "variant": "emphasis", "labelDy": 53 },
+    { "id": "train-src", "from": "training", "to": "train_extract", "label": "doc sections", "classification": "raw text", "labelDy": 53 },
+    { "id": "train-trainseed", "from": "train_extract", "to": "train_seed", "label": "training_graph_seed.json", "classification": "merged graph", "labelDy": 53 },
+    { "id": "hdseed-load", "from": "hd_seed", "to": "load", "label": "seed nodes/edges", "classification": "read" },
+    { "id": "trainseed-load", "from": "train_seed", "to": "load", "label": "seed nodes/edges", "classification": "read" },
+    { "id": "load-neo4j", "from": "load", "to": "neo4j", "label": "MERGE nodes/edges", "classification": "write", "variant": "emphasis", "labelDy": 24 },
+    { "id": "neo4j-reader", "from": "neo4j", "to": "reader", "label": "graph context", "classification": "Cypher read" },
+    { "id": "neo4j-browser", "from": "neo4j", "to": "browser", "label": "visual explore", "classification": "read-only", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Two extraction tracks",
+      "items": [
+        "Reading transcripts are chunked, then Claude extracts HD entities per chunk into hd_graph_seed.json",
+        "The 26·44 agent training doc is extracted section-by-section into training_graph_seed.json",
+        "load_graph.py MERGEs both seeds into Neo4j with direct Cypher — no graphiti-core at runtime"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Claude powers extraction and Q&A",
+      "items": [
+        "extract_nodes.py and extract_training_doc.py call Claude Haiku 4.5 and receive nodes + edges as JSON",
+        "reader.py asks Claude Haiku for Cypher, queries Neo4j, then Claude Sonnet 4.6 synthesises the answer",
+        "ANTHROPIC_API_KEY in .env is required for every Claude call"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Utilities and legacy",
+      "items": [
+        "cleanup_centers.py dedupes HDCenter nodes in Neo4j after loading",
+        "analyze_voice.py computes RayJai word/phrase frequency straight from transcripts (standalone)",
+        "The Ollama + graphiti-core flow in the old README is legacy; the live pipeline uses Claude + direct Cypher"
+      ]
+    }
+  ]
+}

@@ -10,6 +10,29 @@ This project demonstrates how to use `graphiti-core` to ingest unstructured text
 - **Embeddings**: `nomic-embed-text` via Ollama (768-dimensional vectors)
 - **Graph database**: Neo4j (bolt on `localhost:7687`)
 
+## Architecture
+
+The working pipeline turns raw reading transcripts and the agent training doc into
+a Human Design knowledge graph in Neo4j, then serves it through an interactive
+"Reader". Extraction and Q&A are powered by the Anthropic Claude API; the graph is
+loaded with direct Cypher (the Ollama + `graphiti-core` path in this README is
+legacy and no longer used at runtime).
+
+[![graphiti-test knowledge graph pipeline](docs/architecture-preview.png)](docs/architecture.html)
+
+> Open [`docs/architecture.html`](docs/architecture.html) for the interactive,
+> pan/zoom/search diagram (source spec: [`docs/architecture.dataflow.json`](docs/architecture.dataflow.json)).
+
+**Flow at a glance:**
+
+1. **Sources** — reading session `.txt` transcripts and the `The2644` agent training doc.
+2. **Extract (Claude)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call Claude Haiku 4.5 to pull HD entities and relationships.
+3. **Graph seeds** — merged, deduplicated JSON: `output/hd_graph_seed.json` and `output/training_graph_seed.json`.
+4. **Neo4j store** — `load_graph.py` MERGEs both seeds into Neo4j via direct Cypher; `cleanup_centers.py` optionally dedupes `HDCenter` nodes afterward.
+5. **Consume** — `reader.py` (Claude generates Cypher → Neo4j → Claude Sonnet 4.6 synthesises the answer) and the Neo4j Browser for visual exploration. `analyze_voice.py` is a standalone utility that computes RayJai word/phrase frequency straight from the transcripts.
+
+All Claude calls require `ANTHROPIC_API_KEY` in `.env`.
+
 ## Prerequisites
 
 - Python 3.11+
