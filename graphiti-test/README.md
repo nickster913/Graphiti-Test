@@ -1,13 +1,13 @@
 # graphiti-test
 
-A local experiment for building a knowledge graph using [Graphiti](https://github.com/getzep/graphiti) with fully local models via [Ollama](https://ollama.com/) and [Neo4j](https://neo4j.com/).
+An experiment for building a Human Design knowledge graph (in [Neo4j](https://neo4j.com/)) from reading transcripts, with a semantic RAG layer for answering questions in the reader's voice.
 
 ## Overview
 
-This project demonstrates how to use `graphiti-core` to ingest unstructured text episodes into a temporal knowledge graph, with all LLM inference and embeddings running locally — no OpenAI API key required.
+The active pipeline extracts entities/relationships from transcripts with the Claude API, loads them into Neo4j, adds embeddings for vector search, and serves answers through an interactive Reader. See [Architecture](#architecture) for the full flow.
 
-- **LLM**: `gemma4:26b` served via Ollama (OpenAI-compatible endpoint)
-- **Embeddings**: `nomic-embed-text` via Ollama (768-dimensional vectors)
+- **LLM (extraction + synthesis)**: `claude-sonnet-5` via the [Anthropic Claude API](https://www.anthropic.com/) (`ANTHROPIC_API_KEY` required)
+- **Embeddings**: `nomic-embed-text` via [Ollama](https://ollama.com/) (768-dimensional vectors, local)
 - **Graph database**: Neo4j (bolt on `localhost:7687`)
 
 ## Architecture
@@ -15,10 +15,10 @@ This project demonstrates how to use `graphiti-core` to ingest unstructured text
 The working pipeline turns raw reading transcripts and the agent training doc into
 a Human Design knowledge graph in Neo4j, adds a **semantic (RAG) layer** with local
 embeddings, then serves it through an interactive "Reader". Entity/relationship
-**extraction runs on a local Ollama model** (`qwen3.6:27b` by default); embeddings
-also run locally via Ollama; answer **synthesis** uses the Anthropic Claude API
-(Sonnet). The graph is loaded with direct Cypher (the `graphiti-core` path in this
-README is legacy and not used at runtime).
+**extraction** and answer **synthesis** both use the Anthropic Claude API
+(`claude-sonnet-5` by default); only the RAG **embeddings** run locally via Ollama
+(`nomic-embed-text`, a tiny CPU model). The graph is loaded with direct Cypher (the
+`graphiti-core` path in this README is legacy and not used at runtime).
 
 [![graphiti-test knowledge graph + RAG pipeline](docs/architecture-preview.png)](docs/architecture.html)
 
@@ -28,27 +28,26 @@ README is legacy and not used at runtime).
 **Flow at a glance:**
 
 1. **Sources** — reading session `.txt` transcripts and the `The2644` agent training doc.
-2. **Extract (local Qwen)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call a local Ollama model (`qwen3.6:27b` by default, via `scripts/ollama_chat.py` with `format=json`) to pull HD entities and relationships. Override with `OLLAMA_EXTRACT_MODEL`.
+2. **Extract (Claude)** — `chunk_transcript.py` splits transcripts into ~3000-char chunks; `extract_nodes.py` (per chunk) and `extract_training_doc.py` (per section) call Claude (`claude-sonnet-5` by default, via `scripts/anthropic_chat.py`) to pull HD entities and relationships. Override with `ANTHROPIC_EXTRACT_MODEL`.
 3. **Graph seeds** — merged, deduplicated JSON: `output/hd_graph_seed.json` and `output/training_graph_seed.json`.
 4. **Neo4j + Vectors** — `load_graph.py` MERGEs both seeds into Neo4j via direct Cypher; `embed_graph.py` then embeds `RayJaiTeaching.insight` and `HDVoicePattern.phrase` with Ollama `nomic-embed-text` (768-d) and builds Neo4j vector indexes. `cleanup_centers.py` optionally dedupes `HDCenter` nodes.
-5. **Consume (RAG)** — `reader.py` embeds the question, vector-searches teachings (anchor), expands via the graph for multi-hop context, and pulls verbatim voice exemplars, then Claude Sonnet synthesises the answer in RayJai's voice. Retrieval falls back to keyword search if embeddings are absent. `analyze_voice.py` is a standalone stylometry utility; the Neo4j Browser is available for visual exploration.
+5. **Consume (RAG)** — `reader.py` embeds the question, vector-searches teachings (anchor), expands via the graph for multi-hop context, and pulls verbatim voice exemplars, then Claude (`claude-sonnet-5`) synthesises the answer in RayJai's voice. Retrieval falls back to keyword search if embeddings are absent. `analyze_voice.py` is a standalone stylometry utility; the Neo4j Browser is available for visual exploration.
 
-Extraction and embeddings require a local Ollama server with `qwen3.6:27b` and
-`nomic-embed-text` pulled; answer synthesis (`reader.py`) requires `ANTHROPIC_API_KEY`
-in `.env`.
+Extraction and synthesis require `ANTHROPIC_API_KEY` in `.env`; the RAG embeddings
+require a local Ollama server with `nomic-embed-text` pulled.
 
 ## Prerequisites
 
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/) (package manager)
-- [Ollama](https://ollama.com/) running locally with the required models pulled
+- An Anthropic API key in `.env` as `ANTHROPIC_API_KEY` (extraction + synthesis)
+- [Ollama](https://ollama.com/) running locally (embeddings only)
 - [Neo4j](https://neo4j.com/download/) running locally
 
-### Pull required Ollama models
+### Pull required Ollama model (embeddings only)
 
 ```bash
-ollama pull qwen3.6:27b      # entity/relationship extraction
-ollama pull nomic-embed-text # embeddings for the RAG layer
+ollama pull nomic-embed-text # embeddings for the RAG layer (~275MB, CPU)
 ```
 
 ### Start Neo4j
@@ -90,9 +89,9 @@ graphiti-test/
 
 | Package | Purpose |
 |---|---|
-| `anthropic` | Claude API — answer synthesis in `reader.py` (Sonnet) |
+| `anthropic` | Claude API — entity extraction and answer synthesis (`claude-sonnet-5`) |
 | `neo4j` | Neo4j driver — graph load, Cypher queries, and vector search |
-| `httpx` | Calls the local Ollama endpoints for extraction (`qwen3.6:27b`) and embeddings (no separate client needed) |
+| `httpx` | Calls the local Ollama embeddings endpoint (no separate client needed) |
 | `python-dotenv` | Environment variable management |
 | `graphiti-core` | Declared dependency; not used at runtime by the current pipeline |
 

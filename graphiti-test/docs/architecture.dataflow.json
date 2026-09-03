@@ -9,7 +9,7 @@
   },
   "stages": [
     { "label": "Sources" },
-    { "label": "Extract (local Qwen)" },
+    { "label": "Extract (Claude)" },
     { "label": "Graph Seeds" },
     { "label": "Neo4j + Vectors" },
     { "label": "Consume (RAG)" }
@@ -19,7 +19,7 @@
     { "id": "training", "type": "external", "label": "Agent Training Doc", "sublabel": "The2644 v1", "stage": 0, "row": 4, "tag": "raw" },
     { "id": "chunk", "type": "backend", "label": "chunk_transcript.py", "sublabel": "~3000-char chunks", "stage": 1, "row": 0, "width": 176 },
     { "id": "extract", "type": "backend", "label": "extract_nodes.py", "sublabel": "per-chunk entities", "stage": 1, "row": 1, "width": 160 },
-    { "id": "qwen", "type": "cloud", "label": "Qwen 3.6", "sublabel": "27B via Ollama", "stage": 1, "row": 2, "tag": "LLM", "width": 150 },
+    { "id": "claude", "type": "cloud", "label": "Claude API", "sublabel": "claude-sonnet-5", "stage": 1, "row": 2, "tag": "LLM", "width": 150 },
     { "id": "train_extract", "type": "backend", "label": "extract_training_doc.py", "sublabel": "per-section entities", "stage": 1, "row": 4, "width": 178 },
     { "id": "hd_seed", "type": "database", "label": "hd_graph_seed.json", "sublabel": "804 nodes / 888 edges", "stage": 2, "row": 1, "tag": "seed", "width": 176 },
     { "id": "train_seed", "type": "database", "label": "training_graph_seed.json", "sublabel": "172 nodes / 119 edges", "stage": 2, "row": 4, "tag": "seed", "width": 178 },
@@ -32,8 +32,8 @@
   "flows": [
     { "id": "src-chunk", "from": "transcripts", "to": "chunk", "label": "session turns", "classification": "raw text", "labelDy": 53 },
     { "id": "chunk-extract", "from": "chunk", "to": "extract", "label": "transcript_chunks.json", "classification": "chunks", "labelDy": 24 },
-    { "id": "extract-qwen", "from": "extract", "to": "qwen", "label": "chunk text", "classification": "prompt", "labelDy": 24 },
-    { "id": "train-extract-qwen", "from": "train_extract", "to": "qwen", "label": "section text", "classification": "prompt", "labelAt": [315, 500] },
+    { "id": "extract-claude", "from": "extract", "to": "claude", "label": "chunk text", "classification": "prompt", "labelDy": 24 },
+    { "id": "train-extract-claude", "from": "train_extract", "to": "claude", "label": "section text", "classification": "prompt", "labelAt": [315, 500] },
     { "id": "extract-hdseed", "from": "extract", "to": "hd_seed", "label": "hd_graph_seed.json", "classification": "merged graph", "variant": "emphasis", "labelDy": 53 },
     { "id": "train-src", "from": "training", "to": "train_extract", "label": "doc sections", "classification": "raw text", "labelDy": 53 },
     { "id": "train-trainseed", "from": "train_extract", "to": "train_seed", "label": "training_graph_seed.json", "classification": "merged graph", "labelDy": 53 },
@@ -50,7 +50,7 @@
       "dot": "emerald",
       "title": "Build: transcripts to graph",
       "items": [
-        "chunk_transcript.py + extract_nodes.py / extract_training_doc.py call local Qwen (qwen3.6:27b via Ollama) to extract HD entities",
+        "chunk_transcript.py + extract_nodes.py / extract_training_doc.py call Claude (claude-sonnet-5) to extract HD entities",
         "Merged seeds (hd_graph_seed.json, training_graph_seed.json) are MERGEd into Neo4j by load_graph.py",
         "cleanup_centers.py optionally dedupes HDCenter nodes after loading"
       ]
@@ -61,7 +61,7 @@
       "items": [
         "embed_graph.py embeds RayJaiTeaching.insight + HDVoicePattern.phrase via Ollama nomic-embed-text and builds Neo4j vector indexes",
         "reader.py embeds the question, vector-searches teachings (anchor), expands via the graph, and pulls verbatim voice exemplars",
-        "Claude Sonnet synthesises the answer in RayJai's voice; retrieval falls back to keyword search if embeddings are absent"
+        "Claude (claude-sonnet-5) synthesises the answer in RayJai's voice; retrieval falls back to keyword search if embeddings are absent"
       ]
     },
     {

@@ -5034,7 +5034,7 @@
         <text x="100" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">01 / Sources</text>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="1" x="231" y="46" width="168" height="660" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="315" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">02 / Extract (local Qwen)</text>
+        <text x="315" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">02 / Extract (Claude)</text>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="2" x="446" y="46" width="168" height="660" rx="10" class="c-lane" stroke-width="1"/>
         <text x="530" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">03 / Graph Seeds</text>
@@ -5048,8 +5048,8 @@
         <!-- Flow paths -->
         <path data-edge-from="transcripts" data-edge-to="chunk" data-edge-label="session turns" data-edge-key="0" data-edge-id="src-chunk" data-composition-points="156,157;227,157" d="M 156 157 L 227 157" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
         <path data-edge-from="chunk" data-edge-to="extract" data-edge-label="transcript_chunks.json" data-edge-key="1" data-edge-id="chunk-extract" data-composition-points="315,186;315,242" d="M 315 186 L 315 242" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="extract" data-edge-to="qwen" data-edge-label="chunk text" data-edge-key="2" data-edge-id="extract-qwen" data-composition-points="315,300;315,356" d="M 315 300 L 315 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="train_extract" data-edge-to="qwen" data-edge-label="section text" data-edge-key="3" data-edge-id="train-extract-qwen" data-composition-points="315,584;315,414" d="M 315 584 L 315 414" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="extract" data-edge-to="claude" data-edge-label="chunk text" data-edge-key="2" data-edge-id="extract-claude" data-composition-points="315,300;315,356" d="M 315 300 L 315 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="train_extract" data-edge-to="claude" data-edge-label="section text" data-edge-key="3" data-edge-id="train-extract-claude" data-composition-points="315,584;315,414" d="M 315 584 L 315 414" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
         <path data-edge-from="extract" data-edge-to="hd_seed" data-edge-label="hd_graph_seed.json" data-edge-key="4" data-edge-id="extract-hdseed" data-composition-points="395,271;442,271" d="M 395 271 L 442 271" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="training" data-edge-to="train_extract" data-edge-label="doc sections" data-edge-key="5" data-edge-id="train-src" data-composition-points="156,613;226,613" d="M 156 613 L 226 613" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
         <path data-edge-from="train_extract" data-edge-to="train_seed" data-edge-label="training_graph_seed.json" data-edge-key="6" data-edge-id="train-trainseed" data-composition-points="404,613;441,613" d="M 404 613 L 441 613" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
@@ -5088,8 +5088,8 @@
         <text data-detail="fine" x="100" y="631" class="t-external" font-size="7" text-anchor="middle">raw</text>
         </g>
 
-        <g id="node-chunk" data-node-id="chunk" data-node-label="chunk_transcript.py" tabindex="0" role="button" aria-label="Focus chunk_transcript.py, ~3000-char chunks, 02 / Extract (local Qwen)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="~3000-char chunks" data-node-context="02 / Extract (local Qwen)">
-          <title>chunk_transcript.py · ~3000-char chunks · 02 / Extract (local Qwen)</title>
+        <g id="node-chunk" data-node-id="chunk" data-node-label="chunk_transcript.py" tabindex="0" role="button" aria-label="Focus chunk_transcript.py, ~3000-char chunks, 02 / Extract (Claude)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="~3000-char chunks" data-node-context="02 / Extract (Claude)">
+          <title>chunk_transcript.py · ~3000-char chunks · 02 / Extract (Claude)</title>
           <rect x="227" y="128" width="176" height="58" rx="6" class="c-mask"/>
           <rect x="227" y="128" width="176" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(233 134) scale(0.6875)">
@@ -5099,8 +5099,8 @@
           <text data-detail="context" x="315" y="165" class="t-muted" font-size="7" text-anchor="middle">~3000-char chunks</text>
         </g>
 
-        <g id="node-extract" data-node-id="extract" data-node-label="extract_nodes.py" tabindex="0" role="button" aria-label="Focus extract_nodes.py, per-chunk entities, 02 / Extract (local Qwen)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="per-chunk entities" data-node-context="02 / Extract (local Qwen)">
-          <title>extract_nodes.py · per-chunk entities · 02 / Extract (local Qwen)</title>
+        <g id="node-extract" data-node-id="extract" data-node-label="extract_nodes.py" tabindex="0" role="button" aria-label="Focus extract_nodes.py, per-chunk entities, 02 / Extract (Claude)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="per-chunk entities" data-node-context="02 / Extract (Claude)">
+          <title>extract_nodes.py · per-chunk entities · 02 / Extract (Claude)</title>
           <rect x="235" y="242" width="160" height="58" rx="6" class="c-mask"/>
           <rect x="235" y="242" width="160" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(241 248) scale(0.6875)">
@@ -5110,20 +5110,20 @@
           <text data-detail="context" x="315" y="279" class="t-muted" font-size="7" text-anchor="middle">per-chunk entities</text>
         </g>
 
-        <g id="node-qwen" data-node-id="qwen" data-node-label="Qwen 3.6" tabindex="0" role="button" aria-label="Focus Qwen 3.6, 27B via Ollama, 02 / Extract (local Qwen)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="27B via Ollama" data-node-tag="LLM" data-node-context="02 / Extract (local Qwen)">
-          <title>Qwen 3.6 · 27B via Ollama · 02 / Extract (local Qwen) · LLM</title>
+        <g id="node-claude" data-node-id="claude" data-node-label="Claude API" tabindex="0" role="button" aria-label="Focus Claude API, claude-sonnet-5, 02 / Extract (Claude)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="claude-sonnet-5" data-node-tag="LLM" data-node-context="02 / Extract (Claude)">
+          <title>Claude API · claude-sonnet-5 · 02 / Extract (Claude) · LLM</title>
           <rect x="240" y="356" width="150" height="58" rx="6" class="c-mask"/>
           <rect x="240" y="356" width="150" height="58" rx="6" class="c-cloud" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(246 362) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="315" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Qwen 3.6</text>
-          <text data-detail="context" x="315" y="393" class="t-muted" font-size="7" text-anchor="middle">27B via Ollama</text>
+          <text data-node-label="" data-detail-anchor="" x="315" y="377" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Claude API</text>
+          <text data-detail="context" x="315" y="393" class="t-muted" font-size="7" text-anchor="middle">claude-sonnet-5</text>
         <text data-detail="fine" x="315" y="403" class="t-cloud" font-size="7" text-anchor="middle">LLM</text>
         </g>
 
-        <g id="node-train_extract" data-node-id="train_extract" data-node-label="extract_training_doc.py" tabindex="0" role="button" aria-label="Focus extract_training_doc.py, per-section entities, 02 / Extract (local Qwen)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="per-section entities" data-node-context="02 / Extract (local Qwen)">
-          <title>extract_training_doc.py · per-section entities · 02 / Extract (local Qwen)</title>
+        <g id="node-train_extract" data-node-id="train_extract" data-node-label="extract_training_doc.py" tabindex="0" role="button" aria-label="Focus extract_training_doc.py, per-section entities, 02 / Extract (Claude)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="per-section entities" data-node-context="02 / Extract (Claude)">
+          <title>extract_training_doc.py · per-section entities · 02 / Extract (Claude)</title>
           <rect x="226" y="584" width="178" height="58" rx="6" class="c-mask"/>
           <rect x="226" y="584" width="178" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(232 590) scale(0.6875)">
@@ -5228,12 +5228,12 @@
           <text x="315" y="200" class="t-muted" font-size="8" text-anchor="middle">transcript_chunks.json</text>
         <text data-detail="fine" x="315" y="211" class="t-dim" font-size="7" text-anchor="middle">chunks</text>
         </g>
-        <g data-detail="context" data-edge-from="extract" data-edge-to="qwen" data-edge-label="chunk text" data-edge-key="2" data-edge-id="extract-qwen">
+        <g data-detail="context" data-edge-from="extract" data-edge-to="claude" data-edge-label="chunk text" data-edge-key="2" data-edge-id="extract-claude">
           <rect x="284.5" y="303" width="61" height="27" rx="4" class="c-mask"/>
           <text x="315" y="314" class="t-muted" font-size="8" text-anchor="middle">chunk text</text>
         <text data-detail="fine" x="315" y="325" class="t-dim" font-size="7" text-anchor="middle">prompt</text>
         </g>
-        <g data-detail="context" data-edge-from="train_extract" data-edge-to="qwen" data-edge-label="section text" data-edge-key="3" data-edge-id="train-extract-qwen">
+        <g data-detail="context" data-edge-from="train_extract" data-edge-to="claude" data-edge-label="section text" data-edge-key="3" data-edge-id="train-extract-claude">
           <rect x="279.6" y="489" width="70.8" height="27" rx="4" class="c-mask"/>
           <text x="315" y="500" class="t-muted" font-size="8" text-anchor="middle">section text</text>
         <text data-detail="fine" x="315" y="511" class="t-dim" font-size="7" text-anchor="middle">prompt</text>
@@ -5497,7 +5497,7 @@
           <h3>Build: transcripts to graph</h3>
         </div>
         <ul>
-          <li>&bull; chunk_transcript.py + extract_nodes.py / extract_training_doc.py call local Qwen (qwen3.6:27b via Ollama) to extract HD entities</li>
+          <li>&bull; chunk_transcript.py + extract_nodes.py / extract_training_doc.py call Claude (claude-sonnet-5) to extract HD entities</li>
           <li>&bull; Merged seeds (hd_graph_seed.json, training_graph_seed.json) are MERGEd into Neo4j by load_graph.py</li>
           <li>&bull; cleanup_centers.py optionally dedupes HDCenter nodes after loading</li>
         </ul>
@@ -5511,7 +5511,7 @@
         <ul>
           <li>&bull; embed_graph.py embeds RayJaiTeaching.insight + HDVoicePattern.phrase via Ollama nomic-embed-text and builds Neo4j vector indexes</li>
           <li>&bull; reader.py embeds the question, vector-searches teachings (anchor), expands via the graph, and pulls verbatim voice exemplars</li>
-          <li>&bull; Claude Sonnet synthesises the answer in RayJai&#39;s voice; retrieval falls back to keyword search if embeddings are absent</li>
+          <li>&bull; Claude (claude-sonnet-5) synthesises the answer in RayJai&#39;s voice; retrieval falls back to keyword search if embeddings are absent</li>
         </ul>
       </div>
 

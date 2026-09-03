@@ -2,28 +2,29 @@
 extract_nodes.py
 
 Reads output/transcript_chunks.json (produced by chunk_transcript.py), sends
-each chunk to a local Ollama model for HD entity / relationship extraction, then
+each chunk to the Claude API for HD entity / relationship extraction, then
 merges all results into output/hd_graph_seed.json.
 
 Usage:
   python scripts/extract_nodes.py
 
 Environment:
-  OLLAMA_HOST           — optional, default http://localhost:11434
-  OLLAMA_EXTRACT_MODEL  — optional, default qwen3.6:27b (see scripts/ollama_chat.py)
+  ANTHROPIC_API_KEY        — required (.env in project root is loaded automatically)
+  ANTHROPIC_EXTRACT_MODEL  — optional, default claude-sonnet-5 (see scripts/anthropic_chat.py)
 
 Output:
   output/hd_graph_seed.json (merged with any existing content)
 """
 
 import json
+import os
 import re
 import time
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-from ollama_chat import EXTRACT_MODEL, chat_json
+from anthropic_chat import EXTRACT_MODEL, complete_json
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -33,7 +34,8 @@ _PROJECT_ROOT = Path(__file__).parent.parent
 CHUNKS_FILE = _PROJECT_ROOT / "output" / "transcript_chunks.json"
 OUTPUT_FILE = _PROJECT_ROOT / "output" / "hd_graph_seed.json"
 MODEL = EXTRACT_MODEL
-SLEEP_BETWEEN_CALLS = 0  # seconds (local model — no rate limit)
+MAX_TOKENS = 4096
+SLEEP_BETWEEN_CALLS = 0  # seconds (SDK retries handle transient 429s)
 
 SYSTEM_PROMPT = """\
 You are a knowledge graph extraction specialist for Human Design (HD).
@@ -94,26 +96,6 @@ RULES:
 
 TRANSCRIPT CHUNK:
 {chunk_body}"""
-
-# ---------------------------------------------------------------------------
-# JSON extraction
-# ---------------------------------------------------------------------------
-
-# Strips markdown code fences if the model wraps in them despite instructions.
-_FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)```", re.IGNORECASE)
-
-
-def extract_json(raw: str) -> dict:
-    """
-    Parse JSON from a raw API response string.
-    Handles accidental markdown fences.
-    Raises ValueError if no valid JSON object is found.
-    """
-    text = raw.strip()
-    m = _FENCE_RE.search(text)
-    if m:
-        text = m.group(1).strip()
-    return json.loads(text)
 
 # ---------------------------------------------------------------------------
 # Merge logic
@@ -198,7 +180,7 @@ def ensure_edge_nodes(graph: dict) -> dict:
 # Fix 2 — Cross-chunk node name normalisation
 # ---------------------------------------------------------------------------
 
-# Haiku sometimes prefixes RayJaiTeaching node names with the type name.
+# The model sometimes prefixes RayJaiTeaching node names with the type name.
 _TEACHING_PREFIX_RE = re.compile(r"^RayJaiTeaching:\s*", re.IGNORECASE)
 
 
@@ -269,12 +251,11 @@ def normalise_graph(graph: dict) -> dict:
 
 def call_model(chunk_body: str) -> dict:
     """
-    Send one chunk to the local Ollama model and return the parsed
-    {nodes, edges} dict. Raises ValueError if the response is not valid JSON.
+    Send one chunk to Claude and return the parsed {nodes, edges} dict.
+    Raises ValueError if the response is not valid JSON.
     """
     user_prompt = USER_PROMPT_TEMPLATE.format(chunk_body=chunk_body)
-    raw = chat_json(SYSTEM_PROMPT, user_prompt)
-    return extract_json(raw)
+    return complete_json(SYSTEM_PROMPT, user_prompt, model=MODEL, max_tokens=MAX_TOKENS)
 
 # ---------------------------------------------------------------------------
 # Main
@@ -282,7 +263,9 @@ def call_model(chunk_body: str) -> dict:
 
 def main() -> None:
     load_dotenv(_PROJECT_ROOT / ".env")
-    print(f"Extraction model (Ollama): {MODEL}\n")
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        raise SystemExit("Error: ANTHROPIC_API_KEY is not set. Add it to your .env.")
+    print(f"Extraction model (Claude): {MODEL}\n")
 
     chunks_path = Path(CHUNKS_FILE)
     if not chunks_path.exists():

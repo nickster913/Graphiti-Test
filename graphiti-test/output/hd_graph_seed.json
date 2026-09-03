@@ -93,28 +93,28 @@
       "name": "Manifestor",
       "type_name": "Manifestor",
       "strategy": "Inform before acting",
-      "not_self_theme": "Frustration",
-      "signature": "Peace"
+      "not_self_theme": "Resistance to rules/being told what to do",
+      "signature": "Not specified in chunk"
     },
     {
       "type": "HDCenter",
       "name": "Sacral Center",
       "center_name": "Sacral Center",
-      "defined_or_open": "varies by person",
+      "defined_or_open": "Open (for Gulnar)",
       "function": "The center of life force, creativity, and sustainable work energy. When defined it provides a consistent battery for completing what is aligned."
     },
     {
       "type": "HDCenter",
       "name": "Throat Center",
       "center_name": "Throat Center",
-      "defined_or_open": "activated",
+      "defined_or_open": "Defined (in context of Manifestors)",
       "function": "The center of manifestation and expression. A defined throat gives consistent access to voice, communication, and the ability to initiate and inform."
     },
     {
       "type": "HDCenter",
       "name": "Solar Plexus Center",
-      "center_name": "Solar Plexus",
-      "defined_or_open": "defined",
+      "center_name": "Solar Plexus Center",
+      "defined_or_open": "Defined (implied by connection)",
       "function": "A motor center governing emotional energy. When defined it creates an emotional wave that runs through expression and communication — powerful but not always consistent."
     },
     {
@@ -144,7 +144,7 @@
       "type": "HDGate",
       "name": "Gate 45",
       "number": "45",
-      "gate_name": "The King and Queen Gate",
+      "gate_name": "Gate of the Queen and King",
       "center": "Throat Center",
       "gift": "The ability to use voice to communicate and express what needs to happen for the good of the group"
     },
@@ -480,8 +480,8 @@
     {
       "type": "HDCenter",
       "name": "Spleen Center",
-      "center_name": "Spleen",
-      "defined_or_open": "variable",
+      "center_name": "Spleen Center",
+      "defined_or_open": "Defined or Open (context dependent)",
       "function": "awareness center, environmental sensing, primal safety detection, spatial awareness, frequency detection, collective feeling pickup"
     },
     {
@@ -593,13 +593,13 @@
       "name": "G Center",
       "center_name": "Identity/Self",
       "defined_or_open": "defined",
-      "function": "identity, self-worth, love, self-love, direction, purpose"
+      "function": "Learning center, sensitive to identity and belonging, picks up energy from defined G centers (nurturing or shadow), associated with self-love and direction."
     },
     {
       "type": "HDCenter",
       "name": "Root Center",
-      "center_name": "Root",
-      "defined_or_open": "variable",
+      "center_name": "Root Center",
+      "defined_or_open": "Defined or Open (context dependent)",
       "function": "center of pressure, adrenaline, time, and this is one of the one of the grounding centers of the entire body graph"
     },
     {
@@ -613,8 +613,8 @@
       "type": "HDCenter",
       "name": "Emotional Center",
       "center_name": "Emotional Center",
-      "defined_or_open": "undefined",
-      "function": "motor center; transitions to center of awareness and wisdom after 2027"
+      "defined_or_open": "Open (for Gulnar), Defined (for Ex Business Partner)",
+      "function": "Motor center; transitions into center of awareness/wisdom after 2027; main drive in life for those with it defined"
     },
     {
       "type": "HDConcept",
@@ -695,8 +695,8 @@
       "type": "HDType",
       "name": "Projector",
       "type_name": "Projector",
-      "strategy": "Wait for invitation",
-      "not_self_theme": "Bitterness",
+      "strategy": "Wait for the invitation",
+      "not_self_theme": "Frustration",
       "signature": "Success through recognition and invitation"
     },
     {
@@ -764,13 +764,15 @@
       "name": "Manifestor Resistance",
       "insight": "when I said to you about first understanding or being introduced to human design, and I I completely resisted. I had so much resistance in my body",
       "context": "Rayjai's personal experience discovering Human Design as a Manifestor",
-      "related_hd_concept": "Manifestor"
+      "related_hd_concept": "Manifestor",
+      "definition": "Natural resistance to external rules and expectations; leads to doing the opposite and burning/crashing if not managed by creating personal non-negotiable rules.",
+      "rayjai_reframe": null
     },
     {
       "type": "HDConcept",
       "name": "Manifestor Aura",
       "definition": "A protective, thick, dense aura that is polarizing and difficult to read because it protects manifestors from external pressure and control",
-      "rayjai_reframe": "The energy itself is very fragile, but it has a strong wall to protect"
+      "rayjai_reframe": "The aura is what enters before you physically enter; aligning with it leads naturally."
     },
     {
       "type": "HDConcept",
@@ -1912,7 +1914,8 @@
     {
       "type": "HDConcept",
       "name": "Defined Centers",
-      "definition": "Centers that are colored, where you always have electricity running through them, it's plugged in, it's switched on, it doesn't turn off, it operates as part of your normal body, part of your normal energy."
+      "definition": "Centers that are colored, where you always have electricity running through them, it's plugged in, it's switched on, it doesn't turn off, it operates as part of your normal body, part of your normal energy.",
+      "rayjai_reframe": "The 'presets' or basic settings of the camera"
     },
     {
       "type": "HDConcept",
@@ -2458,9 +2461,9 @@
       "defined_or_open": "defined",
       "function": "Somatic center; generates yes/no responses through forward motion sensation",
       "type_name": "Sacral",
-      "strategy": null,
-      "not_self_theme": null,
-      "signature": null
+      "strategy": "Respond",
+      "not_self_theme": "Initiating",
+      "signature": "Efficiency"
     },
     {
       "type": "HDConcept",
@@ -2915,7 +2918,7 @@
       "type": "HDConcept",
       "name": "Deconditioning",
       "definition": "Process of recognizing and releasing conditioning from family, school, society to live more authentically",
-      "rayjai_reframe": null
+      "rayjai_reframe": "Not resetting to factory settings, but understanding the instruction manual"
     },
     {
       "type": "RayJaiTeaching",
@@ -3670,8 +3673,8 @@
       "type": "HDCenter",
       "name": "Ego Center",
       "center_name": "Ego Center",
-      "function": "willpower, determination, commitment",
-      "defined_or_open": "can be open or defined"
+      "function": "Willpower energy, not for daily use, for extreme situations or stretching beyond capacity",
+      "defined_or_open": "Defined in 30% of population, Open in 70%"
     },
     {
       "type": "RayJaiTeaching",
@@ -3722,8 +3725,8 @@
     {
       "type": "HDCenter",
       "name": "Emotional Solar Plexus",
-      "center_name": "Solar Plexus",
-      "defined_or_open": "variable",
+      "center_name": "Emotional / Solar Plexus",
+      "defined_or_open": "Defined (for Speaker 2)",
       "function": "area of the emotions and how we process what those emotions look like"
     },
     {
@@ -3865,7 +3868,7 @@
       "lines": "3/5",
       "conscious_line": "3",
       "unconscious_line": "5",
-      "archetype": "Martyr/Heretic"
+      "archetype": "The Opportunist"
     },
     {
       "type": "HDConcept",
@@ -4249,13 +4252,13 @@
       "type": "Person",
       "name": "Zeina",
       "role": "client",
-      "hd_type": "Manifestor"
+      "hd_type": "Manifestor 3/5 Emotional"
     },
     {
       "type": "Person",
       "name": "Gulnar",
       "role": "practitioner",
-      "hd_type": "Manifestor"
+      "hd_type": "Open Emotional Center"
     },
     {
       "type": "Person",
@@ -4274,7 +4277,7 @@
       "type": "HDCenter",
       "name": "Group Center",
       "center_name": "Group Center",
-      "defined_or_open": "Unknown",
+      "defined_or_open": "Defined (implied by channel)",
       "function": "Social/Group awareness"
     },
     {
@@ -4296,8 +4299,11 @@
     {
       "type": "HDConcept",
       "name": "Tribal Channel",
-      "definition": "Channel related to building family and community",
-      "rayjai_reframe": null
+      "definition": "A channel focused on tribe survival, building a tribe, and taking care of a tribe.",
+      "rayjai_reframe": "The tribe leader brings a refrigerator for the entire tribe to use; the tribe thrives, and he thrives.",
+      "gate_1": "1",
+      "gate_2": "16",
+      "theme": "Building family/tribe, taking care of community"
     },
     {
       "type": "HDConcept",
@@ -4350,7 +4356,7 @@
       "type": "HDConcept",
       "name": "Manifestor Energy Distribution",
       "definition": "Manifestor energy is distributed across longer time frames (weeks, months, years) with 20% action and 80% rest, not like sacral battery that operates daily",
-      "rayjai_reframe": null
+      "rayjai_reframe": "Energy is a precious liquid/tincture to be accumulated for bigger initiatives, not spent on mundane sacral tasks."
     },
     {
       "type": "HDConcept",
@@ -4379,8 +4385,8 @@
     {
       "type": "HDConcept",
       "name": "Energy Type Priority",
-      "definition": "energy type is the non-negotiable priority layer in human design decision-making",
-      "rayjai_reframe": null
+      "definition": "The energy type is the non-negotiable layer of Human Design that determines how one handles energy and burnout.",
+      "rayjai_reframe": "The part of you that wants to do everything yourself is the 3/5, but your non-negotiable part is the energy type, especially if you are a manifestor."
     },
     {
       "type": "HDConcept",
@@ -4449,7 +4455,11 @@
       "name": "Manifestor Rule Creation",
       "insight": "create your own rules, and who cares how you are assessed at school. you are your own critic. So you create your own rules and you follow this rules.",
       "context": "Teaching manifestors to avoid external rule resistance",
-      "related_hd_concept": "Creating Own Rules"
+      "related_hd_concept": "Creating Own Rules",
+      "phrase": "create your own rules, nobody can tell you",
+      "usage_context": "When a Manifestor is facing external pressure or rules they resist.",
+      "trigger": "Resistance to being told what to do.",
+      "avoid_if": "When the rule is a safety issue or legal requirement."
     },
     {
       "type": "RayJaiTeaching",
@@ -4537,14 +4547,16 @@
       "name": "Gate 14",
       "number": 14,
       "center": "Root Center",
-      "gate_name": "Gate 14"
+      "gate_name": "Gate of the Moon",
+      "gift": "Emotional intuition"
     },
     {
       "type": "HDGate",
       "name": "Gate 30",
       "number": 30,
       "center": "Root Center",
-      "gate_name": "Gate 30"
+      "gate_name": "Gate of the Moon",
+      "gift": "Emotional intuition"
     },
     {
       "type": "HDConcept",
@@ -4554,8 +4566,11 @@
     {
       "type": "RayJaiTeaching",
       "name": "Camera Metaphor",
-      "insight": "You buy a camera and there is an instruction manual that comes so when it's pure and not touched, no buttons are pressed exactly as it came from the factory",
-      "context": "Explaining how body graph is like an instruction manual for one's design"
+      "insight": "It's like you buy a camera and there is an instruction manual that comes so when it's pure and not touched, no buttons are pressed exactly as it came from the factory... So then we have an instruction manual, which is your body graph... But it's needed there as the trajectory, how and where do we go?",
+      "context": "Explaining how body graph is like an instruction manual for one's design",
+      "related_hd_concept": "Deconditioning",
+      "trigger_context": "Client asking about resetting their design",
+      "effect": "Normalise the need for an instruction manual (bodygraph) while acknowledging the reality of conditioning"
     },
     {
       "type": "RayJaiTeaching",
@@ -4586,7 +4601,8 @@
       "name": "Sacral Amplification",
       "insight": "The open center amplifies it, because it has no boundaries. My sacral has boundaries. Yes, it's consistent, it's reliable, but it has boundaries. It will not go beyond those boundaries",
       "context": "Explaining how open centers amplify energy without boundaries",
-      "definition": "When manifestors combine with sacral energy partners, the manifestor amplifies sacral energy 10 times more intensely than the sacral person would use it"
+      "definition": "When an open sacral person taps into another sacral, the energy is amplified, creating desires for sexual or food indulgence that are not inherently theirs.",
+      "rayjai_reframe": "It is not wrong for a manifestor to live without sex because the sacral doesn't govern them; the desire is an amplified reaction to external sacral energy."
     },
     {
       "type": "Person",
@@ -4603,7 +4619,8 @@
     {
       "type": "HDConcept",
       "name": "Manifestor Vulnerability",
-      "definition": "Manifestors are most vulnerable in allowing life force to come through them, requiring permission and awareness from others"
+      "definition": "Manifestors are most vulnerable when they need to allow life force to come; they have internal fire that is intense and can lead to addiction to pleasure or overindulgence if not managed with framework.",
+      "rayjai_reframe": "It is not sad to rely on others for framework; it is amplified. Knowing your battery and amplifying it prevents exhaustion."
     },
     {
       "type": "HDConcept",
@@ -4649,8 +4666,10 @@
       "type": "HDChannel",
       "name": "Judgment Channel",
       "gate_1": "Root to Solar Plexus",
-      "gate_2": "Root to Solar Plexus",
-      "theme": "Judgment, improvement, intensity"
+      "gate_2": "Emotional Solar Plexus",
+      "theme": "Constant need to improve things, intense energy, applying energy outwards",
+      "definition": "A channel associated with feedback, criticism, and improvement. It requires specific conditions (timing, optimism, care) to be expressed healthily without being perceived as harsh judgment.",
+      "rayjai_reframe": "Feedback should be delivered from a space of optimism and care, not as a critic. It is a gift that flows through you, not something you possess."
     },
     {
       "type": "HDConcept",
@@ -4691,8 +4710,8 @@
     {
       "type": "HDConcept",
       "name": "Emotional Waves",
-      "definition": "biochemical reactions happening independently inside your body; not human emotions or reactions to outside triggers",
-      "rayjai_reframe": null
+      "definition": "Cyclical fluctuations in emotional state that must be processed over time, distinct from human reactions like anger or frustration.",
+      "rayjai_reframe": "Not about sadness or what is wrong/right, but accepting the wisdom of your own body graph uniqueness."
     },
     {
       "type": "RayJaiTeaching",
@@ -4741,8 +4760,8 @@
     {
       "type": "Person",
       "name": "Ex Business Partner",
-      "role": null,
-      "hd_type": "Manifestor"
+      "role": "client",
+      "hd_type": "Defined Emotional Center, Manifestor, Profile 1/3"
     },
     {
       "type": "HDProfile",
@@ -4750,7 +4769,7 @@
       "lines": "1/3",
       "conscious_line": "1",
       "unconscious_line": "3",
-      "archetype": null
+      "archetype": "Investigator"
     },
     {
       "type": "HDConcept",
@@ -4767,10 +4786,10 @@
     {
       "type": "HDType",
       "name": "Emotional Manifester",
-      "type_name": "Manifester",
-      "strategy": null,
-      "not_self_theme": null,
-      "signature": null
+      "type_name": "Emotional Manifester",
+      "strategy": "Manifestation",
+      "not_self_theme": "Forcing",
+      "signature": "Power"
     },
     {
       "type": "HDChannel",
@@ -4782,14 +4801,14 @@
     {
       "type": "HDConcept",
       "name": "Split Definition",
-      "definition": "a split definition creates islands in the chart where energy cannot flow directly without a bridge person to connect them",
-      "rayjai_reframe": null
+      "definition": "A chart configuration where the energy flow is split into two separate islands, preventing direct connection between certain centers without external influence.",
+      "rayjai_reframe": "Requires external support to bridge the gap for expression."
     },
     {
       "type": "HDConcept",
       "name": "Community Values",
-      "definition": "values that connect people in community are emotional in nature, not intellectual",
-      "rayjai_reframe": null
+      "definition": "The shared beliefs and principles of a group, which are rooted in emotional connection rather than logical agreement.",
+      "rayjai_reframe": "We connect to people through emotions, not just logical values."
     },
     {
       "type": "RayJaiTeaching",
@@ -4810,8 +4829,8 @@
       "name": "Gate 58",
       "number": 58,
       "gate_name": "Gate of Joy",
-      "center": "Root Center",
-      "gift": "improvement from the space of joy"
+      "center": "Spleen Center",
+      "gift": "Improvement from the space of joy, inspiring others to become better"
     },
     {
       "type": "HDGate",
@@ -4822,9 +4841,14 @@
       "gift": "correction, improvement"
     },
     {
-      "type": "HDConcept",
+      "type": "RayJaiTeaching",
       "name": "Judgment Channel Shadow",
-      "definition": "when judgment channel energy becomes critique and criticism instead of joyful inspiration"
+      "definition": "when judgment channel energy becomes critique and criticism instead of joyful inspiration",
+      "insight": "In its shadow play, the judgment channel can play, you know, can go to the other extreme and be the opposite of joyful inspiration and become critic and saying and saying, I'm doing this, I'm making you a better person. And then you get married. This is the shadow, because that's the energy that is given. to you to be gifted to the collective. However, romantic relationship, relationship without sickness and our friends, is not the right outlet for judgment channel. It's a collective channel, and it needs the right outlet.",
+      "context": "Discussing the misuse of Channel 58-18 energy in personal relationships",
+      "related_hd_concept": "Channel 58-18",
+      "trigger_context": "Using judgment/improvement energy in romantic relationships",
+      "effect": "Grant permission to stop forcing collective energy into personal outlets; normalize the shadow behavior as a misdirected gift"
     },
     {
       "type": "HDConcept",
@@ -4889,14 +4913,16 @@
       "type": "RayJaiTeaching",
       "name": "Motive Over Form",
       "insight": "Instead of controlling the form, go back to the sense of what is your motive, and if your motive to really care with optimism, the form will follow.",
-      "context": "Addressing leadership and management approach",
-      "related_hd_concept": "Not-Self Theme and Authority"
+      "context": "Responding to a user who struggles with their 'choice of words' or being 'harsh' as a manager.",
+      "related_hd_concept": "Dragon Mother vs Nurturing Mother",
+      "trigger_context": "When a user is over-analyzing their external behavior or words rather than their internal intent.",
+      "effect": "Shifts focus from performance (form) to authenticity (motive), reducing anxiety about social conditioning."
     },
     {
       "type": "HDConcept",
       "name": "Dragon Mother vs Nurturing Mother",
-      "definition": "Two archetypes of care: dragon mother wants to improve and possess; nurturing mother wants to improve and let go",
-      "rayjai_reframe": null
+      "definition": "Two modes of care. The Dragon Mother wants to improve and possess/control. The Nurturing Mother wants to improve and let go. Healthy expression of the Judgment Channel requires the Nurturing Mother approach.",
+      "rayjai_reframe": "Even if you are my ex, I'm happy for you that the improved version of you got married. This is where you get detached, and it's yours, because it's a gift through you, not yours."
     },
     {
       "type": "HDChannel",
@@ -4908,7 +4934,8 @@
     {
       "type": "HDConcept",
       "name": "Willpower Energy",
-      "definition": "energy not meant to be applied daily, reserved for extreme situations and specific projects"
+      "definition": "Energy of the Ego Center, meant for extreme situations, projects, or stretching beyond capacity, not for daily application.",
+      "rayjai_reframe": "It is not for daily use; it is for specific situations like Olympic Games or professional athletes achieving amazing results."
     },
     {
       "type": "RayJaiTeaching",
@@ -4946,9 +4973,11 @@
     {
       "type": "RayJaiTeaching",
       "name": "Ego Center Not for Daily Use",
-      "insight": "your channel, your ego center, is not for daily use. Leave from other centers that are open. They're not consistent, but it's okay. You can play with that, but once we say, I will do it, we have to know it's the ego center talking, it's the will come. So we need to choose the battles.",
+      "insight": "your channel, your ego center, is not for daily use. Leave from other centers that are open. They're not consistent, but it's okay. You can play with that, but once we say, I will do it, we have to know it's it's the ego center talking, it's the will come. So we need to choose the battles.",
       "context": "discussing a young man with defined ego center who was exhausted from daily commitments",
-      "related_hd_concept": "Will and Commitment"
+      "related_hd_concept": "Ego Center Daily Use Warning",
+      "trigger_context": "Client is exhausted or experiencing erratic energy from over-committing.",
+      "effect": "Normalizes the limitation of the Ego Center and grants permission to rest/choose battles."
     },
     {
       "type": "RayJaiTeaching",
@@ -4962,7 +4991,7 @@
       "name": "Channel 21-45",
       "gate_1": "Gate 21",
       "gate_2": "Gate 45",
-      "theme": "tribal"
+      "theme": "Money channel, tribal survival, building a tribe, ownership vs management"
     },
     {
       "type": "HDGate",
@@ -4970,7 +4999,7 @@
       "number": 21,
       "gate_name": "Gate of the Manager",
       "center": "Ego Center",
-      "gift": "control, management"
+      "gift": "Control, management, micro-management"
     },
     {
       "type": "HDConcept",
@@ -5038,13 +5067,14 @@
     {
       "type": "Person",
       "name": "Zeina 2",
-      "role": "client"
+      "role": "client",
+      "hd_type": "Manifestor"
     },
     {
       "type": "HDConcept",
       "name": "Open Center Sensitivity",
-      "definition": "open centers are very sensitive to the energy and conditioning of others, especially those with that center defined",
-      "rayjai_reframe": null
+      "definition": "Open centers are sensitive to the energy of defined centers in others. They can pick up nurturing energy or shadow energy (low self-worth/loss of direction).",
+      "rayjai_reframe": "Being mindful of who you are around allows you to leverage romantic connections and feel love, rather than absorbing negative identity energy."
     },
     {
       "type": "HDConcept",
@@ -5055,8 +5085,8 @@
     {
       "type": "HDConcept",
       "name": "Fluid Identity",
-      "definition": "identity is fluid; the love goes wherever one is",
-      "rayjai_reframe": null
+      "definition": "The idea that identity is not fixed but fluid; love and belonging are wherever one goes.",
+      "rayjai_reframe": "Accepting that identity is fluid allows one to thrive in different contexts (boyfriend, tribe, alone) without losing self."
     },
     {
       "type": "HDConcept",
@@ -5079,9 +5109,9 @@
     {
       "type": "HDCenter",
       "name": "Motor Center",
-      "center_name": "Motor",
-      "defined_or_open": "defined",
-      "function": "Source of energy and action"
+      "center_name": "Motor Center",
+      "defined_or_open": "Defined (implied by connection to Throat in Manifestors)",
+      "function": "Source of the voice/energy; the place one speaks from (stomach/body) rather than just the throat."
     },
     {
       "type": "HDConcept",
@@ -5107,7 +5137,8 @@
     {
       "type": "Person",
       "name": "Ray",
-      "role": "practitioner"
+      "role": "practitioner",
+      "hd_type": null
     },
     {
       "type": "Person",
@@ -5140,20 +5171,728 @@
       "related_hd_concept": "Manifestor"
     },
     {
-      "type": "HDConcept",
-      "name": "RayJaiTeaching: Surfing Analogy"
+      "type": "HDChannel",
+      "name": "Synthesis Channel",
+      "gate_1": "49",
+      "gate_2": "19",
+      "theme": "Desires, ideas, synthesis"
     },
     {
       "type": "HDConcept",
-      "name": "RayJaiTeaching: Emotional Clarity and Community Values"
+      "name": "Three Dimensions of Expression",
+      "definition": "Shadow (heavy), Positive (uplifting), Neutral (disruptive enough)",
+      "rayjai_reframe": "Goal is to go to neutral to achieve City"
     },
     {
       "type": "HDConcept",
-      "name": "RayJaiTeaching: Ego Center Not for Daily Use"
+      "name": "Repelling Aura",
+      "definition": "Closed aura, invisible wall protecting fragile energy",
+      "rayjai_reframe": "Not strong energy, but strong wall protecting fragile/vulnerable inside"
     },
     {
       "type": "HDConcept",
-      "name": "RayJaiTeaching: Wisdom for Open Ego in Groups"
+      "name": "Forced Strategy",
+      "definition": "Informing is not natural for Manifestors as they are independent",
+      "rayjai_reframe": "Informing removes resistance/roadblocks to act from peace"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Neutral State Achievement",
+      "insight": "the goal is always to go to the neutral, because only in the neutral state we achieve the city, which is the gift for the collector, because it's not being a manifestor, is not is no longer a privilege, but it's also a huge responsibility",
+      "context": "Discussing the three dimensions of aura expression (shadow, positive, neutral)",
+      "related_hd_concept": "Three Dimensions of Expression",
+      "trigger_context": "Client feels their presence is heavy or negative",
+      "effect": "Reframe shame about 'heavy' presence into a path toward the signature (City)"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Fragile Energy vs Strong Wall",
+      "insight": "It's not the energy that is strong. The energy itself is very fragile, but it has a strong wall to protect... inside, it's a very fragile and vulnerable",
+      "context": "Explaining the Manifestor aura and why it feels like imposter syndrome",
+      "related_hd_concept": "Repelling Aura",
+      "trigger_context": "Manifestor feels isolated or misunderstood due to their closed aura",
+      "effect": "Normalise the vulnerability behind the 'strong' exterior"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Informing for Peace",
+      "insight": "when you inform you just remove the roadblocks and you act from peace. And that's a very natural state for the manifestor",
+      "context": "Explaining the strategy of Informing",
+      "related_hd_concept": "Forced Strategy",
+      "trigger_context": "Manifestor resists informing because it feels unnatural",
+      "effect": "Grant permission to view informing as a tool for peace rather than submission"
+    },
+    {
+      "type": "HDVoicePattern",
+      "name": "Informing Focus",
+      "phrase": "informing focus not on the process of informing, but what result it gives you",
+      "usage_context": "When advising a Manifestor on how to approach their strategy",
+      "trigger": "Manifestor feels burdened by the need to inform",
+      "avoid_if": "Client is in a state of high emotional overwhelm where logic doesn't land"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor Peace",
+      "definition": "The main theme for manifestors is peace; in a state of that peace, the actions and processes that manifest initiates come with a different quality.",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sacral Energy Distribution",
+      "definition": "Energy is distributed for the day; operates on a daily battery cycle.",
+      "rayjai_reframe": "The world is built for sacrals; they handle the mundane daily tasks."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor Routine",
+      "definition": "A specific, non-negotiable routine for the body, including set sleep times and pre-sleep rest, to preserve energy.",
+      "rayjai_reframe": "Routine is essential because manifestors often do not recognize exhaustion due to surrounding sacral energy."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Tincture Metaphor",
+      "insight": "imagine, let's say you have a bottle, and then you have a tincture, which is the concentrated fluid. This is sacral and this is manifested energy. So knowing where to use that concentrated liquid is key for manifestors",
+      "context": "Explaining the difference in energy quality and usage between Manifestors and Sacrals.",
+      "related_hd_concept": "Manifestor Energy Distribution",
+      "trigger_context": "Manifestors feeling they must do everything themselves because they are 'the best'.",
+      "effect": "Reframe shame/pressure to do mundane tasks by visualizing energy as a concentrated resource for larger goals."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Mundane Task Reframe",
+      "insight": "why are you spending your precious energy on things that the whole sacred world can do and supposed to do in a week or in a month? ... that energy is given to you, not to do the mundane, sacral things, but to actually look at it as a as a precious liquid that is supposed to be distributed, you know, in a longer time frame, or to accumulate, to initiate bigger things",
+      "context": "Addressing the Manifestor tendency to take on all tasks due to perceived superiority.",
+      "related_hd_concept": "Manifestor Energy Distribution",
+      "trigger_context": "Manifestors feeling compelled to handle all details personally.",
+      "effect": "Grant permission to delegate mundane tasks and focus on high-impact initiatives."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Pre-Sleep Rest Protocol",
+      "insight": "Manifesters need that time of resting before going to sleep and night, yes, yes. Like hours, one hour, one hour and half, just sitting there, yes and doing very simple things, reading a book, watching TV with no overwhelming, over stimulating information, anything so rest before sleep is non negotiable.",
+      "context": "Instructions for Manifestor sleep hygiene.",
+      "related_hd_concept": "Manifestor Routine",
+      "trigger_context": "Manifestors staying up late due to unrecognized exhaustion or emotional waves.",
+      "effect": "Normalize the need for a specific rest period to preserve energy for the next cycle."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Manifestor Rest Rule",
+      "rule_type": "DO",
+      "rule": "Have a non-negotiable rest period of 1-1.5 hours before sleep, engaging in low-stimulation activities.",
+      "context": "Nighttime routine for Manifestors.",
+      "rationale": "To preserve energy and allow the body to recover, as Manifestors often do not recognize exhaustion signals."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Manifestor Delegation Rule",
+      "rule_type": "DON'T",
+      "rule": "Do not spend precious energy on mundane tasks that Sacral beings are designed to handle.",
+      "context": "Daily task management and energy allocation.",
+      "rationale": "To ensure energy is accumulated for initiating bigger things rather than being depleted by routine maintenance."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Non-Negotiable",
+      "insight": "So your your non negotiable part is the energy, especially if you are manifest. So if there is an urge to go and do this for other sacred beings, choose manifest. So this is the part that should be non negotiable, because this is where you burn. This is where you develop, God forbid, autoimmune systems, autoimmune diseases, because the anger that is there, you know, it eventually will turn inwards, not only outwards.",
+      "context": "Discussing Zeina's tendency to overwhelm herself by doing her team's work to prove competence.",
+      "related_hd_concept": "Energy Type Priority",
+      "trigger_context": "Client expresses guilt or pressure to 'do it better' or 'show them how things are done' despite having a team.",
+      "effect": "Reframe shame around delegation; grant permission to prioritize energy conservation over proving worth; warn of physical consequences (autoimmune) of ignoring energy type."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "3/5 Experimentation Context",
+      "insight": "the three five calls for experimenting, trying themselves... the world has 12% of the whole population, three five... the world has enough of three five to go and do that, trial and experiment, and the sacral ones have enough energy to try much more things than a manifestor does.",
+      "context": "Explaining the 3/5 profile's drive to experiment and why Zeina shouldn't feel solely responsible for all trials.",
+      "related_hd_concept": "3/5 Profile",
+      "trigger_context": "Client feels the need to personally verify or redo tasks to ensure quality.",
+      "effect": "Normalise the 3/5 drive to experiment; reframe the client's specific burden by contextualizing it within the broader population and energy type differences."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Manifestor Energy",
+      "definition": "A mix of Mars (fire) and Earth energy; associated with masculine traits in modern conditioning; requires preserving energy and choosing one invitation from many.",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Body as Energy Source",
+      "definition": "The body is the only source that carries energy; the mind does not generate energy. Future plans to rest are an illusion/myth.",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sacral World Expectation",
+      "definition": "The constant expectation to respond and reply, which is the entire exercise for Sacral types but a source of exhaustion for Manifestors who shut the gate.",
+      "rayjai_reframe": null
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teachings on Manifestor Rules",
+      "insight": "learn to soften the edges and inform, not to change your authenticity... create non negotiable rules that exist only for you... create your own rules, nobody can tell you... I always choose my body, because it's only the body that carries energy. There is no other source. The mind doesn't generate energy.",
+      "context": "Advising Manifestors on how to handle societal conditioning and energy management.",
+      "related_hd_concept": "Manifestor Resistance",
+      "trigger_context": "Manifestors feeling resistance to external rules or societal expectations.",
+      "effect": "Grant permission to create personal rules and reframe the source of energy to the body."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teachings on Earth Energy",
+      "insight": "they have to remember there is earth energy as well. And living from the space of Earth is like, okay, there are 10 invitations or things that I'm called to respond, and I choose only one.",
+      "context": "Balancing the fire energy of Manifestors with Earth energy to manage invitations.",
+      "related_hd_concept": "Manifestor Energy",
+      "trigger_context": "Manifestors feeling overwhelmed by multiple invitations or expectations.",
+      "effect": "Reframe the approach to invitations as a choice of one rather than a response to all."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Manifestor Rule: Create Own Rules",
+      "rule_type": "DO",
+      "rule": "Create your own non-negotiable rules and follow them.",
+      "context": "Manifestors in social or professional settings where external rules are imposed.",
+      "rationale": "To avoid natural resistance, burning, and crashing that occurs when Manifestors are told what to do."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Manifestor Rule: Choose Body",
+      "rule_type": "DO",
+      "rule": "Always choose your body, as it is the only source of energy.",
+      "context": "When making decisions about rest, work, or future planning.",
+      "rationale": "The mind does not generate energy; relying on future plans to rest is an illusion."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Fear of Missing Out (FOMO)",
+      "definition": "The conditioned fear of being an outsider or missing out on group energy, often triggered by the Manifestor's need to inform rather than respond.",
+      "rayjai_reframe": "It is a real fear, but it dissipates when you organize your life around embodying your aura."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Aura Precedes Presence",
+      "insight": "the aura is what enters before you physically enter, right? So that alignment to that naturally, now that it's in your consciousness, naturally will start to lead.",
+      "context": "Discussing how Manifestors should prioritize their energy over social conditioning.",
+      "related_hd_concept": "Manifestor Aura",
+      "trigger_context": "Fear of being an outsider or needing to make effort to maintain bonds.",
+      "effect": "Reframe shame and normalize the Manifestor's natural isolation/impact."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Deconditioning Fades Fear",
+      "insight": "As you decondition the resistance and the fear does fade away, because there's something that happens when you start to organize your life around embodying your aura... that fear of either keeping up or having to respond, or. even losing certain relationships, it does dissipate.",
+      "context": "Addressing the fear of losing relationships or not keeping up with group dynamics.",
+      "related_hd_concept": "Deconditioning",
+      "trigger_context": "Anxiety about social bonds and group participation.",
+      "effect": "Grant permission to let go of bonds that do not align with the aura."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sovereignty Over Bonds",
+      "insight": "However, I go back to what's sovereign for me, and that's the manifestor auras... what comes first? the aura is what enters before you physically enter",
+      "context": "Rayjai discussing his own relational nature (4th line) vs. his Manifestor strategy.",
+      "related_hd_concept": "Manifestor Aura",
+      "trigger_context": "Conflict between relational needs and Manifestor energy.",
+      "effect": "Normalize prioritizing aura over social expectations."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "RayJai-Teaching-Not-Rational",
+      "insight": "it's never rational. And we'llget to the how",
+      "context": "Responding to Zeina's question about whether decision-making is based on rational thinking or instinct.",
+      "related_hd_concept": "Rational Thinking vs Instinct",
+      "trigger_context": "Client questioning the validity of their non-rational decision process.",
+      "effect": "normalise"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Rational Thinking vs Instinct",
+      "definition": "The distinction between using logical reasoning to convince oneself versus listening to instinct or external narratives.",
+      "rayjai_reframe": "RayJai asserts that the process is 'never rational', implying a shift away from logical justification toward a different mode of understanding."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Root Pressure Projection",
+      "insight": "So what happens when people have roots and they're defined, they usually have that physical pressure inside of them, and they project it out towards some people who have their root center open... So being mindful that sometimes you can bring that physical pressure to others who are not supposed to feel that physical pressure because their boots and things open.",
+      "context": "Explaining how defined root centers impact open root centers",
+      "related_hd_concept": "Root Center",
+      "trigger_context": "Client discussing their defined root center",
+      "effect": "Grant permission to recognize the impact of one's energy on others"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Open Sacral Amplification",
+      "insight": "So what happens your sacral, your open sacral, amplifies frustration and adds another layer of anger to your own anger. So since 77% of the world sacred manifestors need to learn to be mindful of their sacral energy",
+      "context": "Explaining the interaction between open sacral and defined sacral energies",
+      "related_hd_concept": "Sacral Center",
+      "trigger_context": "Client discussing their open sacral center",
+      "effect": "Reframe shame about absorbing others' frustration as a mechanical design feature"
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Release Physical Pressure",
+      "rule_type": "DO",
+      "rule": "Move workout routine to the second half of the day or do physical pressure release movement before unwind time",
+      "context": "For Manifestors with defined root and open sacral",
+      "rationale": "To discharge accumulated tension and improve sleep quality"
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Mindful of Sacral Energy",
+      "rule_type": "DO",
+      "rule": "Be mindful of sacral energy when around sacral beings in frustration phase",
+      "context": "For Manifestors with open sacral",
+      "rationale": "To prevent amplification of frustration and anger"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Sacral Abundance",
+      "definition": "The Sacral center governs life force, abundance, and sexual pleasure. It contains energy, whereas Manifestors can overindulge due to their intense internal fire.",
+      "rayjai_reframe": "Sacral energy is contained; Manifestor energy is amplified and intense."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Vulnerability Reframe",
+      "insight": "It's not sad. It's amplified. It's just knowing that, for example, I have a certain battery, so you take that pattern my battery, and you amplify it so you don't need it all the time. It will exhaust you all the time, because when, when you use it, which is a bore of the energy, you use it far way deeper and stronger and intense than I would ever use it.",
+      "context": "Discussing the interaction between Manifestor and Sacral energy, specifically regarding indulgence and exhaustion.",
+      "related_hd_concept": "Manifestor Vulnerability",
+      "trigger_context": "When a Manifestor feels exhausted or addicted to pleasure/food/sex due to proximity to Sacral energy.",
+      "effect": "Normalise the need for external framework and reframe reliance on others as amplification rather than weakness."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manifestor Style Distinction",
+      "insight": "manifesting knows where they need to be unapologetically, exactly yes, because that's the style. It's not a projector that you know does it softly and gently.",
+      "context": "Contrasting Manifestor energy with Projector energy in social gatherings.",
+      "related_hd_concept": "Manifestor",
+      "trigger_context": "When a Manifestor feels pressure to be soft or gentle like a Projector.",
+      "effect": "Grant permission to be direct and unapologetic."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Manifestor Indulgence Rule",
+      "rule_type": "DO",
+      "rule": "Be mindful of time spent around sacral activities (sex, food, indulgence) and set a framework to prevent overindulgence and exhaustion.",
+      "context": "When a Manifestor is in a relationship with a Sacral or participating in high-sacral-energy activities like ecstatic dance.",
+      "rationale": "Manifestors have intense internal fire that can lead to addiction to pleasure and overeating if not managed, unlike Sacrals who contain energy."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Projector Gathering Rule",
+      "rule_type": "DO",
+      "rule": "If there is a gathering, you are the first to leave even when you don't want to.",
+      "context": "Social gatherings for Projectors.",
+      "rationale": "To prevent energy depletion and maintain the Projector's strategy of waiting for invitation and preserving energy."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Judgment Channel Misapplication",
+      "definition": "The judgment channel's gift of improvement can be misapplied to personal relationships or children, treating them as things to improve rather than accepting them as they are.",
+      "rayjai_reframe": "If the right outlet is not found, the energy gets stuck in the body or projected onto partners/children."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Sacral Rest Instruction",
+      "insight": "learning when to rest from sacral even if you have close relationships, sleep in your own aura, so that sacred, the sacral center of your partner doesn't exhaust you even during sleep",
+      "context": "Gulnar discussing her open sacral and the impact of partner's sacral energy.",
+      "related_hd_concept": "Sacral Amplification",
+      "trigger_context": "Feeling exhausted or overly stimulated by partner's sacral energy.",
+      "effect": "Grants permission to rest and protects the open sacral from external amplification."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Judgment Outlet Warning",
+      "insight": "if you don't find the right outlet for the judgment channel, you start treating kids as something to improve. So your former partners went subconsciously project for judgment channel",
+      "context": "Gulnar discussing the judgment channel's intense energy and its potential misapplication in relationships.",
+      "related_hd_concept": "Judgment Channel Misapplication",
+      "trigger_context": "Relationships or parenting where the client feels the need to 'fix' or 'improve' the other person.",
+      "effect": "Normalizes the struggle and reframes the behavior as a channel misapplication rather than a character flaw."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Sleep in Own Aura",
+      "rule_type": "DO",
+      "rule": "Sleep in your own aura to prevent the partner's sacral center from exhausting you.",
+      "context": "For individuals with open sacral centers living with defined sacral partners.",
+      "rationale": "Prevents the amplification of sacral energy during rest, allowing the body to offload residuum."
+    },
+    {
+      "type": "HDCenter",
+      "name": "Sacred Center",
+      "center_name": "Sacred Center",
+      "defined_or_open": "Undefined",
+      "function": "Most important center in the voice graph"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Emotional Wave Surfing",
+      "insight": "I always tell people with emotional center to find... I always go go watch how surface surf. They wait for the big wave, then they ride it and have a four year. Then the rest of the time they wait.",
+      "context": "Explaining how to navigate the Emotional Center's drive",
+      "related_hd_concept": "Emotional Waves",
+      "trigger_context": "Confusion about emotional reactions vs. internal biochemical processes",
+      "effect": "Normalise the waiting period and grant permission to ride the peak rather than react to every trigger"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Emotional Wave Cycle",
+      "definition": "A cycle where the same external situation is experienced through high (optimistic/joyful), low (depressive/hating), and neutral (clarity) waves",
+      "rayjai_reframe": "The neutral wave is the window of opportunity to make a decision, not the high or low"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Solar Plexus Unpredictability",
+      "definition": "The solar plexus is a 'crazy driver' that is not predictable and has no predictable pattern",
+      "rayjai_reframe": "This unpredictability is the reason to accept the right and unpredictability of life cycles"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Emotional Clarity Window",
+      "insight": "So then that become becomes a neutral when there is no high and there is no law, and this is the moment of clarity, and this is the window of opportunity to make a decision. So the emotional authority never makes a decision in the now.",
+      "context": "Explaining how to make decisions with Emotional Authority",
+      "related_hd_concept": "Emotional Wave Cycle",
+      "trigger_context": "Client asking how to make practical/rational solutions or decisions",
+      "effect": "Reframe shame/urgency; grant permission to wait for clarity"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Solar Plexus as Awareness",
+      "insight": "you always make from the body, and the body is is written by a crazy driver called solar plexus. Is he predictable? Does he have predictable pattern? And that's why solar plexus becomes awareness sense. It becomes a reason to accept the right and unpredictability of life cycles.",
+      "context": "Explaining the nature of the Solar Plexus center",
+      "related_hd_concept": "Solar Plexus Unpredictability",
+      "trigger_context": "Client seeking predictability or control over emotions",
+      "effect": "Normalise unpredictability; reframe chaos as a feature for awareness"
+    },
+    {
+      "type": "HDChannel",
+      "name": "Channel 49/14",
+      "gate_1": "Gate 49",
+      "gate_2": "Gate 14",
+      "theme": "Drives emotional bonds, creates framework for requirements, emotional clarity"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Empathy Amplification",
+      "definition": "People with an open emotional center become strong empaths who feel others' emotions amplified.",
+      "rayjai_reframe": "Knowing what people feel because you feel it amplified."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching on Emotional Waves vs Reactions",
+      "insight": "don't be attached to the idea of starting to apply that whole tomorrow, because first is to become aware what is that wave, and learn to segregate them from the human reactions of anger, frustration, whatever, grief. Because these are not this. This are not that. These are emotional waves, and you feel them in the body.",
+      "context": "Discussing the processing time required for emotions and distinguishing them from reactive states.",
+      "related_hd_concept": "Emotional Waves",
+      "trigger_context": "Client asking about applying emotional processing immediately or feeling stuck in negative emotions.",
+      "effect": "Normalise the delay in processing and reframe emotional states as distinct from reactive behaviors."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching on Open Center Empathy",
+      "insight": "So people with an open emotional center become very strong empaths, because we know what people feel, because we feel it amplified.",
+      "context": "Explaining the impact of an open emotional center on interpersonal dynamics.",
+      "related_hd_concept": "Empathy Amplification",
+      "trigger_context": "Client feeling overwhelmed by others' emotions or questioning their sensitivity.",
+      "effect": "Grant permission to feel strongly and reframe sensitivity as a strength (empathy)."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching on Informing During Low Waves",
+      "insight": "So the best thing is to inform. I'm my emotional weight. So things are very like through the dirty window. So for me, the knowledge was the wisdom was to learn not to go into deeper things than those, but wait for that clarity.",
+      "context": "Advice on how to interact with others when one is in a low emotional wave.",
+      "related_hd_concept": "Emotional Waves",
+      "trigger_context": "Client in a low emotional state wanting to have deep conversations or make decisions.",
+      "effect": "Grant permission to withdraw from deep engagement and reframe waiting as wisdom."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Teaching on Channel 49/14 and Community",
+      "insight": "emotional clarity is key, because your emotional clarity impacts the community... finding those moments of clarity and bringing them into the community around them, and this is where you can inspire through those emotional bonds the community, to build a community around shared needs and mutual respect.",
+      "context": "Discussing the specific channel 49/14 and its role in bonding and community building.",
+      "related_hd_concept": "Emotional Clarity",
+      "trigger_context": "Client asking about their role in relationships or community.",
+      "effect": "Reframe personal emotional clarity as a tool for community building and mutual respect."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Rule: Inform During Low Wave",
+      "rule_type": "DO",
+      "rule": "Inform others that you are in your emotional weight/low wave and avoid deep conversations.",
+      "context": "When experiencing a low emotional wave.",
+      "rationale": "Prevents dense energy exchange and allows for clarity to return."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Rule: Wait for Clarity",
+      "rule_type": "DO",
+      "rule": "Wait for the emotional wave to pass and clarity to return before making decisions or engaging deeply.",
+      "context": "When in a low emotional state.",
+      "rationale": "Ensures decisions are made from a place of wisdom rather than reaction."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Emotional Energy Flow",
+      "insight": "Imagine you being an emotional manifester and sending that energy. Look where your emotional center is actually putting all the energy. It's not going up. For example, a lot of times emotional center is directly connected to their throat. But in your case, you have split definition... So all that power, intense charge of emotional manifested goes directly into the root center drives safety and container for people around us.",
+      "context": "Explaining the client's energy flow due to split definition.",
+      "related_hd_concept": "Split Definition",
+      "trigger_context": "Client expressing frustration about not being accepted in low energy states.",
+      "effect": "Reframe shame about low energy as a source of safety and container for others."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Values and Emotions",
+      "insight": "We connect to people through values. We connect to people through emotions. We'll say, He is my person because he has the same arms. Like the other day, Ray was talking about our mutual acquaintance, and he's like, maybe I will learn to accept his value, to study despise him. No, he won't, because we work with people through emotional values as well, and that's very important to honor.",
+      "context": "Discussing how community bonds are formed.",
+      "related_hd_concept": "Community Values",
+      "trigger_context": "Client discussing community dynamics and personal relationships.",
+      "effect": "Normalise the emotional basis of social bonds and grant permission to honor emotional connections over logical ones."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ambassador of Clarity",
+      "insight": "So imagine you are that Ambassador of emotional clarity to help people understand what are the values that bring them together. And if you're emotionally disturbed and you don't have that clarity, you bring that cows into the community.",
+      "context": "Defining the client's role in their community.",
+      "related_hd_concept": "Emotional Clarity",
+      "trigger_context": "Client feeling frustrated about their role in the community.",
+      "effect": "Grant permission to prioritize emotional clarity and reframe the client's role as essential for community stability."
+    },
+    {
+      "type": "HDChannel",
+      "name": "Channel 58-18",
+      "gate_1": "Gate 58",
+      "gate_2": "Gate 18",
+      "theme": "Judgment, improvement from the space of joy, collective inspiration"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Spleen Intuition vs Emotional Clarity",
+      "insight": "Intuition not like the deeper noise. It's almost an intention to survive. So it's a gazelle that is in wild nature and feels the line before the line even appears in front of the gazelle. So the gazelle startles and run away. Runs away. This is when the immune system gets actively activated in this so it's an, it's it's a very in the moment in the now, don't, don't confuse it with the with emotional clarity that needs a proper window to make a decision.",
+      "context": "Explaining the function of the Spleen Center and its distinction from the Emotional Center",
+      "related_hd_concept": "Spleen Center Function",
+      "trigger_context": "Confusion between survival instinct and emotional decision making",
+      "effect": "Reframe shame/confusion by distinguishing immediate survival intuition from processed emotional clarity"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Spleen Center Defined Behavior",
+      "definition": "People with spleen center defined will not be natural huggers with random people... there is always that energetic distance. There is always being aware so, but it's also our, our our support system. So we are energetically more protected than people who doesn't have exactly yes.",
+      "rayjai_reframe": "Your voice is almost like a protection shield of our own immune system. It's like your bacteria is your bacteria. My bacteria is my bacteria. This is a subconscious play."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Spleen Center Open Behavior",
+      "definition": "People open splint center actually upgrade healers of the body, and they like to touch other bodies because their open center, spleen center, has a sensation and understanding how the other immune system works, and they can be amazing Reiki healers, because they have almost inner knowing what diseases are there",
+      "rayjai_reframe": "Open center allows for sensing and healing others' immune systems"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Energy Flow Through Instrument",
+      "definition": "The self is like a hollow music instrument. The sound (energy/gift) is beautiful because it travels through. If the instrument thinks the sound belongs to it (is not hollow), the sound doesn't go through it.",
+      "rayjai_reframe": "You belong to life. You belong to the Divine Source and everything you have, it's the energy that flows freely without obstacle."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Three Elements of Judgment Channel",
+      "insight": "The three key elements... the right time for a manifest... the right time is key for judgment channel... The second element is optimism... the feedback, has to be presented, not as a critic, but from the space of optimism. And the third element is care.",
+      "context": "Explaining how to use the Judgment Channel effectively without being misunderstood or judgmental.",
+      "related_hd_concept": "Judgment Channel",
+      "trigger_context": "When a user is worried about being perceived as harsh or judgmental when giving feedback.",
+      "effect": "Normalises the difficulty of the channel and provides a concrete framework (Timing, Optimism, Care) to reframe the intent from criticism to nurturing improvement."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Detachment and Gift",
+      "insight": "So this is where you get detached, and it's yours, because it's a gift through you, not yours. And this is where the optimism and caring comes you say, Wow, life gifted me this channel so I can share with others. It does not belong to me. Just goes through me.",
+      "context": "Addressing the ego attachment to one's own gifts or feedback.",
+      "related_hd_concept": "Energy Flow Through Instrument",
+      "trigger_context": "When a user feels ownership over their insights or feels possessive about their role in someone else's growth.",
+      "effect": "Reframes shame/ego attachment into a sense of service and flow, granting permission to let go of control."
+    },
+    {
+      "type": "Person",
+      "name": "Speaker 8",
+      "role": "client",
+      "hd_type": "Ego Center Defined"
+    },
+    {
+      "type": "Person",
+      "name": "Rayjai's Ex",
+      "role": "reference",
+      "hd_type": "Ego Manifestor"
+    },
+    {
+      "type": "HDType",
+      "name": "Ego Manifestor",
+      "type_name": "Ego Manifestor",
+      "strategy": "Manifestor Strategy",
+      "not_self_theme": "N/A",
+      "signature": "N/A"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Willpower Not Daily",
+      "insight": "The willpower is not the energy we are supposed to apply daily... It's not meant to be applied daily... Yes, we have it defined. No, it's not for daily use.",
+      "context": "Explaining the function of the Ego Center to clients who have it defined.",
+      "related_hd_concept": "Willpower Energy",
+      "trigger_context": "Client asks about using Ego Center energy in daily life.",
+      "effect": "Normalise the limitation of the energy, prevent burnout, reframe shame about not being able to sustain high energy daily."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Ego Center Metaphor",
+      "insight": "Let's say for a professional athlete, it's Olympic Games. Doesn't happen daily, but he knows he accumulates that energy.",
+      "context": "Illustrating when to use Ego Center energy.",
+      "related_hd_concept": "Willpower Energy",
+      "trigger_context": "Client struggles with when to apply willpower.",
+      "effect": "Reframe the usage context to specific, high-stakes events rather than daily grind."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Ego Center Daily Use Warning",
+      "definition": "The Ego Center is not designed for daily use; using it consistently leads to exhaustion and erratic conditions.",
+      "rayjai_reframe": "Choose your battles; leave from other centers that are open."
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open Ego Center Group Dynamic",
+      "definition": "People with open Ego Centers may agree to commitments in group settings (amplification) but lack the capacity to follow through individually.",
+      "rayjai_reframe": "Recognize the difference between group amplification and individual capacity."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Managerial Wisdom for Open Ego",
+      "insight": "take your time. Think if you can, because I know it's beyond our daily capacity.",
+      "context": "Managing colleagues with open Ego Centers who agree to tasks in brainstorming but cannot execute.",
+      "related_hd_concept": "Open Ego Center Group Dynamic",
+      "trigger_context": "Team members agree to tasks in group settings but lack individual capacity.",
+      "effect": "Reframes the refusal as a capacity issue rather than a lack of will, granting permission to decline."
+    },
+    {
+      "type": "HDVoicePattern",
+      "name": "Capacity Check Phrase",
+      "phrase": "Are you sure go back, think and come back?",
+      "usage_context": "When someone with an open Ego Center agrees to a commitment in a group setting.",
+      "trigger": "Group agreement that may not translate to individual execution.",
+      "avoid_if": "The person has a defined Ego Center and is in a state of high willpower."
+    },
+    {
+      "type": "Person",
+      "name": "Ex-Partner",
+      "role": "client",
+      "hd_type": null
+    },
+    {
+      "type": "HDConcept",
+      "name": "Contradicting Gates",
+      "definition": "Two gates in a channel that have opposing energies (Manager vs Owner), requiring navigation to find harmony.",
+      "rayjai_reframe": "It is more harmonious when two different individuals carry those two gates, making a deal: you control my property, I own the property."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Tribal Refrigerator Analogy",
+      "insight": "Imagine a tribe that is isolated from the world and the technology, and one day, the tribe leader brings a refrigerator. The tribe leader owns the refrigerator, but the refrigerator is there for the entire tribe to use. The tribe thrives. He thrives.",
+      "context": "Explaining the Money Channel (21-45) and how it brings prosperity to a group rather than just the individual.",
+      "related_hd_concept": "Tribal Channel",
+      "trigger_context": "Client asking about the nature of the Money Channel.",
+      "effect": "Reframe shame or confusion about 'money' channel into a service-oriented tribal leadership role."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Manager vs Owner Harmony",
+      "insight": "It's much more harmonizing when two different individuals carry those two gates... you control my property. I own the property you manage and bring money to me and to yourself.",
+      "context": "Explaining the challenge of having both Gate 21 and Gate 45 in one person.",
+      "related_hd_concept": "Contradicting Gates",
+      "trigger_context": "Client struggling with the internal conflict between controlling and owning.",
+      "effect": "Normalise the internal conflict by suggesting it is a natural tension between two valid energies."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Relax Body for 21-45",
+      "rule_type": "DO",
+      "rule": "Relax the body, meditation, any relaxing activity works and helps to harmonize this channel.",
+      "context": "When dealing with the control freak aspect of Gate 21 in Channel 21-45.",
+      "rationale": "To allow the fortified gate (Throat) to know when to let control go and let life take over."
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Let Control Go",
+      "rule_type": "DO",
+      "rule": "Allow the fortified game, which is the throat, to know when to let control go and let life take over.",
+      "context": "Navigating the contradicting energies of Gate 21 and Gate 45.",
+      "rationale": "To harmonize the channel and prevent over-stretching the ego center's urge to get things done in limited time."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "G_Center_Fluid_Identity",
+      "insight": "the wisdom is to differentiate that identity is fluid, but love is not outside. It's still inside",
+      "context": "Discussion on the G Center and self-love",
+      "related_hd_concept": "G Center",
+      "trigger_context": "Client struggling with identity or seeking external validation",
+      "effect": "reframe shame"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "G_Center_Conditioning",
+      "insight": "the open G center is quite conditioned to believe love is somewhere outside and needs to be, you know, found outside, to feel that point cell, and also looking for that sense of direction",
+      "context": "Explanation of the open G center's challenges",
+      "related_hd_concept": "G Center",
+      "trigger_context": "Client feeling lost or seeking purpose externally",
+      "effect": "normalise"
+    },
+    {
+      "type": "HDConcept",
+      "name": "Open_G_Center_Conditioning",
+      "definition": "The tendency of an open G center to believe love and identity are found outside and depend on the environment",
+      "rayjai_reframe": "Identity is fluid, but love is inside"
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "G Center Learning Environment",
+      "insight": "It's just me being accepting the idea that the identity is fluid... It's just, it's, it's a learning center in your case, because it's completely open... G Center is a very nurturing center. So if you're around people with G center defined like mind, who you see as a role model of self love, you want to be around them and let your center learn. But if you see people who have G center defined, but they don't, they go to the shadow self, where they think of the self very low and loses you have sense of direction, then you don't want to, because your open center is very sensitive. To that, and you can pick up that energy",
+      "context": "Explaining how an open G center interacts with defined G centers in others.",
+      "related_hd_concept": "Open Center Sensitivity",
+      "trigger_context": "Client asking about belonging and identity.",
+      "effect": "Normalises the sensitivity of open centers and provides a strategy for choosing environments that support self-love."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Overconfidence as Strategy",
+      "insight": "I always used to name it as like, how I used to see myself. Maybe I don't say it overconfident. It's overconfidence. You know, like I'm paving my way through life by being overconfident. Pick it up till you make it you know, that's kind of and this is the beauty of an open G center, because can try something.",
+      "context": "Discussing how to function alone or in relationships with an open G center.",
+      "related_hd_concept": "Fluid Identity",
+      "trigger_context": "Client discussing self-perception and confidence.",
+      "effect": "Reframes 'overconfidence' as a valid strategy for navigating life with an open G center."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Voice_Alignment_Teaching",
+      "insight": "the voice is the most important instrument for a manifested impact their energy, you know? So when we go into the higher notes, the perception of the collective the manifestor speaks through his or her energy, and the voice has to be aligned with that.",
+      "context": "Discussion on the Throat Center's vulnerability and importance for Manifestors.",
+      "related_hd_concept": "Throat Center",
+      "trigger_context": "Manifestors suppressing their voice or feeling vulnerable about speaking.",
+      "effect": "Reframe shame about volume/presence; normalize the need for vocal alignment with energy."
+    },
+    {
+      "type": "RayJaiTeaching",
+      "name": "Empowerment_Not_Speaking_For",
+      "insight": "the Define center is not only to talk on their behalf, but learn to empower them to find their uniqueness.",
+      "context": "Clarifying the role of a defined Throat Center in relation to others.",
+      "related_hd_concept": "Throat Center",
+      "trigger_context": "Manifestors feeling responsible for speaking for others or being relied upon to do so.",
+      "effect": "Grant permission to shift from 'speaking for' to 'empowering'; reframe the burden of being the voice."
+    },
+    {
+      "type": "HDVoicePattern",
+      "name": "Kundalini_Activation",
+      "phrase": "any activities like Kundalini, anything to do with going to Baldi in two weeks",
+      "usage_context": "Activating the voice and connecting to the Motor Center energy.",
+      "trigger": "Feeling suppressed or needing to deepen the voice.",
+      "avoid_if": "Not specified"
+    },
+    {
+      "type": "HDBehaviourRule",
+      "name": "Avoid_Cursing",
+      "rule_type": "DON'T",
+      "rule": "don't cursing",
+      "context": "General advice on voice usage and tone.",
+      "rationale": "Not explicitly stated, but implied as a negative vocal habit to avoid."
     }
   ],
   "edges": [
@@ -9102,7 +9841,7 @@
       "type": "GRANTS_PERMISSION"
     },
     {
-      "from": "RayJaiTeaching: Surfing Analogy",
+      "from": "Surfing Analogy",
       "to": "Emotional Authority",
       "type": "ILLUSTRATES"
     },
@@ -9232,12 +9971,12 @@
       "type": "CONDITIONING_OF"
     },
     {
-      "from": "RayJaiTeaching: Emotional Clarity and Community Values",
+      "from": "Emotional Clarity and Community Values",
       "to": "Emotional Clarity",
       "type": "REFRAMES"
     },
     {
-      "from": "RayJaiTeaching: Emotional Clarity and Community Values",
+      "from": "Emotional Clarity and Community Values",
       "to": "Community Values",
       "type": "TEACHES_THROUGH"
     },
@@ -9397,12 +10136,12 @@
       "type": "FORMS"
     },
     {
-      "from": "RayJaiTeaching: Ego Center Not for Daily Use",
+      "from": "Ego Center Not for Daily Use",
       "to": "Will and Commitment",
       "type": "TEACHES_THROUGH"
     },
     {
-      "from": "RayJaiTeaching: Wisdom for Open Ego in Groups",
+      "from": "Wisdom for Open Ego in Groups",
       "to": "Open Ego Center Conditioning",
       "type": "REFRAMES"
     },
@@ -9600,6 +10339,796 @@
       "from": "Open Head Center",
       "to": "Defined Head Center",
       "type": "BUILDS_ON"
+    },
+    {
+      "from": "RayJai",
+      "to": "Manifestor",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Tribal Channel",
+      "to": "RayJai",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Synthesis Channel",
+      "to": "RayJai",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Emotional Center",
+      "to": "Synthesis Channel",
+      "type": "FORMS"
+    },
+    {
+      "from": "Group Center",
+      "to": "Synthesis Channel",
+      "type": "FORMS"
+    },
+    {
+      "from": "Neutral State Achievement",
+      "to": "Three Dimensions of Expression",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Neutral State Achievement",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Fragile Energy vs Strong Wall",
+      "to": "Repelling Aura",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Fragile Energy vs Strong Wall",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Informing for Peace",
+      "to": "Forced Strategy",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Informing for Peace",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Informing Focus",
+      "to": "Manifestor",
+      "type": "EXPRESSES"
+    },
+    {
+      "from": "Manifestor",
+      "to": "Zeina",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Manifestor Peace",
+      "to": "Manifestor",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Tincture Metaphor",
+      "to": "Manifestor Energy Distribution",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Tincture Metaphor",
+      "to": "Sacral Energy Distribution",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Mundane Task Reframe",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Mundane Task Reframe",
+      "to": "Manifestor Energy Distribution",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Pre-Sleep Rest Protocol",
+      "to": "Manifestor Routine",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Manifestor Rest Rule",
+      "to": "Manifestor",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Manifestor Delegation Rule",
+      "to": "Manifestor",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Sacral Energy Distribution",
+      "to": "Sacral",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Zeina",
+      "to": "3/5",
+      "type": "BELONGS_TO"
+    },
+    {
+      "from": "Zeina",
+      "to": "Emotional Authority",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Manifestor Non-Negotiable",
+      "to": "Energy Type Priority",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Non-Negotiable",
+      "to": "Zeina",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "3/5 Experimentation Context",
+      "to": "3/5",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "3/5 Experimentation Context",
+      "to": "Zeina",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Teachings on Manifestor Rules",
+      "to": "Manifestor Resistance",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teachings on Manifestor Rules",
+      "to": "Body as Energy Source",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Teachings on Earth Energy",
+      "to": "Manifestor Energy",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Rule: Create Own Rules",
+      "to": "Manifestor",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Manifestor Rule: Choose Body",
+      "to": "Manifestor",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Manifestor Rule: Create Own Rules",
+      "to": "Manifestor Resistance",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Manifestor Rule: Choose Body",
+      "to": "Body as Energy Source",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Manifestor Energy",
+      "to": "Manifestor",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Sacral World Expectation",
+      "to": "Manifestor Energy",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Aura Precedes Presence",
+      "to": "Manifestor Aura",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Aura Precedes Presence",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Deconditioning Fades Fear",
+      "to": "Deconditioning",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Deconditioning Fades Fear",
+      "to": "Fear of Missing Out (FOMO)",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Sovereignty Over Bonds",
+      "to": "Manifestor Aura",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Sovereignty Over Bonds",
+      "to": "RayJai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Deconditioning",
+      "to": "Fear of Missing Out (FOMO)",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "RayJai-Teaching-Not-Rational",
+      "to": "Rational Thinking vs Instinct",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "RayJai-Teaching-Not-Rational",
+      "to": "Zeina",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Client",
+      "to": "3/5",
+      "type": "BELONGS_TO"
+    },
+    {
+      "from": "Root Center",
+      "to": "Client",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Sacral Center",
+      "to": "Client",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Camera Metaphor",
+      "to": "Deconditioning",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Camera Metaphor",
+      "to": "Defined Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Camera Metaphor",
+      "to": "Open Centers",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Root Pressure Projection",
+      "to": "Root Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open Sacral Amplification",
+      "to": "Sacral Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Open Sacral Amplification",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Release Physical Pressure",
+      "to": "Root Center",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Mindful of Sacral Energy",
+      "to": "Sacral Center",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Gulnar",
+      "to": "Sacral",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Sacral Center",
+      "to": "Sacral Abundance",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Manifestor Vulnerability",
+      "to": "Manifestor",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Manifestor Vulnerability Reframe",
+      "to": "Manifestor Vulnerability",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Vulnerability Reframe",
+      "to": "RayJai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Manifestor Style Distinction",
+      "to": "Manifestor",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manifestor Indulgence Rule",
+      "to": "Manifestor",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Projector Gathering Rule",
+      "to": "Projector",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Gulnar",
+      "to": "Sacral Center",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Speaker 2",
+      "to": "Emotional Solar Plexus",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Sacral Amplification",
+      "to": "Sacral Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Judgment Channel Misapplication",
+      "to": "Judgment Channel",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Sacral Rest Instruction",
+      "to": "Sacral Amplification",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sacral Rest Instruction",
+      "to": "Gulnar",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Judgment Outlet Warning",
+      "to": "Judgment Channel Misapplication",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Sleep in Own Aura",
+      "to": "Sacral Center",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Emotional Wave Surfing",
+      "to": "Emotional Waves",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Emotional Wave Surfing",
+      "to": "Emotional Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Emotional Authority",
+      "to": "Emotional Center",
+      "type": "DEFINES"
+    },
+    {
+      "from": "Emotional Wave Cycle",
+      "to": "Emotional Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Emotional Clarity Window",
+      "to": "Emotional Wave Cycle",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Emotional Clarity Window",
+      "to": "Emotional Authority",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Solar Plexus as Awareness",
+      "to": "Solar Plexus Unpredictability",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Solar Plexus as Awareness",
+      "to": "Emotional Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Emotional Center",
+      "to": "Ex Business Partner",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "Channel 49/14",
+      "to": "Root Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Channel 49/14",
+      "to": "Solar Plexus Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Teaching on Emotional Waves vs Reactions",
+      "to": "Emotional Waves",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching on Open Center Empathy",
+      "to": "Empathy Amplification",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching on Informing During Low Waves",
+      "to": "Emotional Waves",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Teaching on Channel 49/14 and Community",
+      "to": "Emotional Clarity",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Rule: Inform During Low Wave",
+      "to": "Emotional Waves",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Rule: Wait for Clarity",
+      "to": "Emotional Waves",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Emotional Manifester",
+      "to": "Speaker 2",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Emotional Center",
+      "to": "Throat Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Emotional Center",
+      "to": "Root Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Root Center",
+      "to": "Spleen Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Emotional Energy Flow",
+      "to": "Split Definition",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Emotional Energy Flow",
+      "to": "Speaker 2",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Values and Emotions",
+      "to": "Community Values",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Values and Emotions",
+      "to": "Speaker 2",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Ambassador of Clarity",
+      "to": "Emotional Clarity",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Ambassador of Clarity",
+      "to": "Speaker 2",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Gate 58",
+      "to": "Spleen Center",
+      "type": "DEFINED_IN"
+    },
+    {
+      "from": "Gate 58",
+      "to": "Channel 58-18",
+      "type": "FORMS"
+    },
+    {
+      "from": "Spleen Center",
+      "to": "Channel 58-18",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Root Center",
+      "to": "Channel 58-18",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Spleen Intuition vs Emotional Clarity",
+      "to": "Spleen Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Spleen Intuition vs Emotional Clarity",
+      "to": "Spleen Center Defined Behavior",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Judgment Channel Shadow",
+      "to": "Channel 58-18",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Judgment Channel Shadow",
+      "to": "Gulnar",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Spleen Center Defined Behavior",
+      "to": "Spleen Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Spleen Center Open Behavior",
+      "to": "Spleen Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Three Elements of Judgment Channel",
+      "to": "Judgment Channel",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Three Elements of Judgment Channel",
+      "to": "Judgment Channel",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Detachment and Gift",
+      "to": "Energy Flow Through Instrument",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Detachment and Gift",
+      "to": "Energy Flow Through Instrument",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "Motive Over Form",
+      "to": "Dragon Mother vs Nurturing Mother",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Motive Over Form",
+      "to": "Speaker 2",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Dragon Mother vs Nurturing Mother",
+      "to": "Judgment Channel",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "Energy Flow Through Instrument",
+      "to": "Judgment Channel",
+      "type": "BUILDS_ON"
+    },
+    {
+      "from": "RayJai Babauta",
+      "to": "Ego Center",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Gulnar",
+      "to": "Ego Center",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Speaker 8",
+      "to": "Ego Center",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Rayjai's Ex",
+      "to": "Ego Center",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Rayjai's Ex",
+      "to": "Ego Manifestor",
+      "type": "TYPE_OF"
+    },
+    {
+      "from": "Channel 21-45",
+      "to": "Ego Center",
+      "type": "FORMS"
+    },
+    {
+      "from": "Willpower Energy",
+      "to": "Ego Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Willpower Not Daily",
+      "to": "Willpower Energy",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Willpower Not Daily",
+      "to": "RayJai Babauta",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Ego Center Metaphor",
+      "to": "Willpower Energy",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Ego Center",
+      "to": "Throat Center",
+      "type": "CONNECTS_TO"
+    },
+    {
+      "from": "Ego Center Daily Use Warning",
+      "to": "Ego Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Open Ego Center Group Dynamic",
+      "to": "Ego Center",
+      "type": "PART_OF"
+    },
+    {
+      "from": "Ego Center Not for Daily Use",
+      "to": "Ego Center Daily Use Warning",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Ego Center Not for Daily Use",
+      "to": "Ego Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Managerial Wisdom for Open Ego",
+      "to": "Open Ego Center Group Dynamic",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Managerial Wisdom for Open Ego",
+      "to": "Ego Center",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Capacity Check Phrase",
+      "to": "Open Ego Center Group Dynamic",
+      "type": "EXPRESSES"
+    },
+    {
+      "from": "Channel 21-45",
+      "to": "Gulnar",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Channel 21-45",
+      "to": "Ray",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Channel 21-45",
+      "to": "Ex-Partner",
+      "type": "ACTIVE_IN"
+    },
+    {
+      "from": "Tribal Refrigerator Analogy",
+      "to": "Tribal Channel",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Manager vs Owner Harmony",
+      "to": "Contradicting Gates",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Relax Body for 21-45",
+      "to": "Channel 21-45",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "Let Control Go",
+      "to": "Channel 21-45",
+      "type": "GOVERNS"
+    },
+    {
+      "from": "G Center",
+      "to": "Gulnar",
+      "type": "CONDITIONING_OF"
+    },
+    {
+      "from": "G_Center_Fluid_Identity",
+      "to": "G Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "G_Center_Fluid_Identity",
+      "to": "Open_G_Center_Conditioning",
+      "type": "REFRAMES"
+    },
+    {
+      "from": "G_Center_Conditioning",
+      "to": "G Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "G_Center_Conditioning",
+      "to": "Open_G_Center_Conditioning",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "G Center",
+      "to": "Fluid Identity",
+      "type": "PART_OF"
+    },
+    {
+      "from": "G Center Learning Environment",
+      "to": "G Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "G Center Learning Environment",
+      "to": "Open Center Sensitivity",
+      "type": "TEACHES_THROUGH"
+    },
+    {
+      "from": "Overconfidence as Strategy",
+      "to": "Fluid Identity",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Overconfidence as Strategy",
+      "to": "G Center",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Voice_Alignment_Teaching",
+      "to": "Throat Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Voice_Alignment_Teaching",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Empowerment_Not_Speaking_For",
+      "to": "Throat Center",
+      "type": "ILLUSTRATES"
+    },
+    {
+      "from": "Empowerment_Not_Speaking_For",
+      "to": "Manifestor",
+      "type": "GRANTS_PERMISSION"
+    },
+    {
+      "from": "Avoid_Cursing",
+      "to": "Manifestor",
+      "type": "GOVERNS"
     }
   ]
 }

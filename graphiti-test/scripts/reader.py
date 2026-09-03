@@ -30,7 +30,6 @@ Prerequisites for full RAG mode:
 """
 
 import json
-import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -40,6 +39,7 @@ import anthropic
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
+from anthropic_chat import CYPHER_MODEL, SYNTHESIS_MODEL, get_client
 from embed_utils import embed_text
 
 # ---------------------------------------------------------------------------
@@ -52,8 +52,7 @@ NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "password"
 
-CYPHER_MODEL = "claude-haiku-4-5"
-SYNTHESIS_MODEL = "claude-sonnet-4-6"
+# Model IDs are centralised in anthropic_chat.py (CYPHER_MODEL, SYNTHESIS_MODEL).
 
 TEACHING_INDEX = "rayjai_teaching_embedding"
 VOICE_INDEX = "hdvoice_embedding"
@@ -399,11 +398,7 @@ def main() -> None:
 
     debug = "--debug" in sys.argv
 
-    api_key = os.getenv("ANTHROPIC_API_KEY")
-    if not api_key:
-        raise SystemExit("Error: ANTHROPIC_API_KEY environment variable is not set.")
-
-    client = anthropic.Anthropic(api_key=api_key)
+    client = get_client()
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
     print("The Reader — Ask anything about Human Design")
