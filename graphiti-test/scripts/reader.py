@@ -22,7 +22,10 @@ Usage:
   python scripts/reader.py --debug   # prints retrieval details, saves a log
 
 Environment:
-  ANTHROPIC_API_KEY — required (.env in project root is loaded automatically)
+  ANTHROPIC_API_KEY       — required (.env in project root is loaded automatically)
+  LANGFUSE_PUBLIC_KEY     — optional; with LANGFUSE_SECRET_KEY, each question is
+  LANGFUSE_SECRET_KEY       traced to local Langfuse (embed → retrieve → synthesise)
+  LANGFUSE_BASE_URL       — default http://localhost:3100 (docker-compose.langfuse.yml)
 
 Prerequisites for full RAG mode:
   - Run scripts/load_graph.py then scripts/embed_graph.py
@@ -32,15 +35,16 @@ Prerequisites for full RAG mode:
 import json
 import re
 import sys
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-import anthropic
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
 
-from anthropic_chat import CYPHER_MODEL, SYNTHESIS_MODEL, get_client
-from embed_utils import embed_text
+from anthropic_chat import CYPHER_MODEL, SYNTHESIS_MODEL, complete, get_client
+from embed_utils import EMBED_MODEL, embed_text
+from langfuse_tracing import flush, get_langfuse, observe, propagate_attributes
 
 # ---------------------------------------------------------------------------
 # Config
@@ -95,11 +99,20 @@ If the teachings don't contain enough to answer, say "I haven't spoken about thi
 # Question embedding (graceful if Ollama is down)
 # ---------------------------------------------------------------------------
 
+@observe(name="embed-question", as_type="embedding", capture_input=False, capture_output=False)
 def safe_embed(question: str, debug: bool) -> list[float] | None:
     """Embed the question, or return None (so retrieval falls back to keyword)."""
+    lf = get_langfuse()
+    lf.update_current_generation(input=question, model=EMBED_MODEL)
     try:
-        return embed_text(question)
+        vector = embed_text(question)
+        lf.update_current_generation(output={"dimensions": len(vector)})
+        return vector
     except Exception as exc:  # noqa: BLE001
+        lf.update_current_generation(
+            output={"error": str(exc)},
+            metadata={"fallback": "keyword"},
+        )
         if debug:
             print(f"  [embed unavailable — falling back to keyword search] {exc}")
         return None
@@ -108,14 +121,14 @@ def safe_embed(question: str, debug: bool) -> list[float] | None:
 # Legacy fallback — Claude-generated Cypher + keyword search
 # ---------------------------------------------------------------------------
 
-def generate_cypher(client: anthropic.Anthropic, question: str) -> str:
-    message = client.messages.create(
+def generate_cypher(question: str) -> str:
+    raw = complete(
+        CYPHER_SYSTEM,
+        question,
         model=CYPHER_MODEL,
         max_tokens=512,
-        system=CYPHER_SYSTEM,
-        messages=[{"role": "user", "content": question}],
+        name="generate-cypher",
     )
-    raw = message.content[0].text.strip()
     raw = re.sub(r"^```[a-zA-Z]*\n?", "", raw)
     raw = re.sub(r"\n?```$", "", raw)
     return raw.strip()
@@ -146,10 +159,10 @@ RETURN r.name AS name, r.insight AS insight, r.context AS context,
 LIMIT 20"""
 
 
-def legacy_content(driver, client, question, debug) -> list[dict]:
+def legacy_content(driver, question, debug) -> list[dict]:
     """Old path: LLM-generated Cypher, then keyword CONTAINS fallback."""
     try:
-        cypher = generate_cypher(client, question)
+        cypher = generate_cypher(question)
         if debug:
             print(f"  [fallback Cypher]\n{cypher}\n")
         with driver.session() as session:
@@ -200,10 +213,14 @@ LIMIT $limit
 """
 
 
-def retrieve_content(driver, client, question, qvec, debug) -> tuple[list[dict], str]:
+@observe(name="retrieve-content", as_type="retriever", capture_input=False, capture_output=False)
+def retrieve_content(driver, question, qvec, debug) -> tuple[list[dict], str]:
     """
     Return (teachings, mode). mode is "vector" for RAG or "keyword" for fallback.
     """
+    lf = get_langfuse()
+    lf.update_current_span(input={"question": question})
+
     if qvec is not None:
         try:
             with driver.session() as session:
@@ -227,6 +244,10 @@ def retrieve_content(driver, client, question, qvec, debug) -> tuple[list[dict],
             rows = _dedupe_by_name(anchors + expanded)[:MAX_TEACHINGS]
             rows = [_strip_score(r) for r in rows]
             if rows:
+                lf.update_current_span(
+                    output=_retrieval_output(rows, "vector"),
+                    metadata={"mode": "vector", "anchor_k": ANCHOR_K},
+                )
                 return rows, "vector"
             if debug:
                 print("  [vector search returned nothing — using fallback]")
@@ -234,7 +255,20 @@ def retrieve_content(driver, client, question, qvec, debug) -> tuple[list[dict],
             if debug:
                 print(f"  [vector search unavailable — using fallback] {exc}")
 
-    return legacy_content(driver, client, question, debug), "keyword"
+    rows = legacy_content(driver, question, debug)
+    lf.update_current_span(
+        output=_retrieval_output(rows, "keyword"),
+        metadata={"mode": "keyword"},
+    )
+    return rows, "keyword"
+
+
+def _retrieval_output(rows: list[dict], mode: str) -> dict:
+    return {
+        "mode": mode,
+        "count": len(rows),
+        "names": [r.get("name") or "" for r in rows],
+    }
 
 
 def _dedupe_by_name(rows: list[dict]) -> list[dict]:
@@ -290,7 +324,11 @@ RETURN 'HDToneProfile' AS node_type, t.name AS name, t.instruction AS content, t
 LIMIT 3"""
 
 
+@observe(name="retrieve-voice", as_type="retriever", capture_input=False, capture_output=False)
 def retrieve_voice(driver, question, qvec, debug) -> tuple[list[dict], str]:
+    lf = get_langfuse()
+    lf.update_current_span(input={"question": question})
+
     if qvec is not None:
         try:
             with driver.session() as session:
@@ -305,6 +343,10 @@ def retrieve_voice(driver, question, qvec, debug) -> tuple[list[dict], str]:
                 for r in rows
             ]
             if rows:
+                lf.update_current_span(
+                    output=_retrieval_output(rows, "vector"),
+                    metadata={"mode": "vector"},
+                )
                 return rows, "vector"
         except Exception as exc:  # noqa: BLE001
             if debug:
@@ -314,10 +356,15 @@ def retrieve_voice(driver, question, qvec, debug) -> tuple[list[dict], str]:
     try:
         with driver.session() as session:
             rows = session.run(BEHAVIOUR_QUERY, keyword=keyword).data()
+        lf.update_current_span(
+            output=_retrieval_output(rows, "keyword"),
+            metadata={"mode": "keyword", "keyword": keyword},
+        )
         return rows, "keyword"
     except Exception as exc:  # noqa: BLE001
         if debug:
             print(f"  [behaviour query error] {exc}")
+        lf.update_current_span(output=_retrieval_output([], "keyword"))
         return [], "keyword"
 
 # ---------------------------------------------------------------------------
@@ -352,19 +399,19 @@ def format_behaviour_context(results: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def synthesise(client, question, teachings, behaviour_context) -> str:
+def synthesise(question, teachings, behaviour_context) -> str:
     user_content = (
         f"BEHAVIOUR CONTEXT FROM GRAPH:\n{behaviour_context}\n\n"
         f"TEACHINGS FROM THE GRAPH:\n{teachings}\n\n"
         f"USER QUESTION: {question}"
     )
-    message = client.messages.create(
+    return complete(
+        SYNTHESIS_SYSTEM,
+        user_content,
         model=SYNTHESIS_MODEL,
         max_tokens=1024,
-        system=SYNTHESIS_SYSTEM,
-        messages=[{"role": "user", "content": user_content}],
+        name="synthesise-answer",
     )
-    return message.content[0].text.strip()
 
 # ---------------------------------------------------------------------------
 # Debug logging
@@ -389,6 +436,48 @@ def log_interaction(question, retrieval_mode, results, response) -> None:
     with _LOG_FILE.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
+
+# ---------------------------------------------------------------------------
+# One-turn pipeline (used by the interactive loop and eval_reader.py)
+# ---------------------------------------------------------------------------
+
+@observe(name="answer-question", capture_input=False, capture_output=False)
+def answer_question(driver, question: str, *, debug: bool = False) -> dict:
+    """
+    Run the hybrid RAG pipeline for one question.
+
+    Returns a dict with answer, retrieved teachings/voice, and retrieval modes
+    so Langfuse evaluators can score faithfulness against the actual context.
+    """
+    lf = get_langfuse()
+    lf.update_current_span(input={"question": question})
+
+    qvec = safe_embed(question, debug)
+    results, content_mode = retrieve_content(driver, question, qvec, debug)
+    behaviour_results, voice_mode = retrieve_voice(driver, question, qvec, debug)
+
+    teachings = format_teachings(results)
+    behaviour_context = format_behaviour_context(behaviour_results)
+    response = synthesise(question, teachings, behaviour_context)
+
+    lf.update_current_span(
+        output={"answer": response},
+        metadata={
+            "content_mode": content_mode,
+            "voice_mode": voice_mode,
+            "teaching_count": str(len(results)),
+            "voice_count": str(len(behaviour_results)),
+        },
+    )
+    return {
+        "answer": response,
+        "teachings": results,
+        "voice": behaviour_results,
+        "content_mode": content_mode,
+        "voice_mode": voice_mode,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Main loop
 # ---------------------------------------------------------------------------
@@ -398,8 +487,9 @@ def main() -> None:
 
     debug = "--debug" in sys.argv
 
-    client = get_client()
+    get_client()  # fail fast if ANTHROPIC_API_KEY is missing
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+    session_id = str(uuid.uuid4())
 
     print("The Reader — Ask anything about Human Design")
     if debug:
@@ -420,14 +510,22 @@ def main() -> None:
                 print("Goodbye.")
                 break
 
-            # Embed the question once (shared by content + voice retrieval).
-            qvec = safe_embed(question, debug)
+            try:
+                with propagate_attributes(
+                    session_id=session_id,
+                    tags=["reader"],
+                    metadata={"app": "graphiti-test"},
+                ):
+                    result = answer_question(driver, question, debug=debug)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[ERROR synthesising response] {exc}")
+                continue
 
-            # Step 1-2 — content: vector anchor + graph expansion (or fallback)
-            results, content_mode = retrieve_content(driver, client, question, qvec, debug)
-
-            # Step 3 — voice exemplars
-            behaviour_results, voice_mode = retrieve_voice(driver, question, qvec, debug)
+            results = result["teachings"]
+            behaviour_results = result["voice"]
+            content_mode = result["content_mode"]
+            voice_mode = result["voice_mode"]
+            response = result["answer"]
 
             if debug:
                 print(f"\nRetrieval: content={content_mode}, voice={voice_mode}")
@@ -439,21 +537,14 @@ def main() -> None:
                           f"{insight[:120]}{'...' if len(insight) > 120 else ''}")
                 print()
 
-            # Step 4 — synthesise
-            teachings = format_teachings(results)
-            behaviour_context = format_behaviour_context(behaviour_results)
-            try:
-                response = synthesise(client, question, teachings, behaviour_context)
-            except Exception as exc:  # noqa: BLE001
-                print(f"[ERROR synthesising response] {exc}")
-                continue
-
             print(f"\n{response}\n")
             print("-" * 60)
 
             if debug:
                 log_interaction(question, f"{content_mode}/{voice_mode}", results, response)
+            flush()
     finally:
+        flush()
         driver.close()
 
 

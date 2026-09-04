@@ -12,7 +12,7 @@
     { "label": "Extract (Claude)" },
     { "label": "Graph Seeds" },
     { "label": "Neo4j + Vectors" },
-    { "label": "Consume (RAG)" }
+    { "label": "Consume + Eval" }
   ],
   "nodes": [
     { "id": "transcripts", "type": "external", "label": "Reading Transcripts", "sublabel": ".txt session exports", "stage": 0, "row": 0, "tag": "raw" },
@@ -23,9 +23,11 @@
     { "id": "train_extract", "type": "backend", "label": "extract_training_doc.py", "sublabel": "per-section entities", "stage": 1, "row": 4, "width": 178 },
     { "id": "hd_seed", "type": "database", "label": "hd_graph_seed.json", "sublabel": "804 nodes / 888 edges", "stage": 2, "row": 1, "tag": "seed", "width": 176 },
     { "id": "train_seed", "type": "database", "label": "training_graph_seed.json", "sublabel": "172 nodes / 119 edges", "stage": 2, "row": 4, "tag": "seed", "width": 178 },
+    { "id": "langfuse", "type": "database", "label": "Langfuse", "sublabel": "localhost:3100 traces", "stage": 3, "row": 0, "tag": "obs", "width": 168 },
     { "id": "load", "type": "backend", "label": "load_graph.py", "sublabel": "direct Cypher MERGE", "stage": 3, "row": 2, "width": 160 },
     { "id": "neo4j", "type": "database", "label": "Neo4j", "sublabel": "graph + vector index", "stage": 3, "row": 3, "tag": "graph", "width": 150 },
     { "id": "embed", "type": "backend", "label": "embed_graph.py", "sublabel": "writes embeddings", "stage": 3, "row": 4, "width": 160 },
+    { "id": "eval_reader", "type": "backend", "label": "eval_reader.py", "sublabel": "gold set + judges", "stage": 4, "row": 0, "width": 176 },
     { "id": "reader", "type": "backend", "label": "reader.py", "sublabel": "hybrid RAG: vector + graph", "stage": 4, "row": 2, "width": 190 },
     { "id": "ollama", "type": "cloud", "label": "Ollama", "sublabel": "nomic-embed-text 768-d", "stage": 4, "row": 4, "tag": "embeddings", "width": 176 }
   ],
@@ -43,7 +45,10 @@
     { "id": "neo4j-embed", "from": "neo4j", "to": "embed", "label": "insight / phrase text", "classification": "read", "labelDy": 24 },
     { "id": "embed-ollama", "from": "embed", "to": "ollama", "label": "text to embed", "classification": "embed call", "labelDy": 53 },
     { "id": "neo4j-reader", "from": "neo4j", "to": "reader", "label": "vector + graph context", "classification": "hybrid retrieval", "variant": "emphasis", "labelAt": [852, 428] },
-    { "id": "reader-ollama", "from": "reader", "to": "ollama", "label": "question embedding", "classification": "embed call", "labelAt": [960, 500] }
+    { "id": "reader-ollama", "from": "reader", "to": "ollama", "label": "question embedding", "classification": "embed call", "labelAt": [960, 500] },
+    { "id": "eval-reader", "from": "eval_reader", "to": "reader", "label": "answer_question()", "classification": "eval", "labelDy": 24 },
+    { "id": "eval-langfuse", "from": "eval_reader", "to": "langfuse", "label": "dataset run + scores", "classification": "experiment", "fromSide": "left", "toSide": "right", "route": "straight", "labelAt": [760, 100] },
+    { "id": "reader-langfuse", "from": "reader", "to": "langfuse", "label": "answer-question traces", "classification": "otel", "variant": "emphasis" }
   ],
   "cards": [
     {
@@ -57,7 +62,7 @@
     },
     {
       "dot": "violet",
-      "title": "RAG layer (new)",
+      "title": "RAG layer",
       "items": [
         "embed_graph.py embeds RayJaiTeaching.insight + HDVoicePattern.phrase via Ollama nomic-embed-text and builds Neo4j vector indexes",
         "reader.py embeds the question, vector-searches teachings (anchor), expands via the graph, and pulls verbatim voice exemplars",
@@ -66,11 +71,11 @@
     },
     {
       "dot": "amber",
-      "title": "Notes",
+      "title": "Langfuse (local)",
       "items": [
-        "Neo4j Browser (localhost:7474) is available for visual exploration",
-        "analyze_voice.py computes RayJai word/phrase frequency straight from transcripts (standalone)",
-        "Fine-tuning on RayJai's turns is the optional last-mile for deeper voice fidelity"
+        "docker-compose.langfuse.yml runs Langfuse at localhost:3100; anthropic_chat.complete() records every Claude call as a generation",
+        "Each Reader turn is one trace: embed-question → retrieve-content / retrieve-voice → synthesise-answer; extraction emits extract-chunk / extract-section traces",
+        "eval_reader.py runs eval/reader_dataset.json through answer_question() and scores faithfulness, voice, relevance, plus deterministic checks"
       ]
     }
   ]

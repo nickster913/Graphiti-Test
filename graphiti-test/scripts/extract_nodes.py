@@ -25,6 +25,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from anthropic_chat import EXTRACT_MODEL, complete_json
+from langfuse_tracing import flush, get_langfuse, observe, propagate_attributes
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -249,13 +250,22 @@ def normalise_graph(graph: dict) -> dict:
 # API call
 # ---------------------------------------------------------------------------
 
+@observe(name="extract-chunk", capture_input=False, capture_output=False)
 def call_model(chunk_body: str) -> dict:
     """
     Send one chunk to Claude and return the parsed {nodes, edges} dict.
     Raises ValueError if the response is not valid JSON.
     """
     user_prompt = USER_PROMPT_TEMPLATE.format(chunk_body=chunk_body)
-    return complete_json(SYSTEM_PROMPT, user_prompt, model=MODEL, max_tokens=MAX_TOKENS)
+    result = complete_json(SYSTEM_PROMPT, user_prompt, model=MODEL, max_tokens=MAX_TOKENS)
+    get_langfuse().update_current_span(
+        input={"chars": len(chunk_body)},
+        output={
+            "nodes": len(result.get("nodes", [])),
+            "edges": len(result.get("edges", [])),
+        },
+    )
+    return result
 
 # ---------------------------------------------------------------------------
 # Main
@@ -301,7 +311,11 @@ def main() -> None:
               end=" ", flush=True)
 
         try:
-            result = call_model(chunk["body"])
+            with propagate_attributes(
+                tags=["extract", "transcript"],
+                metadata={"script": "extract_nodes", "chunk_index": str(chunk_index)},
+            ):
+                result = call_model(chunk["body"])
         except Exception as exc:
             print(f"ERROR — {exc}")
             skipped += 1
@@ -338,6 +352,7 @@ def main() -> None:
     print(f"Total nodes      : {nodes_after}  (+{nodes_added} new)")
     print(f"Total edges      : {edges_after}  (+{edges_added} new)")
     print(f"Output written to: {OUTPUT_FILE}")
+    flush()
 
 
 if __name__ == "__main__":

@@ -5043,7 +5043,7 @@
         <text x="745" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">04 / Neo4j + Vectors</text>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="stage" data-composition-frame-id="4" x="876" y="46" width="168" height="660" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / Consume (RAG)</text>
+        <text x="960" y="68" class="t-dim" font-size="9" font-weight="600" text-anchor="middle">05 / Consume + Eval</text>
 
         <!-- Flow paths -->
         <path data-edge-from="transcripts" data-edge-to="chunk" data-edge-label="session turns" data-edge-key="0" data-edge-id="src-chunk" data-composition-points="156,157;227,157" d="M 156 157 L 227 157" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
@@ -5060,6 +5060,9 @@
         <path data-edge-from="embed" data-edge-to="ollama" data-edge-label="text to embed" data-edge-key="11" data-edge-id="embed-ollama" data-composition-points="825,613;872,613" d="M 825 613 L 872 613" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
         <path data-edge-from="neo4j" data-edge-to="reader" data-edge-label="vector + graph context" data-edge-key="12" data-edge-id="neo4j-reader" data-composition-points="820,499;842.5,499;842.5,385;865,385" d="M 820 499 L 842.5 499 L 842.5 385 L 865 385" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="reader" data-edge-to="ollama" data-edge-label="question embedding" data-edge-key="13" data-edge-id="reader-ollama" data-composition-points="960,414;960,584" d="M 960 414 L 960 584" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="eval_reader" data-edge-to="reader" data-edge-label="answer_question()" data-edge-key="14" data-edge-id="eval-reader" data-composition-points="960,186;960,356" d="M 960 186 L 960 356" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="eval_reader" data-edge-to="langfuse" data-edge-label="dataset run + scores" data-edge-key="15" data-edge-id="eval-langfuse" data-composition-points="872,157;829,157" d="M 872 157 L 829 157" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="reader" data-edge-to="langfuse" data-edge-label="answer-question traces" data-edge-key="16" data-edge-id="reader-langfuse" data-composition-points="865,385;847,385;847,157;829,157" d="M 865 385 L 847 385 L 847 157 L 829 157" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
 
         <!-- Nodes -->
         <g id="node-transcripts" data-node-id="transcripts" data-node-label="Reading Transcripts" tabindex="0" role="button" aria-label="Focus Reading Transcripts, .txt session exports, 01 / Sources" aria-pressed="false" data-node-kind="external" data-node-sublabel=".txt session exports" data-node-tag="raw" data-node-context="01 / Sources">
@@ -5159,6 +5162,19 @@
         <text data-detail="fine" x="530" y="631" class="t-database" font-size="7" text-anchor="middle">seed</text>
         </g>
 
+        <g id="node-langfuse" data-node-id="langfuse" data-node-label="Langfuse" tabindex="0" role="button" aria-label="Focus Langfuse, localhost:3100 traces, 04 / Neo4j + Vectors" aria-pressed="false" data-node-kind="database" data-node-sublabel="localhost:3100 traces" data-node-tag="obs" data-node-context="04 / Neo4j + Vectors">
+          <title>Langfuse · localhost:3100 traces · 04 / Neo4j + Vectors · obs</title>
+          <rect x="661" y="128" width="168" height="58" rx="6" class="c-mask"/>
+          <rect x="661" y="128" width="168" height="58" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(667 134) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="745" y="149" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Langfuse</text>
+          <text data-detail="context" x="745" y="165" class="t-muted" font-size="7" text-anchor="middle">localhost:3100 traces</text>
+        <text data-detail="fine" x="745" y="175" class="t-database" font-size="7" text-anchor="middle">obs</text>
+        </g>
+
         <g id="node-load" data-node-id="load" data-node-label="load_graph.py" tabindex="0" role="button" aria-label="Focus load_graph.py, direct Cypher MERGE, 04 / Neo4j + Vectors" aria-pressed="false" data-node-kind="backend" data-node-sublabel="direct Cypher MERGE" data-node-context="04 / Neo4j + Vectors">
           <title>load_graph.py · direct Cypher MERGE · 04 / Neo4j + Vectors</title>
           <rect x="665" y="356" width="160" height="58" rx="6" class="c-mask"/>
@@ -5194,8 +5210,19 @@
           <text data-detail="context" x="745" y="621" class="t-muted" font-size="7" text-anchor="middle">writes embeddings</text>
         </g>
 
-        <g id="node-reader" data-node-id="reader" data-node-label="reader.py" tabindex="0" role="button" aria-label="Focus reader.py, hybrid RAG: vector + graph, 05 / Consume (RAG)" aria-pressed="false" data-node-kind="backend" data-node-sublabel="hybrid RAG: vector + graph" data-node-context="05 / Consume (RAG)">
-          <title>reader.py · hybrid RAG: vector + graph · 05 / Consume (RAG)</title>
+        <g id="node-eval_reader" data-node-id="eval_reader" data-node-label="eval_reader.py" tabindex="0" role="button" aria-label="Focus eval_reader.py, gold set + judges, 05 / Consume + Eval" aria-pressed="false" data-node-kind="backend" data-node-sublabel="gold set + judges" data-node-context="05 / Consume + Eval">
+          <title>eval_reader.py · gold set + judges · 05 / Consume + Eval</title>
+          <rect x="872" y="128" width="176" height="58" rx="6" class="c-mask"/>
+          <rect x="872" y="128" width="176" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(878 134) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="960" y="149" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">eval_reader.py</text>
+          <text data-detail="context" x="960" y="165" class="t-muted" font-size="7" text-anchor="middle">gold set + judges</text>
+        </g>
+
+        <g id="node-reader" data-node-id="reader" data-node-label="reader.py" tabindex="0" role="button" aria-label="Focus reader.py, hybrid RAG: vector + graph, 05 / Consume + Eval" aria-pressed="false" data-node-kind="backend" data-node-sublabel="hybrid RAG: vector + graph" data-node-context="05 / Consume + Eval">
+          <title>reader.py · hybrid RAG: vector + graph · 05 / Consume + Eval</title>
           <rect x="865" y="356" width="190" height="58" rx="6" class="c-mask"/>
           <rect x="865" y="356" width="190" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(871 362) scale(0.6875)">
@@ -5205,8 +5232,8 @@
           <text data-detail="context" x="960" y="393" class="t-muted" font-size="7" text-anchor="middle">hybrid RAG: vector + graph</text>
         </g>
 
-        <g id="node-ollama" data-node-id="ollama" data-node-label="Ollama" tabindex="0" role="button" aria-label="Focus Ollama, nomic-embed-text 768-d, 05 / Consume (RAG)" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="nomic-embed-text 768-d" data-node-tag="embeddings" data-node-context="05 / Consume (RAG)">
-          <title>Ollama · nomic-embed-text 768-d · 05 / Consume (RAG) · embeddings</title>
+        <g id="node-ollama" data-node-id="ollama" data-node-label="Ollama" tabindex="0" role="button" aria-label="Focus Ollama, nomic-embed-text 768-d, 05 / Consume + Eval" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="nomic-embed-text 768-d" data-node-tag="embeddings" data-node-context="05 / Consume + Eval">
+          <title>Ollama · nomic-embed-text 768-d · 05 / Consume + Eval · embeddings</title>
           <rect x="872" y="584" width="176" height="58" rx="6" class="c-mask"/>
           <rect x="872" y="584" width="176" height="58" rx="6" class="c-cloud" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(878 590) scale(0.6875)">
@@ -5287,6 +5314,21 @@
           <rect x="909.9" y="489" width="100.2" height="27" rx="4" class="c-mask"/>
           <text x="960" y="500" class="t-muted" font-size="8" text-anchor="middle">question embedding</text>
         <text data-detail="fine" x="960" y="511" class="t-dim" font-size="7" text-anchor="middle">embed call</text>
+        </g>
+        <g data-detail="context" data-edge-from="eval_reader" data-edge-to="reader" data-edge-label="answer_question()" data-edge-key="14" data-edge-id="eval-reader">
+          <rect x="912.35" y="189" width="95.3" height="27" rx="4" class="c-mask"/>
+          <text x="960" y="200" class="t-muted" font-size="8" text-anchor="middle">answer_question()</text>
+        <text data-detail="fine" x="960" y="211" class="t-dim" font-size="7" text-anchor="middle">eval</text>
+        </g>
+        <g data-detail="context" data-edge-from="eval_reader" data-edge-to="langfuse" data-edge-label="dataset run + scores" data-edge-key="15" data-edge-id="eval-langfuse">
+          <rect x="705" y="89" width="110" height="27" rx="4" class="c-mask"/>
+          <text x="760" y="100" class="t-muted" font-size="8" text-anchor="middle">dataset run + scores</text>
+        <text data-detail="fine" x="760" y="111" class="t-dim" font-size="7" text-anchor="middle">experiment</text>
+        </g>
+        <g data-detail="context" data-edge-from="reader" data-edge-to="langfuse" data-edge-label="answer-question traces" data-edge-key="16" data-edge-id="reader-langfuse">
+          <rect x="787.1" y="250" width="119.8" height="27" rx="4" class="c-mask"/>
+          <text x="847" y="261" class="t-backend" font-size="8" text-anchor="middle">answer-question traces</text>
+        <text data-detail="fine" x="847" y="272" class="t-dim" font-size="7" text-anchor="middle">otel</text>
         </g>
 
         <!-- Legend -->
@@ -5506,7 +5548,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-dot violet"></div>
-          <h3>RAG layer (new)</h3>
+          <h3>RAG layer</h3>
         </div>
         <ul>
           <li>&bull; embed_graph.py embeds RayJaiTeaching.insight + HDVoicePattern.phrase via Ollama nomic-embed-text and builds Neo4j vector indexes</li>
@@ -5518,12 +5560,12 @@
       <div class="card">
         <div class="card-header">
           <div class="card-dot amber"></div>
-          <h3>Notes</h3>
+          <h3>Langfuse (local)</h3>
         </div>
         <ul>
-          <li>&bull; Neo4j Browser (localhost:7474) is available for visual exploration</li>
-          <li>&bull; analyze_voice.py computes RayJai word/phrase frequency straight from transcripts (standalone)</li>
-          <li>&bull; Fine-tuning on RayJai&#39;s turns is the optional last-mile for deeper voice fidelity</li>
+          <li>&bull; docker-compose.langfuse.yml runs Langfuse at localhost:3100; anthropic_chat.complete() records every Claude call as a generation</li>
+          <li>&bull; Each Reader turn is one trace: embed-question → retrieve-content / retrieve-voice → synthesise-answer; extraction emits extract-chunk / extract-section traces</li>
+          <li>&bull; eval_reader.py runs eval/reader_dataset.json through answer_question() and scores faithfulness, voice, relevance, plus deterministic checks</li>
         </ul>
       </div>
     </div>

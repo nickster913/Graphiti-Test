@@ -1,0 +1,96 @@
+{
+  "name": "reader-eval",
+  "description": "Gold questions for the hybrid RAG Reader. expected_output is a short coverage hint; metadata.expected_concepts are used by the concept-hit evaluator.",
+  "items": [
+    {
+      "id": "reader-open-centers",
+      "input": "I have an open Head Center and it feels like I don't actually have a mind of my own. Is that true?",
+      "expected_output": "Open does not mean absent; you borrow and amplify energy from the environment.",
+      "metadata": {
+        "category": "centers",
+        "expected_concepts": ["open", "amplify", "borrow", "defined"]
+      }
+    },
+    {
+      "id": "reader-mg-triple-threat",
+      "input": "I'm a Manifesting Generator and I start ten things and finish five. Am I broken?",
+      "expected_output": "MGs are a triple threat; it is okay not to finish everything they initiate.",
+      "metadata": {
+        "category": "type",
+        "expected_concepts": ["Manifesting Generator", "initiate", "complete", "finish"]
+      }
+    },
+    {
+      "id": "reader-strategy-authority",
+      "input": "What is strategy and authority actually for? I keep hearing the terms and they sound like homework.",
+      "expected_output": "Strategy is where you release control; authority is the inner GPS / North star.",
+      "metadata": {
+        "category": "mechanics",
+        "expected_concepts": ["strategy", "authority", "body"]
+      }
+    },
+    {
+      "id": "reader-sacral-yes-no",
+      "input": "How am I supposed to know if something is a yes? I overthink everything.",
+      "expected_output": "Sacral / gut is a visceral hell yes or hell no; I'll think about it is already a no.",
+      "metadata": {
+        "category": "authority",
+        "expected_concepts": ["yes", "no", "gut", "body"]
+      }
+    },
+    {
+      "id": "reader-emotional-authority",
+      "input": "I have emotional authority and people keep pushing me to decide today.",
+      "expected_output": "Don't rush emotional authority; clarity comes with time. Overriding it for a deadline sabotages.",
+      "metadata": {
+        "category": "authority",
+        "expected_concepts": ["emotional", "clarity", "rush", "wait"]
+      }
+    },
+    {
+      "id": "reader-not-self-signal",
+      "input": "I keep feeling angry and frustrated and I think it means I'm failing at Human Design.",
+      "expected_output": "Not-self (anger, frustration, bitterness) is a signal of misalignment, not a failure state.",
+      "metadata": {
+        "category": "not-self",
+        "expected_concepts": ["not-self", "anger", "frustration", "alignment"]
+      }
+    },
+    {
+      "id": "reader-projector-bitterness",
+      "input": "Nobody asked me and I feel bitter about it. What's going on?",
+      "expected_output": "Bitterness is the body saying you didn't wait for the invitation that was yours.",
+      "metadata": {
+        "category": "type",
+        "expected_concepts": ["bitter", "invitation", "Projector"]
+      }
+    },
+    {
+      "id": "reader-conditioning",
+      "input": "What does conditioning actually mean? I feel like I've been living someone else's life.",
+      "expected_output": "Conditioning is false truths adopted from other people; HD is a way to re-meet who you were before.",
+      "metadata": {
+        "category": "philosophy",
+        "expected_concepts": ["conditioning", "false", "who you"]
+      }
+    },
+    {
+      "id": "reader-profile-mask",
+      "input": "What is a profile in Human Design? People keep quoting two numbers at me.",
+      "expected_output": "Profile is the mask / how you dress up; two numbers because it anchors how you express purpose.",
+      "metadata": {
+        "category": "profile",
+        "expected_concepts": ["profile", "line", "purpose"]
+      }
+    },
+    {
+      "id": "reader-too-intense",
+      "input": "I keep getting told I'm too intense. What's going on with me?",
+      "expected_output": "Intensity often maps to Manifestor aura / not-self anger, or defined motors moving through the field.",
+      "metadata": {
+        "category": "not-self",
+        "expected_concepts": ["intense", "aura", "Manifestor"]
+      }
+    }
+  ]
+}

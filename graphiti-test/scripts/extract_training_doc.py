@@ -25,6 +25,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from anthropic_chat import EXTRACT_MODEL, complete_json
+from langfuse_tracing import flush, get_langfuse, observe, propagate_attributes
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -214,13 +215,22 @@ def normalise_graph(graph: dict) -> dict:
 # API call
 # ---------------------------------------------------------------------------
 
+@observe(name="extract-section", capture_input=False, capture_output=False)
 def call_model(section_body: str) -> dict:
     """
     Send one section to Claude and return the parsed {nodes, edges} dict.
     Raises ValueError if the response is not valid JSON.
     """
     user_prompt = USER_PROMPT_TEMPLATE.format(section_body=section_body)
-    return complete_json(SYSTEM_PROMPT, user_prompt, model=MODEL, max_tokens=MAX_TOKENS)
+    result = complete_json(SYSTEM_PROMPT, user_prompt, model=MODEL, max_tokens=MAX_TOKENS)
+    get_langfuse().update_current_span(
+        input={"chars": len(section_body)},
+        output={
+            "nodes": len(result.get("nodes", [])),
+            "edges": len(result.get("edges", [])),
+        },
+    )
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -257,7 +267,11 @@ def main() -> None:
         )
 
         try:
-            result = call_model(section_body)
+            with propagate_attributes(
+                tags=["extract", "training"],
+                metadata={"script": "extract_training_doc", "section": str(i + 1)},
+            ):
+                result = call_model(section_body)
         except Exception as exc:
             print(f"ERROR — {exc}")
             skipped += 1
@@ -291,6 +305,7 @@ def main() -> None:
     print(f"Total nodes        : {nodes_total}")
     print(f"Total edges        : {edges_total}")
     print(f"Output written to  : {OUTPUT_FILE}")
+    flush()
 
 
 if __name__ == "__main__":
